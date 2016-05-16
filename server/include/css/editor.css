@@ -1,0 +1,26 @@
+.panel
+{
+	box-shadow:			none;
+}
+
+.panel-default > .panel-heading
+{
+	background:			none;
+	border:				none;
+	padding:			0 5px 5px;
+}
+
+.note-btn-group
+{
+	margin-top:			0 !important;
+}
+
+.note-editor.note-frame
+{
+	border:				none;
+}
+
+.note-statusbar
+{
+	display:			none;
+}

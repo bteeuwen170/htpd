@@ -1,0 +1,106 @@
+TODO
+====
+n Use the <pre> tag as comments for teachers
+- Seperate textfield for comment
+x Get rid of note-resizebar on the editor
+n Column in SQLDB for current class
+x Implement saving
+x Implement passwords
+x Implement both a save and a "finish(verzegelen?)" button
+x Implement finish button
+- Notify teacher about finished portfolio
+x Wrap text
+- All files in storage have to be owned by http FIXME?
+- The server directory has to be owned by http, FIXME?
+x Maybe a different file tree?
+x Select current project in sidebar
+- Select ALL (not just ^) active sidebar items
+- Confirmation for saving
+- Make sure user can only be logged in on one location at the time
+x Reimplement editor as this one is massively screwed up
+x Cursor has a wrong starting position
+n Arrow in sidebar to indicate year is populated
+x No select and no pointer on login page
+- .nopointer and .noselect in seperate css file (eg. "include/utils.css")
+n Remove ID from SQL DB
+n Allow teachers to create other teachers?
+x Maybe create an admin account by default when creating the first account
+- Implement SSL correctly
+x Implement user management view
+	- Sort users in classes ("Stamgroep") if contains "o&o" in "Vakken"
+x Check username on every page
+- Check GID besides username in verify_login()
+? Make sure all DB connections are closed and all results are freed
+x Implement motd
+	n Teacher
+	x Admin
+n Shortcut for saving
+- Redirect to HTTP forbidden page if inside iFrame and verify_login() failed
+- Ask for password before finishing file
+p Implement a file manager
+x Implement group system based on client feedback
+x Make sorttable stfu in the console
+- Don't use projectname as foldername, use PID
+x Don't use username as foldername, use UID
+p Try JQuery's .load() instead of iframes
+- Implement importing CSV files from ItsLearning
+p Implement exporting to CSV
+- Scrollbar overlaps editor and *list in manager_layout.css
+- Don't use inline JS anymore
+- Make year sorting work in projectmanager
+- Rename "Portfolio" to what the client had wanted in the first place
+- Option to download entire portfolio
+x install.php > init.php
+x admin.php > install.php
+- Use consts as GID instead of plain ints (in some cases)
+- Use cookies more often for user content
+- Footer in PHP file
+x Automatic system for dates, just enter start date
+x Implement usermod
+- Check for username and email availablity in usermod
+- Deldir in functions.php
+- Implement projectmod
+- Implement groupadd
+- Group in brackets, students in projects will look like this:
+		"student(group),student(group),..."
+- Prevent sorting from changing column width
+- Add column for project owner UID, only this person can add, remove or change
+		users from a group
+	- Don't allow teachers to delete each other's projects
+x No delete button for teachers in usermanager
+- Get permissions for teachers right in usermanager
+
+
+Questions
+=========
+n Ask client and survey results for functionality in editor
+n Ask client (and school) for correct logo
+- Ask team to make logo
+n Ask client (and school) for correct footer
+- Ask expert and client for license
+- Get advice on color scheme (from school or team?)
+x Ask expert and client (due to licensing) for version control (preferably git)
+	> Git is recommended
+- Ask client for home page content
+x Ask client about registration procedure
+n Ask expert (and potentially client) for portfolio creation procedure
+x Ask expert if Node.js (perhaps even C?) is preferred over PHP
+	> PHP is recommended
+- Ask client to export new csv with only required columns
+	- Columns: "Gebruikersnaam", "Naam", "Vakken" and "E-mail"
+			(if all are available)
+n Ask client if students should be distributed amongst classes
+	> They are now not distributed amongst anything
+n Ask client whether classes are global covered by classes or if classes are
+	defined per teacher, where the former is more future proof
+	> Just went with the former, impatience was dominant
+- Ask client if multiple teachers be involved in one project
+
+
+Legend
+======
+- = TODO
+n = Cancelled
+p = Postponed until further notice
+? = Probably done
+x = Done

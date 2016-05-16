@@ -1,0 +1,42 @@
+html, body
+{
+	overflow:			none;
+}
+
+#optionbar
+{
+	width:				100%;
+	background-color:	#FFFFFF;
+	padding:			0 5px 5px;
+}
+
+/* <CRAP> (FIXME Very crappy css) */
+#years
+{
+	position:			absolute;
+	display:			inline-flex;
+	width:				175px;
+	right:				0;
+	margin-right:		21px;
+}
+
+#years > span
+{
+	width:				50px;
+}
+/* </CRAP> */
+
+.datacontainer, #editor
+{
+	overflow:			auto;
+	height:				calc(100% - 76px);
+}
+
+#editor
+{
+	padding:		10px;
+}
+
+.pr {
+	cursor:			pointer;
+}

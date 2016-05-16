@@ -1,0 +1,6 @@
+.home-table > tbody > tr > td /* XXX Not completely happy */
+{
+	width:				50%;
+	padding:			0 25px;
+	vertical-align:		top;
+}
