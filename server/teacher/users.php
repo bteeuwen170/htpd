@@ -119,37 +119,36 @@
 								");
 						?>
 					</div>
+					<div class="btn-group">
 						<?php
 							if ($_COOKIE["gid"] == USER_ADMIN)
 								echo("
-									<div class='btn-group'>
-										<button
-											type='button'
-											class='btn btn-default btn-sm'
-											title='Importeren'
-											data-toggle='modal'
-											data-tooltip='true'
-											data-placement='bottom'
-											data-backdrop='static'
-											data-target='#importd'>
-											<span class='glyphicon
-													glyphicon-import'></span>
-										</button>
-										<button
-											type='button'
-											class='btn btn-default btn-sm'
-											title='Exporteren'
-											data-toggle='modal'
-											data-tooltip='true'
-											data-placement='bottom'
-											data-backdrop='static'
-											data-target='#exportd'>
-											<span class='glyphicon
-													glyphicon-export'></span>
-										</button>
-									</div>
+									<button
+										type='button'
+										class='btn btn-default btn-sm'
+										title='Importeren'
+										data-toggle='modal'
+										data-tooltip='true'
+										data-placement='bottom'
+										data-backdrop='static'
+										data-target='#importd'>
+										<span class='glyphicon
+												glyphicon-import'></span>
+									</button>
 								");
 						?>
+						<button
+							type="button"
+							class="btn btn-default btn-sm"
+							title="Exporteren"
+							data-toggle="modal"
+							data-tooltip="true"
+							data-placement="bottom"
+							data-backdrop="static"
+							data-target="#exportd">
+							<span class="glyphicon glyphicon-export"></span>
+						</button>
+					</div>
 				</div>
 				<div class="datacontainer">
 					<table class="table table-striped sortable" id="userlist">

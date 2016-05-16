@@ -53,8 +53,8 @@ p Implement exporting to CSV
 x install.php > init.php
 x admin.php > install.php
 - Use consts as GID instead of plain ints (in some cases)
-- Use cookies more often for user content
-- Footer in PHP file
+- Use cookies less often (talking 'bout index.php)
+x Footer in PHP file
 x Automatic system for dates, just enter start date
 x Implement usermod
 - Check for username and email availablity in usermod
@@ -86,7 +86,8 @@ n Ask expert (and potentially client) about portfolio creation procedure
 x Ask expert if Node.js (perhaps even C?) is preferred over PHP
 	> PHP is recommended
 - Ask client to export new csv with only required columns
-	- Columns: "Gebruikersnaam", "Naam", "Vakken" and "E-mail"
+	- Columns: "Groep" (teacher or student), "Gebruikersnaam", "Naam",
+			"Vakken" and "E-mail"
 			(if all are available)
 n Ask client if students should be distributed amongst classes
 	> They are now not distributed amongst anything
