@@ -119,24 +119,24 @@
 							DB_USER, DB_PASS, DB_NAME);
 							//TODO Check for errors
 
-							$columns = "SELECT students FROM " . DB_PROJECTS .
-									" WHERE pid=" . $_GET["pid"];
+							$columns = "SELECT groups, students FROM " .
+									DB_PROJECTS . " WHERE pid=" . $_GET["pid"];
 							$result = $dbconn->query($columns);
 							check($dbconn, $result, false);
+							$project = $result->fetch_assoc();
 
 							$where = " WHERE";
-							$students =
-								explode(",",
-										($result->fetch_assoc())["students"]);
+							$students = explode(",", $project["students"]);
 							for ($i = 0; $i < count($students); $i++) {
-								$where = $where . " uid=" . $students[$i] .
-										" OR";
+								$where = $where . " uid=" .
+									preg_replace("/\([^)]*\)/", "",
+										$students[$i]) . " OR";
 							}
 							$where = substr($where, 0, -3);
 
 							$columns =
 								"SELECT uid, gid, firstname, lastname FROM " .
-									DB_USERS . $where;
+										DB_USERS . $where;
 							$rows = $dbconn->query($columns);
 							check($dbconn, $rows, false);
 
@@ -152,12 +152,36 @@
 								echo("<td>" . $row["uid"] . "</td>");
 								echo("<td>" . $row["firstname"] . "</td>");
 								echo("<td>" . $row["lastname"] . "</td>");
+								echo("<td>");
 								if ($row["gid"] == 2) {
-									echo("<td>" . "TODO" . "</td>");
+									for ($i = 0; $i < count($students); $i++) {
+										if ($row["uid"] ==
+												preg_replace("/\([^)]*\)/", "",
+												$students[$i])) {
+											if (preg_match(
+													"/(?<=\()(.+?)(?=\))/",
+													$students[$i], $group))
+												$group = $group[0] + 1;
+											else
+												$group = -1;
+											break;
+										}
+									}
+
+									echo("<select>");
+									for ($i = -1;
+											$i < $project["groups"]; $i++) {
+										echo("<option value='" . $i . "'" .
+												(($i == $group) ?
+												" selected" : "") . ">" .
+												(($i == -1) ? "Geen" : $i) .
+												"</option>");
+									}
+									echo("</select>");
 								} else {
-									echo("<td>Leraar</td>");
+									echo("Leraar");
 								}
-								echo("</tr>");
+								echo("</td></tr>");
 							}
 
 							$result->free();

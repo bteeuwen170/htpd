@@ -299,7 +299,7 @@
 										<input
 											type="submit"
 											class="btn btn-primary"
-											value="Toevoegen">
+											value="Opslaan">
 									</div>
 								</div>
 							</form>

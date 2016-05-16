@@ -1,5 +1,5 @@
-TODO
-====
+ TODO
+============
 n Use the <pre> tag as comments for teachers
 - Seperate textfield for comment
 x Get rid of note-resizebar on the editor
@@ -10,7 +10,7 @@ x Implement both a save and a "finish(verzegelen?)" button
 x Implement finish button
 - Notify teacher about finished portfolio
 x Wrap text
-- All files in storage have to be owned by http FIXME?
+- All files in storage have to be owned by http, FIXME?
 - The server directory has to be owned by http, FIXME?
 x Maybe a different file tree?
 x Select current project in sidebar
@@ -59,8 +59,10 @@ x Automatic system for dates, just enter start date
 x Implement usermod
 - Check for username and email availablity in usermod
 - Deldir in functions.php
-- Implement projectmod
+x Implement projectmod
 - Implement groupadd
+- Implement groupmod
+- Implement groupdel (perhaps combine with groupmod)
 - Group in brackets, students in projects will look like this:
 		"student(group),student(group),..."
 - Prevent sorting from changing column width
@@ -68,22 +70,19 @@ x Implement usermod
 		users from a group
 	- Don't allow teachers to delete each other's projects
 x No delete button for teachers in usermanager
-- Get permissions for teachers right in usermanager
 
 
-Questions
-=========
-n Ask client and survey results for functionality in editor
+ Questions
+============
+n Ask client about functionality editor
 n Ask client (and school) for correct logo
 - Ask team to make logo
 n Ask client (and school) for correct footer
-- Ask expert and client for license
+- Ask expert and client about license
 - Get advice on color scheme (from school or team?)
-x Ask expert and client (due to licensing) for version control (preferably git)
-	> Git is recommended
-- Ask client for home page content
+- Ask client about home page content
 x Ask client about registration procedure
-n Ask expert (and potentially client) for portfolio creation procedure
+n Ask expert (and potentially client) about portfolio creation procedure
 x Ask expert if Node.js (perhaps even C?) is preferred over PHP
 	> PHP is recommended
 - Ask client to export new csv with only required columns
@@ -95,10 +94,11 @@ n Ask client whether classes are global covered by classes or if classes are
 	defined per teacher, where the former is more future proof
 	> Just went with the former, impatience was dominant
 - Ask client if multiple teachers be involved in one project
+- Ask client about teacher permissions in usermanager
 
 
-Legend
-======
+ Legend
+============
 - = TODO
 n = Cancelled
 p = Postponed until further notice

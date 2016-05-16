@@ -32,10 +32,21 @@
 					trigger: "hover"
 				});
 
+				$("#editd").on("shown.bs.modal", function(e)
+				{
+					var row = document.getElementById("p" + rows[0]).children;
+					$("#editdpid").val(row[1].innerHTML);
+					$("#editdname").val(row[2].innerHTML);
+					$("#editdgroups").val(row[3].innerHTML);
+					$("#editdyear").val(row[4].innerHTML);
+					$("#editdactive").prop("checked",
+							(row[5].children)[0].checked);
+				});
+
 				$(".pr").click(function()
 				{
 					location.href = "groups.php?pid=" +
-							$(this).closest("tr").attr("data-pid");
+							$(this).closest("tr").attr("id").slice(1);
 				});
 			});
 
@@ -91,8 +102,11 @@
 							class="btn btn-default btn-sm"
 							id="edit"
 							title="Bewerken"
+							data-toggle="modal"
 							data-tooltip="true"
-							data-placement="bottom" disabled>
+							data-placement="bottom"
+							data-backdrop="static"
+							data-target="#editd" disabled>
 							<span class="glyphicon glyphicon-pencil"></span>
 						</button>
 						<button
@@ -153,7 +167,7 @@
 							check($dbconn, $rows, false);
 
 							while ($row = $rows->fetch_array()) {
-								echo("<tr data-pid='" . $row["pid"] . "'>");
+								echo("<tr id='p" . $row["pid"] . "'>");
 								echo("
 									<td>
 										<input type='checkbox' class='cb'
@@ -168,7 +182,7 @@
 								echo("<td class='pr'>" .
 										$row["groups"] . "</td>");
 								echo("<td class='pr'>" .
-										get_years()[$row["year"]] . "</td>");
+										$row["year"] . "</td>");
 								echo("
 									<td>
 										<input
@@ -265,7 +279,99 @@
 										<input
 											type="submit"
 											class="btn btn-primary"
-											value="Toevoegen">
+											value="Opslaan">
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal" id="editd" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button
+								type="button"
+								class="close"
+								data-dismiss="modal">
+								&times;
+							</button>
+							<h4 class="modal-title">Project bewerken</h4>
+						</div>
+						<div class="modal-body">
+							<form method="post" action="projectmod.php">
+								<input type="hidden" name="pid" id="editdpid">
+								<div class="form-group row">
+									<label class="col-sm-4 form-control-label">
+										Projectnaam
+									</label>
+									<div class="col-sm-8">
+										<input
+											type="text"
+											name="name"
+											class="form-control"
+											id="editdname"
+											maxlength="64" required>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-4 form-control-label">
+										Groepen
+									</label>
+									<div class="col-sm-8">
+										<input
+											type="number"
+											name="groups"
+											class="form-control"
+											id="editdgroups"
+											min="1" max="255"
+											value="1" required>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-4 form-control-label">
+										Schooljaar
+									</label>
+									<div class="col-sm-8">
+										<select
+											name="year"
+											class="form-control"
+											id="editdyear">
+											<?php //XXX Deja Vu!
+												$years = get_years();
+												for ($i = 0; $i < count($years);
+														$i++) {
+													echo("
+														<option
+															value='" . $i . "' "
+															. (($i == get_year()
+															) ? "selected>" : ">
+															") . $years[$i] . "
+														</option>
+													");
+												}
+											?>
+										</select>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-4 form-control-label">
+										Actief
+									</label>
+									<div class="col-sm-8">
+										<input
+											type="checkbox"
+											name="active"
+											id="editdactive">
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-sm-offset-4 col-sm-8">
+										<input
+											type="submit"
+											class="btn btn-primary"
+											value="Opslaan">
 									</div>
 								</div>
 							</form>

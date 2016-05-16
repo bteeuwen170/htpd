@@ -50,7 +50,7 @@
 				active      BOOL NOT NULL,
 							PRIMARY KEY(pid)
 			)
-		";
+		"; //TODO Expand students to fit 255 students WITH GROUPS
 		check($dbconn, $dbconn->query($table));
 	}
 
