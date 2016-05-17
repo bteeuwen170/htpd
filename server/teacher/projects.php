@@ -153,48 +153,48 @@
 							<th>Projectnaam</th>
 							<th>Groepen</th>
 							<th>Schooljaar (TODO: hide)</th>
-							<th>Actief</th>
+							<th>Actief (TODO: remove)</th>
 						</tr>
 						<?php
 							$dbconn = new mysqli(DB_URL . ":" . DB_PORT,
-							DB_USER, DB_PASS, DB_NAME);
-							//TODO Check for errors
+									DB_USER, DB_PASS, DB_NAME);
+							check($dbconn, !$dbconn->connect_error, false);
 
-							$columns =
-								"SELECT pid, name, groups, year, active FROM "
-										. DB_PROJECTS;
-							$rows = $dbconn->query($columns);
-							check($dbconn, $rows, false);
+							$qptable = sprintf(
+									"SELECT pid, name, groups, year, active FROM
+									 %s", DB_PROJECTS);
+							$prows = $dbconn->query($qptable);
+							check($dbconn, $prows, false);
 
-							while ($row = $rows->fetch_array()) {
-								echo("<tr id='p" . $row["pid"] . "'>");
+							while ($prow = $prows->fetch_array()) {
+								echo("<tr id='p" . $prow["pid"] . "'>");
 								echo("
 									<td>
 										<input type='checkbox' class='cb'
-										name='cb[]' value='" . $row["pid"] .
+										name='cb[]' value='" . $prow["pid"] .
 										"' onclick='row_set(this)'>
 									</td>
 								");
 								echo("<td class='pr'>" .
-										$row["pid"] . "</td>");
+										$prow["pid"] . "</td>");
 								echo("<td class='pr'>" .
-										$row["name"] . "</td>");
+										$prow["name"] . "</td>");
 								echo("<td class='pr'>" .
-										$row["groups"] . "</td>");
+										$prow["groups"] . "</td>");
 								echo("<td class='pr'>" .
-										$row["year"] . "</td>");
+										$prow["year"] . "</td>");
 								echo("
 									<td>
 										<input
 											type='checkbox'
-											" . ($row["active"] ?
+											" . ($prow["active"] ?
 											"checked" : "") . " disabled>
 									</td>
 								"); //TODO Shouldn't be a checkbox
 								echo("</tr>");
 							}
 
-							$rows->free();
+							$prows->free();
 							$dbconn->close();
 						?>
 					</table>

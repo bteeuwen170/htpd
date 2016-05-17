@@ -15,23 +15,22 @@
 	check($dbconn, !$dbconn->connect_error);
 
 	echo("Verbinding maken met SQL database... ");
-	if (!check($dbconn, mysqli_select_db($dbconn, DB_NAME), true, true)) {
-		echo("Nieuwe database \"" . DB_NAME . "\" wordt aangemaakt... ");
-		$db = "CREATE DATABASE " . DB_NAME;
-		check($dbconn, $dbconn->query($db));
+	if (!check($dbconn, $dbconn->select_db(DB_NAME), true, true)) {
+		echo(sprintf("Nieuwe database '%s' wordt aangemaakt... ", DB_NAME));
+		$qpdb = sprintf("CREATE DATABASE %s", DB_NAME);
+		check($dbconn, $dbconn->query($qpdb));
 
 		echo("Opnieuw verbinding maken met gebruikers database... ");
-		check($dbconn, mysqli_select_db($dbconn, DB_NAME));
+		check($dbconn, $dbconn->select_db(DB_NAME));
 	}
 
 	echo("Tabel met gebruikersgegevens wordt opgehaald... ");
-	$tstatus = "SHOW TABLES LIKE '" . DB_USERS ."'";
-	if (!check($dbconn,
-			mysqli_num_rows($dbconn->query($tstatus)) > 0, true, true)) {
-		echo("Nieuwe tabel \"" . DB_NAME . "." . DB_USERS .
-				"\" wordt aangemaakt... ");
-		$table = "
-			CREATE TABLE " . DB_USERS . " (
+	$qutable = sprintf("DESCRIBE %s", DB_USERS);
+	if (!check($dbconn, $dbconn->query($qutable), true, true)) {
+		echo(sprintf("Nieuwe tabel '%s/%s' wordt aangemaakt... ",
+				DB_NAME, DB_USERS));
+		$qutable = sprintf("
+			CREATE TABLE %s (
 				uid         INT(64) UNSIGNED AUTO_INCREMENT NOT NULL,
 				gid         TINYINT UNSIGNED NOT NULL,
 				firstname   VARCHAR(32) NOT NULL,
@@ -41,9 +40,11 @@
 				email       VARCHAR(64) UNIQUE NOT NULL,
 							PRIMARY KEY(uid)
 			)
-		";
-		check($dbconn, $dbconn->query($table));
+		", DB_USERS);
+		check($dbconn, $dbconn->query($qutable));
 	}
+
+	$dbconn->close();
 
 	echo("
 		<p>

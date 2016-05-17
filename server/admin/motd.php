@@ -6,11 +6,13 @@
 	if (!verify_login(USER_ADMIN))
 		header("Location: /user/logout.php");
 
+	$path = URL_STORAGE . "motd";
+
 	if (isset($_POST["data"])) {
-		$motd = fopen(URL_STORAGE . "motd", "w") or
+		$file = fopen($path, "w") or
 			die("Er is een fout opgeteden tijdens het opslaan.");
-		fwrite($motd, $_POST["data"]);
-		fclose($motd);
+		fwrite($file, $_POST["data"]);
+		fclose($file);
 	}
 ?>
 
@@ -63,15 +65,14 @@
 		<div class="wrapper">
 			<div id="editor">
 				<?php
-					$path = URL_STORAGE . "motd";
 					if (file_exists($path)) {
-						$motd = fopen($path, "r") or
+						$file = fopen($path, "r") or
 							die("Er is een fout opgetreden!");
 						if (filesize($path) > 0)
-							echo(fread($motd, filesize($path)));
+							echo(fread($file, filesize($path)));
 						else
 							echo("<br>");
-						fclose($motd);
+						fclose($file);
 					} else {
 						touch($path);
 						echo("<br>");

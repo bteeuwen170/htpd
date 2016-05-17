@@ -8,11 +8,11 @@
 	$dbconn = new mysqli(DB_URL . ":" . DB_PORT, DB_USER, DB_PASS, DB_NAME);
 	check($dbconn, !$dbconn->connect_error);
 
-	$uid = $_POST["uid"];
-	$firstname = $_POST["firstname"];
-	$lastname = $_POST["lastname"];
-	$username = $_POST["username"];
-	$email = $_POST["email"];
+	$uid = $bdconn->real_escape_string($_POST["uid"]);
+	$firstname = $dbconn->real_escape_string($_POST["firstname"]);
+	$lastname = $dbconn->real_escape_string($_POST["lastname"]);
+	$username = $dbconn->real_escape_string($_POST["username"]);
+	$email = $dbconn->real_escape_string($_POST["email"]);
 
 	/*echo("Controleren op gebruikersnaam beschikbaarheid... ");
 	$usernamecheck = "SELECT username FROM " . DB_USERS . " WHERE username = '"

@@ -1,3 +1,12 @@
+ Stages
+============
+x 1 Design a layout
+x 2 Implement the login system
+x 3 Implement the file editor
+x 4 Implement the user manager
+? 5 Implement the group manager
+- 6 TODO
+
  TODO
 ============
 n Use the <pre> tag as comments for teachers
@@ -30,7 +39,7 @@ x Implement user management view
 	- Sort users in classes ("Stamgroep") if contains "o&o" in "Vakken"
 x Check username on every page
 - Check GID besides username in verify_login()
-? Make sure all DB connections are closed and all results are freed
+- Make sure all DB connections and queries are closed
 x Implement motd
 	n Teacher
 	x Admin
@@ -70,6 +79,16 @@ x Implement projectmod
 		users from a group
 	- Don't allow teachers to delete each other's projects
 x No delete button for teachers in usermanager
+p No edit button, change in table itself instead (like group in groupmanager)
+- Add breadcrumb (Bootstrap) to index.php
+- Remove 'active' column from DB_PROJECTS
+- Use sprintf more often as it makes the code look cleaner.
+- Rename students to users in DB_PROJECTS
+- Use $dbconn->real_escape_string(*) everywhere
+- Clean up dir structure
+- Clean up css files
+- Bottom section of sidebar for special actions like settings and managers
+- Seperate page for "reflectie" feedback
 
 
  Questions
@@ -101,7 +120,8 @@ n Ask client whether classes are global covered by classes or if classes are
  Legend
 ============
 - = TODO
-n = Cancelled
-p = Postponed until further notice
+! = Important TODO
 ? = Probably done
 x = Done
+n = Cancelled
+p = Postponed until further notice

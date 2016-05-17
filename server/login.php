@@ -6,7 +6,8 @@
 	if (!file_exists(URL_STORAGE . "configured"))
 		header("Location: /admin/init.php");
 
-	verify_login(USER_STUDENT);
+	if (verify_login(USER_STUDENT))
+		header("Location: /index.php");
 
 	if (isset($_POST["username"])) {
 		$dbconn = new mysqli(DB_URL . ":" . DB_PORT,
@@ -63,7 +64,7 @@
 		<meta charset="UTF-8">
 
 		<link rel="icon" href="/include/img/navicon.png">
-		<title>Helinium Technasium Portfolio's</title>
+		<title>Helinium Technasium Portfolio Database</title>
 
 		<link rel="stylesheet" type="text/css"
 				href="/include/lib/bootstrap/css/bootstrap.css">
@@ -83,8 +84,8 @@
 						id="logo"
 						class="noselect"
 						src="/include/img/logo-dark.png"
-						title="Helinium Technasium"
-						alt="Helinium Technasium"
+						title="Helinium Technasium Portfolio Database"
+						alt="Helinium Technasium Portfolio Database"
 						width="300">
 				</center>
 				<?php

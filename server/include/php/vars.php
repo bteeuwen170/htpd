@@ -8,7 +8,7 @@
 
 	/* GIDs */
 	define("GIDS",			array("Administrator", "Leraar", "Leerling"));
-	define("USER_ADMIN",	0); //TODO To USR_
+	define("USER_ADMIN",	0); //TODO To USR_*
 	define("USER_TEACHER",	1);
 	define("USER_STUDENT",	2);
 
@@ -25,9 +25,8 @@
 	/* Storage */
 	define("URL_STORAGE",	$_SERVER["DOCUMENT_ROOT"] . "/../storage/");
 	define("URL_USERS",		URL_STORAGE . "students/");
-	define("PRJ_NAMES",		array("Portfolio", "Reflectie", "Feedback"));
-	define("PRJ_FILES",		array("portfolio.html",
-								  "reflectie.html",
+	define("PRJ_NAMES",		array("Reflectie", "Feedback"));
+	define("PRJ_FILES",		array("reflectie.html",
 								  "feedback.html"));
 
 	/* Other */

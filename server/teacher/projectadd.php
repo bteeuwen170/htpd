@@ -8,10 +8,10 @@
 	$dbconn = new mysqli(DB_URL . ":" . DB_PORT, DB_USER, DB_PASS, DB_NAME);
 	check($dbconn, !$dbconn->connect_error);
 
-	$name = $_POST["name"];
-	$groups = $_POST["groups"];
-	$year = $_POST["year"];
-	$active = $_POST["active"];
+	$name = $dbconn->real_escape_string($_POST["name"]);
+	$groups = $dbconn->real_escape_string($_POST["groups"]);
+	$year = $dbconn->real_escape_string($_POST["year"]);
+	$active = $dbconn->real_escape_string($_POST["active"]);
 
 	echo("Project wordt aangemaakt... ");
 	$project = "INSERT INTO " . DB_PROJECTS . " (name, groups, year, active)

@@ -129,7 +129,7 @@
 							$students = explode(",", $project["students"]);
 							for ($i = 0; $i < count($students); $i++) {
 								$where = $where . " uid=" .
-									preg_replace("/\([^)]*\)/", "",
+										preg_replace("/\([^)]*\)/", "",
 										$students[$i]) . " OR";
 							}
 							$where = substr($where, 0, -3);
@@ -184,8 +184,7 @@
 								echo("</td></tr>");
 							}
 
-							$result->free();
-							$rows->free();
+							$result->close();
 							$dbconn->close();
 						?>
 					</table>

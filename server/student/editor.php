@@ -7,12 +7,12 @@
 		header("Location: /user/logout.php");
 
 	if (isset($_POST["path"])) {
-		$portfolio = fopen($_POST["path"], "w") or
+		$file = fopen($_POST["path"], "w") or
 			die("Er is een fout opgeteden tijdens het opslaan.");
-		fwrite($portfolio, $_POST["data"]);
-		fclose($portfolio);
+		fwrite($file, $_POST["data"]);
+		fclose($file);
 	} else {
-		$path = $_GET["path"];
+		$path = URL_STORAGE . "students/" . $_GET["path"];
 	}
 ?>
 
@@ -48,7 +48,7 @@
 				});
 
 				var path = <?php echo("\"" . $path . "\""); ?>;
-				if (!path.endsWith(<?php echo("'" . PRJ_FILES[2] . "'"); ?>))
+				if (!path.endsWith(<?php echo("'" . PRJ_FILES[1] . "'"); ?>))
 					if ($("#editor").html()
 							.indexOf("<!-- project: finished -->") == -1)
 						edit(1);
@@ -93,14 +93,18 @@
 			<div id="editor">
 				<?php
 					if (file_exists($path)) {
-						$portfolio = fopen($path, "r") or
+						$file = fopen($path, "r") or
 							die("Er is een fout opgetreden!");
 						if (filesize($path) > 0)
-							echo(fread($portfolio, filesize($path)));
+							echo(fread($file, filesize($path)));
 						else
 							echo("<br>");
-						fclose($portfolio);
+						fclose($file);
 					} else {
+						$dirpath = preg_replace("/\/[^\/]*$/", "", $path);
+						if (!file_exists($dirpath))
+							mkdir($dirpath, 0755);
+
 						touch($path);
 						echo("<br>");
 					}

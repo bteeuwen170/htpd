@@ -9,6 +9,11 @@
 	float:				left;
 }
 
+#logo > a > img
+{
+	vertical-align:		middle;
+}
+
 #username, #logout
 {
 	display:			fixed;
