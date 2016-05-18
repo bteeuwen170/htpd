@@ -12,6 +12,7 @@
 		<meta charset="UTF-8">
 
 		<link rel="stylesheet" href="/include/lib/bootstrap/css/bootstrap.css">
+		<link rel="stylesheet" href="/include/css/main.css">
 		<link rel="stylesheet" href="/include/css/content.css">
 		<link rel="stylesheet" href="/include/css/manager.css">
 
@@ -78,17 +79,19 @@
 		<div class="wrapper">
 			<form method="post" action="userdel.php">
 				<div id="optionbar">
-					<button
-						type="button"
-						class="btn btn-default btn-sm"
-						title="Toevoegen"
-						data-toggle="modal"
-						data-tooltip="true"
-						data-placement="bottom"
-						data-backdrop="static"
-						data-target="#created">
-						<span class="glyphicon glyphicon-plus"></span>
-					</button>
+					<div class="btn-group">
+						<button
+							type="button"
+							class="btn btn-default btn-sm"
+							title="Toevoegen"
+							data-toggle="modal"
+							data-tooltip="true"
+							data-placement="bottom"
+							data-backdrop="static"
+							data-target="#created">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+					</div>
 					<div class="btn-group">
 						<button
 							type="button"

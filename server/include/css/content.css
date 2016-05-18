@@ -1,10 +1,6 @@
 html, body
 {
-	height:				100%;
-	margin:				0;
-	padding:			0;
-	font-family:		Arial, Helvetica, sans-serif;
-	overflow:			auto;
+	overflow-y:			auto;
 }
 
 .wrapper
@@ -13,7 +9,17 @@ html, body
 	margin:				16px 16px 16px 16px;
 }
 
-input[type="checkbox"]
+#optionbar, #optionbaralt, .note-editor > .note-toolbar
 {
-	margin-top:			0;
+	width:				100%;
+	background:			none;
+	border:				none;
+	padding:			0 5px 5px;
+}
+
+#optionbar > .btn-group, #optionbaralt > .btn-group
+{
+	margin-top:			5px;
+	margin-right:		5px;
+	margin-left:		0;
 }

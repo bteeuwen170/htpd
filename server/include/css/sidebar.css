@@ -1,54 +1,11 @@
-.wrapper /* TODO Table for interface */
-{
-	height:				100%;
-}
-
-#logo
-{
-	display:			fixed;
-	float:				left;
-}
-
-#logo > a > img
-{
-	vertical-align:		middle;
-}
-
-#username, #logout
-{
-	display:			fixed;
-	float:				right;
-}
-
-#username
-{
-	padding:			0 20px;
-}
-
-.header-item a
-{
-	display:			block;
-	padding:			0 20px;
-	text-decoration:	none;
-	color:				#9AD4E3;
-}
-
-.header-item a:hover
-{
-	display:			block;
-	text-decoration:	none;
-	color:				#FFFFFF;
-	background-color:	#0A97BB;
-	opacity:			0.8;
-	cursor:				pointer;
-}
-
 .sidebar
 {
 	position:			fixed;
 	width:				250px;
-	top:				50px;
-	bottom:				0;
+	top:				51px;
+	bottom:				60px;
+	padding-bottom:		16px;
+	padding-top:		16px;
 	float:				left;
 	background:			#222222;
 	overflow:			auto;
@@ -106,17 +63,4 @@ li .sidebar-item-label, .sidebar-list li a
 .sidebar-item-sel a
 {
 	color:				#FFFFFF !important;
-}
-
-#content
-{
-	margin-left:		250px;
-	width:				calc(100% - 250px);
-	height:				calc(100% - 100px);
-}
-
-footer
-{
-	margin-left:		250px;
-	width:				calc(100% - 250px);
 }

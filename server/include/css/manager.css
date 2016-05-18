@@ -19,10 +19,10 @@ html, body
 }
 /* </CRAP> */
 
-.datacontainer, #editor
+.datacontainer
 {
 	overflow:			auto;
-	height:				calc(100% - 76px);
+	height:				calc(100% - 60px);
 }
 
 .pr {

@@ -61,6 +61,7 @@ var button_finish = function(context)
 		{
 			$(this).tooltip("hide");
 			save(0);
+			optionbar.style.display = "";
 		}
 	});
 

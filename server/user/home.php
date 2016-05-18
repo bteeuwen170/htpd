@@ -13,10 +13,9 @@
 
 		<link rel="stylesheet" type="text/css" 
 				href="/include/lib/bootstrap/css/bootstrap.css">
-		<link rel="stylesheet" type="text/css"
-				href="/include/css/content.css">
-		<link rel="stylesheet" type="text/css"
-				href="/include/css/home.css">
+		<link rel="stylesheet" type="text/css" href="/include/css/main.css">
+		<link rel="stylesheet" type="text/css" href="/include/css/content.css">
+		<link rel="stylesheet" type="text/css" href="/include/css/home.css">
 	</head>
 	<body>
 		<div class="wrapper">

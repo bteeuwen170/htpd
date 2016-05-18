@@ -4,7 +4,7 @@
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
 	if (!file_exists(URL_STORAGE . "configured"))
-		header("Location: /admin/init.php");
+		header("Location: /init/init.php");
 
 	if (verify_login(USER_STUDENT))
 		header("Location: /index.php");
@@ -124,12 +124,10 @@
 				</p>
 			</form>
 
-			<footer class="nopointer noselect">
-				<?php
-					include($_SERVER["DOCUMENT_ROOT"] .
-							"/include/php/footer.php");
-				?>
-			</footer>
+			<?php
+				include($_SERVER["DOCUMENT_ROOT"] .
+						"/include/php/footer.php");
+			?>
 		</div>
 	</body>
 </html>

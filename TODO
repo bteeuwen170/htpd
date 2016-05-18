@@ -49,7 +49,7 @@ n Shortcut for saving
 p Implement a file manager
 x Implement group system based on client feedback
 x Make sorttable stfu in the console
-- Don't use projectname as foldername, use PID
+x Don't use projectname as foldername, use PID
 x Don't use username as foldername, use UID
 p Try JQuery's .load() instead of iframes
 - Implement importing CSV files from ItsLearning
@@ -57,7 +57,7 @@ p Implement exporting to CSV
 - Scrollbar overlaps editor and *list in manager_layout.css
 - Don't use inline JS anymore
 - Make year sorting work in projectmanager
-- Rename "Portfolio" to what the client had wanted in the first place
+n Rename "Portfolio" to what the client had wanted in the first place
 - Option to download entire portfolio
 x install.php > init.php
 x admin.php > install.php
@@ -87,16 +87,21 @@ x Remove 'active' column from DB_PROJECTS
 - Use sprintf more often as it makes the code look cleaner.
 - Rename students to users in DB_PROJECTS
 - Use $dbconn->real_escape_string(*) everywhere
-- Clean up dir structure
-- Clean up css files
+x Clean up dir structure
+- Clean up php sql connections
+- Clean up js files
+x Clean up css files
 n Merge manager.css and editor.css
-- Bottom section of sidebar for special actions like settings and managers
+n Bottom section of sidebar for special actions like settings and managers
 n Seperate page for "reflectie" feedback
 x Download button for teacher for "reflectie" student
 x Fix multiline editor buttons
-- Show download button after finishing document
+x Show download button after finishing document
 x Fix ghosting button tooltip in Summernote
 - Fix height editor (see note in editor.css)
+- Implement grades
+x Don't allow images to go off the screen in teacher viewer class .right
+- Hide sidebar if not on "Portfolio" tab (so no admin check either)
 
 
  Questions
@@ -112,7 +117,7 @@ x Ask client about registration procedure
 n Ask expert (and potentially client) about portfolio creation procedure
 x Ask expert if Node.js (perhaps even C?) is preferred over PHP
 	> PHP is recommended
-- Ask client to export new csv with only required columns
+. Ask client to export new csv with only required columns
 	- Columns: "Groep" (teacher or student), "Gebruikersnaam", "Naam",
 			"Vakken" and "E-mail"
 			(if all are available)
@@ -121,9 +126,8 @@ n Ask client if students should be distributed amongst classes
 n Ask client whether classes are global covered by classes or if classes are
 	defined per teacher, where the former is more future proof
 	> Just went with the former, impatience was dominant
-- Ask client if multiple teachers be involved in one project
+n Ask client if multiple teachers be involved in one project
 - Ask client about teacher permissions in usermanager
-! Ask client about grades
 
 
  Legend

@@ -1,4 +1,11 @@
 <?php
 	$cy = date("Y");
-	echo("HTPD © " . (($cy == 2016) ? "" : "2016 - ") . $cy);
+	echo("
+		<footer class='footer nopointer noselect'>
+			<div class='container'>
+				<p class='text-muted'>HTPD © " .
+						(($cy == 2016) ? "" : "2016 - ") . $cy . "</p>
+			</div>
+		</footer>
+	");
 ?>

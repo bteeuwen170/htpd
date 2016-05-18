@@ -7,20 +7,12 @@
 
 .left > .note-editor
 {
-	margin-right:		3px;
+	margin-right:		2px;
 }
 
 .panel
 {
 	box-shadow:			none;
-}
-
-#optionbar, #optionbaralt, .panel-default > .panel-heading
-{
-	width:				100%;
-	background:			none;
-	border:				none;
-	padding:			0 5px 5px;
 }
 
 /*.btn-group
@@ -50,7 +42,7 @@
 #seperator
 {
 	float:				right;
-	width:				3px;
+	width:				2px;
 	height:				100%;
 	background-color:	#222222;
 	cursor:				col-resize;
@@ -63,5 +55,6 @@
 
 #editor, #viewer
 {
+	overflow:			auto;
 	padding:			10px;
 }

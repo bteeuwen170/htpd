@@ -20,11 +20,11 @@
 	<head>
 		<meta charset="UTF-8">
 
-		<link rel="stylesheet" href="/include/css/content.css">
 		<link rel="stylesheet" href="/include/lib/bootstrap/css/bootstrap.css">
 		<link rel="stylesheet" href="/include/lib/summernote/summernote.css">
+		<link rel="stylesheet" href="/include/css/main.css">
+		<link rel="stylesheet" href="/include/css/content.css">
 		<link rel="stylesheet" href="/include/css/editor.css">
-		<link rel="stylesheet" href="/include/css/manager.css">
 
 		<script type="text/javascript"
 				src="/include/lib/jquery/jquery.js"></script>
@@ -57,7 +57,7 @@
 						if (x > 300 && x < 3600 &&
 								e.pageX < ($(window).width() - 300)) {
 							$(".left").css("width", x);
-							$(".right").css("margin-left", x);
+							$(".right").css("margin-left", x + 16);
 						}
 					});
 				});
@@ -76,15 +76,13 @@
 			{
 				$("#editor").summernote("destroy");
 
-				if (!reopen)
-					$("#editor").prepend("<!-- project: finished -->");
-
 				var data = new FormData();
-				data.append("path", <?php echo("\"" . $path . PRJ_FILES[1] . "\""); ?>);
+				data.append("path",
+						<?php echo("\"" . $path . PRJ_FILES[1] . "\""); ?>);
 				data.append("data", $("#editor").html());
 
 				var req = new XMLHttpRequest();
-				req.open("post", "editor.php", true);
+				req.open("post", "teacher.php", true);
 				req.send(data);
 
 				if (reopen) edit(0, true);
@@ -97,7 +95,8 @@
 				if (!file_exists($path))
 					mkdir($path, 0755);
 
-				echo("<div class='left'><div id='seperator'></div><div id='editor'>");
+				echo("<div class='left'><div id='seperator'>
+						</div><div id='editor'>");
 				$fpath = $path . PRJ_FILES[1];
 				for ($i = 0; $i < 2; $i++) { //FIXME Crappy f*cking code
 					if (file_exists($fpath)) {
@@ -119,15 +118,18 @@
 							</div></div>
 							<div class='right'>
 								<div id='optionbaralt'>
-									<button
-										class='btn btn-default btn-sm'
-										title='Downloaden'
-										data-tooltip='true'
-										data-placement='bottom'
-										onclick=\"download(-1, 'viewer')\">
-										<span class='glyphicon
-												glyphicon-download-alt'></span>
-									</button>
+									<div class='btn-group'>
+										<button
+											class='btn btn-default btn-sm'
+											title='Downloaden'
+											data-tooltip='true'
+											data-placement='bottom'
+											onclick=\"download(-1, 'viewer')\">
+											<span class='glyphicon
+													glyphicon-download-alt'>
+											</span>
+										</button>
+									</div>
 								</div>
 								<div id='viewer'>
 						");
