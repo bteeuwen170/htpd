@@ -12,13 +12,11 @@
 	$name = $_POST["name"];
 	$groups = $_POST["groups"];
 	$year = $_POST["year"];
-	$active = $_POST["active"];
 
 	echo("Project wordt bewerkt... ");
 	$project = "UPDATE " . DB_PROJECTS . " SET name='" . $name .
 			"', groups='" . $groups . "', year='" . $year .
-			"', active=" . ($active ? "true" : "false") .
-			" WHERE pid='" . $pid . "'"; echo $project;
+			"' WHERE pid='" . $pid . "'"; echo $project;
 	check($dbconn, $dbconn->query($project));
 
 	$dbconn->close();

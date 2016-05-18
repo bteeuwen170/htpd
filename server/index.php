@@ -123,8 +123,6 @@
 											");
 											$c = true;
 										}
-										$path = $_COOKIE["uid"] . "/" .
-												$psi[$j][1] . "/";
 
 										echo("
 											<li>
@@ -138,7 +136,11 @@
 													id='p" . $j . "'/>
 												<ol class='sidebar-item1'>
 										");
+
    										if ($_COOKIE["gid"] == USER_STUDENT) {
+											$path = $_COOKIE["uid"] . "/" .
+													$psi[$j][1] . "/";
+
 											for ($k = 0; $k < count(PRJ_FILES);
 													$k++) {
 												echo("
@@ -147,8 +149,7 @@
 														'>
 														<a
 															onclick=\"
-															set_sidebar(
-															$(this)
+															set_sidebar($(this)
 															.closest('li')
 															.attr('id'))\" href=
 															'/student/editor.php
@@ -171,13 +172,22 @@
 															$tst[$l]));
 											for ($k = 0; $k < count(
 													$students); $k++) {
+												$path = $students[$k] . "/" .
+														$psi[$j][1] . "/";
+
 												echo("
 													<li
 														id='" . $i . $j . $k . "
 														'>
 														<a
-															target='content'>"
-															. $students[$k] . "
+															onclick=\"
+															set_sidebar($(this)
+															.closest('li')
+															.attr('id'))\" href=
+															'/teacher/editor.php
+															?path=" . $path . "'
+															target='content'>" .
+															$students[$k] . "
 														</a>
 													</li>
 												");

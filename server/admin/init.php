@@ -14,13 +14,13 @@
 	$dbconn = new mysqli(DB_URL . ":" . DB_PORT, DB_USER, DB_PASS);
 	check($dbconn, !$dbconn->connect_error);
 
-	echo("Verbinding maken met SQL database... ");
+	echo("Verbinding maken met de SQL database... ");
 	if (!check($dbconn, $dbconn->select_db(DB_NAME), true, true)) {
 		echo(sprintf("Nieuwe database '%s' wordt aangemaakt... ", DB_NAME));
 		$qpdb = sprintf("CREATE DATABASE %s", DB_NAME);
 		check($dbconn, $dbconn->query($qpdb));
 
-		echo("Opnieuw verbinding maken met gebruikers database... ");
+		echo("Opnieuw verbinding maken met de SQL database... ");
 		check($dbconn, $dbconn->select_db(DB_NAME));
 	}
 

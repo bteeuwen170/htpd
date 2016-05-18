@@ -1,3 +1,4 @@
 <?php
-	echo("HTPD © 2016 - " . date("Y"));
+	$cy = date("Y");
+	echo("HTPD © " . (($cy == 2016) ? "" : "2016 - ") . $cy);
 ?>

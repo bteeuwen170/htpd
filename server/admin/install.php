@@ -47,7 +47,6 @@
 				groups      TINYINT UNSIGNED NOT NULL,
 				students    VARCHAR(1024),
 				year        TINYINT UNSIGNED NOT NULL,
-				active      BOOL NOT NULL,
 							PRIMARY KEY(pid)
 			)
 		"; //TODO Expand students to fit 255 students WITH GROUPS
@@ -55,14 +54,14 @@
 	}
 
 	echo("Opslagmap wordt aangemaakt... ");
-	if (!check($dbconn, file_exists(URL_STORAGE), true, true)) {
+	if (!check($dbconn, file_exists(URL_STORAGE), true)) {
 		mkdir(URL_STORAGE, 0755);
 		check($dbconn, file_exists(URL_STORAGE));
 	}
 
 	echo("Gebruikersmap wordt aangemaakt... ");
 	$path = URL_USERS;
-	if (!check($dbconn, file_exists($path), true, true)) {
+	if (!check($dbconn, file_exists($path), true)) {
 		mkdir($path, 0755);
 		check($dbconn, file_exists($path));
 	}

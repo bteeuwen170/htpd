@@ -53,8 +53,6 @@
 					document.getElementById("editor").innerHTML);
 				var req = new XMLHttpRequest();
 				req.open("post", "motd.php", true);
-				//req.setRequestHeader("Content-type",
-				//	"application/x-www-form-urlencoded"); //TODO Encode
 				req.send(data);
 
 				edit(0);

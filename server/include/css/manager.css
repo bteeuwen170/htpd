@@ -3,13 +3,6 @@ html, body
 	overflow:			none;
 }
 
-#optionbar
-{
-	width:				100%;
-	background-color:	#FFFFFF;
-	padding:			0 5px 5px;
-}
-
 /* <CRAP> (FIXME Very crappy css) */
 #years
 {
@@ -32,11 +25,6 @@ html, body
 	height:				calc(100% - 76px);
 }
 
-#editor
-{
-	padding:		10px;
-}
-
 .pr {
-	cursor:			pointer;
+	cursor:				pointer;
 }

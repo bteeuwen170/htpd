@@ -174,7 +174,7 @@
 										echo("<option value='" . $i . "'" .
 												(($i == $group) ?
 												" selected" : "") . ">" .
-												(($i == -1) ? "Geen" : $i) .
+												(($i == -1) ? "Geen" : $i + 1) .
 												"</option>");
 									}
 									echo("</select>");

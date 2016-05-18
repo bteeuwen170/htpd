@@ -11,12 +11,10 @@
 	$name = $dbconn->real_escape_string($_POST["name"]);
 	$groups = $dbconn->real_escape_string($_POST["groups"]);
 	$year = $dbconn->real_escape_string($_POST["year"]);
-	$active = $dbconn->real_escape_string($_POST["active"]);
 
 	echo("Project wordt aangemaakt... ");
-	$project = "INSERT INTO " . DB_PROJECTS . " (name, groups, year, active)
-			VALUES('" . $name . "', " . $groups . ", " . $year .
-			", " . ($active ? "true" : "false") . ")";
+	$project = sprintf("INSERT INTO %s (name, groups, year)
+		VALUES('%s', %s, %s)", DB_PROJECTS, $name, $groups, $year);
 	check($dbconn, $dbconn->query($project));
 
 	$dbconn->close();

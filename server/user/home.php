@@ -45,7 +45,7 @@
 								<h3 class="panel-title">Laatste feedback</h3>
 							</div>
 							<div class="panel-body">
-								Latest feedback will be here... Eventually...
+								Latest feedback will be here... Eventually.
 							</div>
 						</div>
 					</td>

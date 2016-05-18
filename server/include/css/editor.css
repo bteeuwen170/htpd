@@ -1,26 +1,67 @@
+.left
+{
+	float:				left;
+	width:				50%;
+	height:				100%;
+}
+
+.left > .note-editor
+{
+	margin-right:		3px;
+}
+
 .panel
 {
 	box-shadow:			none;
 }
 
-.panel-default > .panel-heading
+#optionbar, #optionbaralt, .panel-default > .panel-heading
 {
+	width:				100%;
 	background:			none;
 	border:				none;
 	padding:			0 5px 5px;
 }
 
-.note-btn-group
+/*.btn-group
 {
-	margin-top:			0 !important;
-}
+	margin:				0 5px 0 5px;
+}*/
 
 .note-editor.note-frame
 {
+	height:				100%;
+	margin-bottom:		0;
 	border:				none;
+}
+
+/* FIXME Not right */
+.note-editor.note-frame > .note-editing-area,
+		.note-editor.note-frame > .note-editing-area > .note-editable
+{
+	height:				100%;
 }
 
 .note-statusbar
 {
 	display:			none;
+}
+
+#seperator
+{
+	float:				right;
+	width:				3px;
+	height:				100%;
+	background-color:	#222222;
+	cursor:				col-resize;
+}
+
+.right
+{
+	margin-left:		calc(50% + 16px);
+}
+
+#editor, #viewer
+{
+	padding:			10px;
 }

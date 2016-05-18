@@ -9,6 +9,7 @@ html, body
 
 .wrapper
 {
+	height:				calc(100% - 32px);
 	margin:				16px 16px 16px 16px;
 }
 

@@ -4,13 +4,13 @@ x 1 Design a layout
 x 2 Implement the login system
 x 3 Implement the file editor
 x 4 Implement the user manager
-? 5 Implement the group manager
-- 6 TODO
+. 5 Implement the group manager
+- 6 Finishing touches (clear all entires on list below)
+- 7 Complete optional requirements
 
  TODO
 ============
 n Use the <pre> tag as comments for teachers
-- Seperate textfield for comment
 x Get rid of note-resizebar on the editor
 n Column in SQLDB for current class
 x Implement saving
@@ -19,12 +19,12 @@ x Implement both a save and a "finish(verzegelen?)" button
 x Implement finish button
 - Notify teacher about finished portfolio
 x Wrap text
-- All files in storage have to be owned by http, FIXME?
-- The server directory has to be owned by http, FIXME?
+n All files in storage have to be owned by http, FIXME?
+n The server directory has to be owned by http, FIXME?
 x Maybe a different file tree?
 x Select current project in sidebar
 - Select ALL (not just ^) active sidebar items
-- Confirmation for saving
+- Confirmation before saving
 - Make sure user can only be logged in on one location at the time
 x Reimplement editor as this one is massively screwed up
 x Cursor has a wrong starting position
@@ -34,7 +34,7 @@ x No select and no pointer on login page
 n Remove ID from SQL DB
 n Allow teachers to create other teachers?
 x Maybe create an admin account by default when creating the first account
-- Implement SSL correctly
+p Implement SSL correctly (not my priority)
 x Implement user management view
 	- Sort users in classes ("Stamgroep") if contains "o&o" in "Vakken"
 x Check username on every page
@@ -65,6 +65,8 @@ x admin.php > install.php
 - Use cookies less often (talking 'bout index.php)
 x Footer in PHP file
 x Automatic system for dates, just enter start date
+x Implement useradd
+x Implement userdel
 x Implement usermod
 - Check for username and email availablity in usermod
 - Deldir in functions.php
@@ -72,7 +74,7 @@ x Implement projectmod
 - Implement groupadd
 - Implement groupmod
 - Implement groupdel (perhaps combine with groupmod)
-- Group in brackets, students in projects will look like this:
+x Group in brackets, students in projects will look like this:
 		"student(group),student(group),..."
 - Prevent sorting from changing column width
 - Add column for project owner UID, only this person can add, remove or change
@@ -81,23 +83,29 @@ x Implement projectmod
 x No delete button for teachers in usermanager
 p No edit button, change in table itself instead (like group in groupmanager)
 - Add breadcrumb (Bootstrap) to index.php
-- Remove 'active' column from DB_PROJECTS
+x Remove 'active' column from DB_PROJECTS
 - Use sprintf more often as it makes the code look cleaner.
 - Rename students to users in DB_PROJECTS
 - Use $dbconn->real_escape_string(*) everywhere
 - Clean up dir structure
 - Clean up css files
+n Merge manager.css and editor.css
 - Bottom section of sidebar for special actions like settings and managers
-- Seperate page for "reflectie" feedback
+n Seperate page for "reflectie" feedback
+x Download button for teacher for "reflectie" student
+x Fix multiline editor buttons
+- Show download button after finishing document
+x Fix ghosting button tooltip in Summernote
+- Fix height editor (see note in editor.css)
 
 
  Questions
 ============
 n Ask client about functionality editor
 n Ask client (and school) for correct logo
-- Ask team to make logo
+. Ask team to make logo
 n Ask client (and school) for correct footer
-- Ask expert and client about license
+- Ask client about licensing
 - Get advice on color scheme (from school or team?)
 - Ask client about home page content
 x Ask client about registration procedure
@@ -115,12 +123,14 @@ n Ask client whether classes are global covered by classes or if classes are
 	> Just went with the former, impatience was dominant
 - Ask client if multiple teachers be involved in one project
 - Ask client about teacher permissions in usermanager
+! Ask client about grades
 
 
  Legend
 ============
 - = TODO
 ! = Important TODO
+. = In progress
 ? = Probably done
 x = Done
 n = Cancelled

@@ -25,6 +25,89 @@
 	padding:			0 20px;
 }
 
+.header-item a
+{
+	display:			block;
+	padding:			0 20px;
+	text-decoration:	none;
+	color:				#9AD4E3;
+}
+
+.header-item a:hover
+{
+	display:			block;
+	text-decoration:	none;
+	color:				#FFFFFF;
+	background-color:	#0A97BB;
+	opacity:			0.8;
+	cursor:				pointer;
+}
+
+.sidebar
+{
+	position:			fixed;
+	width:				250px;
+	top:				50px;
+	bottom:				0;
+	float:				left;
+	background:			#222222;
+	overflow:			auto;
+}
+
+.sidebar-list, .sidebar-item0, .sidebar-item1
+{
+	padding-left:		0px;
+}
+
+.sidebar-list li
+{
+	text-indent:		20px;
+	line-height:		40px;
+	list-style:			none;
+}
+
+.sidebar-item0 li
+{
+	text-indent:		40px;
+}
+
+.sidebar-item1 li
+{
+	text-indent:		80px;
+}
+
+li .sidebar-item-label + input[type=checkbox],
+	li .sidebar-item-label + input[type=checkbox] + ol > li
+{
+	display:			none;
+}
+
+li .sidebar-item-label + input[type=checkbox]:checked + ol > li
+{
+	display:			block;
+}
+
+li .sidebar-item-label, .sidebar-list li a
+{
+	display:			block;
+	text-decoration:	none;
+	color:				#999999;
+}
+
+.sidebar-item-sel, li .sidebar-item-label:hover, .sidebar-list li a:hover
+{
+	display:			block;
+	text-decoration:	none;
+	color:				#FFFFFF;
+	background-color:	#000000;
+	cursor:				pointer;
+}
+
+.sidebar-item-sel a
+{
+	color:				#FFFFFF !important;
+}
+
 #content
 {
 	margin-left:		250px;

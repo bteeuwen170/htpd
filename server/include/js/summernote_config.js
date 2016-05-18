@@ -8,6 +8,7 @@ var button_save = function(context)
 		tooltip: "Opslaan",
 		click: function()
 		{
+			$(this).tooltip("hide");
 			save(1);
 		}
 	});
@@ -24,6 +25,7 @@ var button_download = function(context)
 		tooltip: "Downloaden",
 		click: function()
 		{
+			$(this).tooltip("hide");
 			download(0);
 		}
 	});
@@ -40,6 +42,7 @@ var button_download_students = function(context)
 		tooltip: "Downloaden",
 		click: function()
 		{
+			$(this).tooltip("hide");
 			download(1);
 		}
 	});
@@ -56,6 +59,7 @@ var button_finish = function(context)
 		tooltip: "Inleveren",
 		click: function()
 		{
+			$(this).tooltip("hide");
 			save(0);
 		}
 	});
@@ -63,20 +67,24 @@ var button_finish = function(context)
 	return button.render();
 }
 
-function download(mode)
+function download(mode, loc)
 {
-	$("#editor").summernote("destroy");
+	var data = loc || "editor";
+
+	if (!loc) $("#" + data).summernote("destroy");
 
 	var converted =
-		htmlDocx.asBlob(document.getElementById("editor").innerHTML);
+		htmlDocx.asBlob(document.getElementById(data).innerHTML);
 	saveAs(converted, "document.docx"); //FIXME a better name (that's a pun)
 
-	if (mode != -1)
+	if (!loc && mode != -1)
 		edit(mode);
 }
 
-function edit(mode)
+function edit(mode, viewer)
 {
+	var viewer = viewer || false;
+
 	var optionbar = document.getElementById("optionbar");
 	if (optionbar != null)
 		optionbar.style.display = "none";

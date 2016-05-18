@@ -39,8 +39,6 @@
 					$("#editdname").val(row[2].innerHTML);
 					$("#editdgroups").val(row[3].innerHTML);
 					$("#editdyear").val(row[4].innerHTML);
-					$("#editdactive").prop("checked",
-							(row[5].children)[0].checked);
 				});
 
 				$(".pr").click(function()
@@ -153,7 +151,6 @@
 							<th>Projectnaam</th>
 							<th>Groepen</th>
 							<th>Schooljaar (TODO: hide)</th>
-							<th>Actief (TODO: remove)</th>
 						</tr>
 						<?php
 							$dbconn = new mysqli(DB_URL . ":" . DB_PORT,
@@ -161,8 +158,8 @@
 							check($dbconn, !$dbconn->connect_error, false);
 
 							$qptable = sprintf(
-									"SELECT pid, name, groups, year, active FROM
-									 %s", DB_PROJECTS);
+									"SELECT pid, name, groups, year FROM %s",
+									DB_PROJECTS);
 							$prows = $dbconn->query($qptable);
 							check($dbconn, $prows, false);
 
@@ -183,14 +180,6 @@
 										$prow["groups"] . "</td>");
 								echo("<td class='pr'>" .
 										$prow["year"] . "</td>");
-								echo("
-									<td>
-										<input
-											type='checkbox'
-											" . ($prow["active"] ?
-											"checked" : "") . " disabled>
-									</td>
-								"); //TODO Shouldn't be a checkbox
 								echo("</tr>");
 							}
 
@@ -228,7 +217,7 @@
 								</div>
 								<div class="form-group row">
 									<label class="col-sm-4 form-control-label">
-										Groepen
+										Aantal groepen
 									</label>
 									<div class="col-sm-8">
 										<input
@@ -262,16 +251,6 @@
 												}
 											?>
 										</select>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-sm-4 form-control-label">
-										Actief
-									</label>
-									<div class="col-sm-8">
-										<input
-											type="checkbox"
-											name="active">
 									</div>
 								</div>
 								<div class="form-group row">
@@ -317,7 +296,7 @@
 								</div>
 								<div class="form-group row">
 									<label class="col-sm-4 form-control-label">
-										Groepen
+										Aantal groepen
 									</label>
 									<div class="col-sm-8">
 										<input
@@ -353,17 +332,6 @@
 												}
 											?>
 										</select>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-sm-4 form-control-label">
-										Actief
-									</label>
-									<div class="col-sm-8">
-										<input
-											type="checkbox"
-											name="active"
-											id="editdactive">
 									</div>
 								</div>
 								<div class="form-group row">
