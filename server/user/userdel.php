@@ -1,7 +1,7 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
-	if (!verify_login(USER_ADMIN))
+	if (!verify_login(USR_ADMIN))
 		header("Location: /user/logout.php");
 
 	echo("Verbinding maken met SQL database... ");
@@ -12,15 +12,14 @@
 
 	for ($i = 0; $i < count($uids); $i++) {
 		echo("Gebruikers informatie wordt opgehaald... ");
-		$columns = "SELECT gid FROM " . DB_USERS . " WHERE uid = '" .
-				$uids[$i] . "'";
+		$columns =
+			sprintf("SELECT gid FROM %s WHERE uid=%s", DB_USERS, $uids[$i]);
 		$result = $dbconn->query($columns);
 		check($dbconn, $result->num_rows);
 		$row = $result->fetch_assoc();
 
 		echo("Gebruiker wordt verwijderd... ");
-		$user =
-			"DELETE FROM " . DB_USERS . " WHERE uid='" . $uids[$i] . "'";
+		$user = sprintf("DELETE FROM %s WHERE uid=%s", DB_USERS, $uids[$i]);
 		check($dbconn, $dbconn->query($user));
 
 		if ($row["gid"] == 2) {

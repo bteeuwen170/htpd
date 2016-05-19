@@ -3,7 +3,7 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
-	if (!verify_login(USER_STUDENT))
+	if (!verify_login(USR_STUDENT))
 		header("Location: /user/logout.php");
 ?>
 
@@ -33,7 +33,7 @@
 								echo("<h3 class='panel-title'>Welkom</h3>");
 								echo("</div><div class='panel-body'>");
 								echo(fread($motd, filesize($path)));
-								echo("</div></div></td>");
+								echo("</div></div></td>"); //TODO One echo
 							}
 							fclose($motd);
 						}

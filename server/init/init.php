@@ -8,6 +8,8 @@
 		die("De server is al geconfigureerd!");
 	}
 
+	echo("Welkom bij HTPD versie " . VERSION . "!");
+
 	echo("Current working directory: " . getcwd() . "<br><br>");
 
 	echo("Verbinding maken met SQL... ");
@@ -27,17 +29,15 @@
 	echo("Tabel met gebruikersgegevens wordt opgehaald... ");
 	$qutable = sprintf("DESCRIBE %s", DB_USERS);
 	if (!check($dbconn, $dbconn->query($qutable), true, true)) {
-		echo(sprintf("Nieuwe tabel '%s/%s' wordt aangemaakt... ",
+		echo(sprintf("Nieuwe tabel '%s.%s' wordt aangemaakt... ",
 				DB_NAME, DB_USERS));
 		$qutable = sprintf("
 			CREATE TABLE %s (
 				uid         INT(64) UNSIGNED AUTO_INCREMENT NOT NULL,
 				gid         TINYINT UNSIGNED NOT NULL,
-				firstname   VARCHAR(32) NOT NULL,
-				lastname    VARCHAR(32) NOT NULL,
+				name        VARCHAR(64) NOT NULL,
 				username    VARCHAR(64) UNIQUE NOT NULL,
 				password    VARCHAR(255) NOT NULL,
-				email       VARCHAR(64) UNIQUE NOT NULL,
 							PRIMARY KEY(uid)
 			)
 		", DB_USERS);
@@ -69,11 +69,6 @@
 					name='password'
 					required>
 				</p>
-				<p>Emailadres: <input
-					type='email'
-					name='email'
-					required>
-				</p>
 				<p><input
 					type='submit'
 					name='create'
@@ -81,5 +76,5 @@
 				</p>
 			</form>
 		</p>
-	");
+	"); //TODO Set max values
 ?>

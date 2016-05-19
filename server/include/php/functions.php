@@ -46,7 +46,7 @@
 				DB_USER, DB_PASS, DB_NAME);
 
 		if (isset($_COOKIE["session"])) {
-			$login = "SELECT uid, gid, firstname, lastname, password FROM " .
+			$login = "SELECT uid, gid, name, password FROM " .
 					DB_USERS . " WHERE uid = '" . $_COOKIE["uid"] . "'";
 			$result = $dbconn->query($login);
 

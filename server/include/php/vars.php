@@ -1,38 +1,45 @@
 <?php
 	/* XXX These variables may only be modified before the inital setup! XXX */
 
-	/* General */
-	define("URL_SITE",		"10.5.32.19");
-	define("SESS_ENCRY",	"sha512");
-	define("SESS_TIMEOUT",	180);
+	/* Algemeen */
+	define("VERSION",		"1.0");
+	define("URL_SITE",		"hydra.tnm");	/* Website URL */
+	define("SESS_ENCRY",	"sha512");		/* Sessie encryptie */
+	define("SESS_TIMEOUT",	180);			/* Sessie timout in dagen */
 
 	/* GIDs */
 	define("GIDS",			array("Administrator", "Leraar", "Leerling"));
-	define("USER_ADMIN",	0); //TODO To USR_*
-	define("USER_TEACHER",	1);
-	define("USER_STUDENT",	2);
+	define("USR_ADMIN",	0);					/* Administrator */
+	define("USR_TEACHER",	1);				/* Leraar */
+	define("USR_STUDENT",	2);				/* Leerling */
 
 	/* Database */
-	define("DB_URL",		"localhost");
-	define("DB_PORT",		"3306");
-	define("DB_NAME",		"portfolios");
-	define("DB_USER",		"root");
-	define("DB_PASS",		"my_password");
+	define("DB_URL",		"localhost");	/* Database URL */
+	define("DB_PORT",		"3306");		/* Database poort */
+	define("DB_NAME",		"portfolios");	/* Database naam */
+	define("DB_USER",		"root");		/* Database gebruiker */
+	define("DB_PASS",		"my_password");	/* Database wachtwoord */
 
-	define("DB_USERS",		"users");
-	define("DB_PROJECTS",	"projects");
-	define("DB_GROUPS",		"groups");
+	define("DB_USERS",		"users");		/* Gebruikers tabel */
+	define("DB_PROJECTS",	"projects");	/* Projecten tabel */
+	define("DB_GROUPS",		"groups");		/* Project groepen tabel */
 
-	/* Storage */
+	/* Opslag */
 	define("URL_STORAGE",	$_SERVER["DOCUMENT_ROOT"] . "/../storage/");
 	define("URL_USERS",		URL_STORAGE . "students/");
 	define("PRJ_NAMES",		array("Reflectie", "Feedback"));
 	define("PRJ_FILES",		array("reflectie.html",
 								  "feedback.html"));
 
-	/* Other */
-	define("YR_FIRST",		2011);
+	/* Overig */
+	define("YR_FIRST",		2011);			/* Eerste jaar in database */
 
-	/* Import parser */
-	//define("TRG_SUBJECT",	"o&o");
+	/* Importeren parser */
+	define("COL_USERNAME",	0);				/* Leerlingnummer */
+	define("COL_FIRSTNAME",	1);				/* Roepnaam */
+	define("COL_LASTNAME",	2);				/* Achternaam */
+	define("COL_SUBJECTS",	3);				/* Vakken */
+	define("TAR_SUBJECT",	"o&o");			/* Te filteren vak */
+
+	/* XXX These variables may only be modified before the inital setup! XXX */
 ?>

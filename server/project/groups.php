@@ -3,7 +3,7 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
-	if (!verify_login(USER_TEACHER))
+	if (!verify_login(USR_TEACHER))
 		header("Location: /user/logout.php");
 ?>
 
@@ -120,7 +120,7 @@
 						<?php
 							$dbconn = new mysqli(DB_URL . ":" . DB_PORT,
 							DB_USER, DB_PASS, DB_NAME);
-							//TODO Check for errors
+							check($dbconn, !$dbconn->connect_error, false);
 
 							$columns = "SELECT groups, students FROM " .
 									DB_PROJECTS . " WHERE pid=" . $_GET["pid"];

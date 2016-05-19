@@ -3,7 +3,7 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
-	if (!verify_login(USER_TEACHER))
+	if (!verify_login(USR_TEACHER))
 		header("Location: /user/logout.php");
 ?>
 
@@ -37,10 +37,8 @@
 				{
 					var row = document.getElementById("u" + rows[0]).children;
 					$("#editduid").val(row[1].innerHTML);
-					$("#editdfirstname").val(row[4].innerHTML);
-					$("#editdlastname").val(row[5].innerHTML);
+					$("#editdname").val(row[2].innerHTML);
 					$("#editdusername").val(row[3].innerHTML);
-					$("#editdemail").val(row[6].innerHTML);
 				});
 			});
 
@@ -106,7 +104,7 @@
 							<span class="glyphicon glyphicon-pencil"></span>
 						</button>
 						<?php
-							if ($_COOKIE["gid"] == USER_ADMIN)
+							if ($_COOKIE["gid"] == USR_ADMIN)
 								echo("
 									<button
 										type='submit'
@@ -124,7 +122,7 @@
 					</div>
 					<div class="btn-group">
 						<?php
-							if ($_COOKIE["gid"] == USER_ADMIN)
+							if ($_COOKIE["gid"] == USR_ADMIN)
 								echo("
 									<button
 										type='button'
@@ -162,25 +160,25 @@
 									onclick="select_all(this)">-->
 							</th>
 							<th>ID</th>
-							<th>Groep</th>
+							<th>Naam</th>
 							<th>Gebruikersnaam</th>
-							<th>Voornaam</th>
-							<th>Achternaam</th>
-							<th>Emailadres</th>
+							<th>Groep</th>
 						</tr>
 						<?php
 							$dbconn = new mysqli(DB_URL . ":" . DB_PORT,
 							DB_USER, DB_PASS, DB_NAME);
-							//TODO Check for errors
+							check($dbconn, !$dbconn->connect_error, false);
 
-							$columns = "SELECT uid, gid, username,
-									firstname, lastname, email FROM " . DB_USERS;
+							$columns = sprintf(
+									"SELECT uid, gid, name, username FROM %s", 
+									DB_USERS);
 							$rows = $dbconn->query($columns);
 							check($dbconn, $rows, false);
 
 							while ($row = $rows->fetch_array()) {
 								echo("<tr id='u" . $row["uid"] . "'>");
-								if ($row["gid"] == 0)
+								if ($row["gid"] == 0 ||
+									$row["uid"] == $_COOKIE["uid"])
 									echo("<td></td>");
 								else
 									echo("
@@ -191,11 +189,9 @@
 										</td>
 									");
 								echo("<td>" . $row["uid"] . "</td>");
-								echo("<td>" . GIDS[$row["gid"]] . "</td>");
+								echo("<td>" . $row["name"] . "</td>");
 								echo("<td>" . $row["username"] . "</td>");
-								echo("<td>" . $row["firstname"] . "</td>");
-								echo("<td>" . $row["lastname"] . "</td>");
-								echo("<td>" . $row["email"] . "</td>");
+								echo("<td>" . GIDS[$row["gid"]] . "</td>");
 								echo("</tr>");
 							}
 
@@ -285,18 +281,6 @@
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-sm-4 form-control-label">
-										Emailadres
-									</label>
-									<div class="col-sm-8">
-										<input
-											type="email"
-											name="email"
-											class="form-control"
-											maxlength="64" required>
-									</div>
-								</div>
-								<div class="form-group row">
 									<div class="col-sm-offset-4 col-sm-8">
 										<input
 											type="submit"
@@ -326,28 +310,15 @@
 								<input type="hidden" name="uid" id="editduid">
 								<div class="form-group row">
 									<label class="col-sm-4 form-control-label">
-										Voornaam
+										Naam
 									</label>
 									<div class="col-sm-8">
 										<input
 											type="text"
-											name="firstname"
+											name="name"
 											class="form-control"
-											id="editdfirstname"
-											maxlength="32" required>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-sm-4 form-control-label">
-										Achternaam
-									</label>
-									<div class="col-sm-8">
-										<input
-											type="text"
-											name="lastname"
-											class="form-control"
-											id="editdlastname"
-											maxlength="32" required>
+											id="editdname"
+											maxlength="64" required>
 									</div>
 								</div>
 								<div class="form-group row">
@@ -360,19 +331,6 @@
 											name="username"
 											class="form-control"
 											id="editdusername"
-											maxlength="64" required>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-sm-4 form-control-label">
-										Emailadres
-									</label>
-									<div class="col-sm-8">
-										<input
-											type="email"
-											name="email"
-											class="form-control"
-											id="editdemail"
 											maxlength="64" required>
 									</div>
 								</div>
@@ -402,7 +360,17 @@
 							<h4 class="modal-title">Gebruikers importeren</h4>
 						</div>
 						<div class="modal-body">
-							TODO: File upload
+							<p>
+								Exporteer de volgende kolommen in de
+								onderstaande volgorde naar een CSV bestand
+								vanuit SOM:
+								<ol>
+									<li>Leerlingnummer</li>
+									<li>Naam</li>
+									<li>Vakken</li>
+								</ol>
+							</p>
+							TODO
 						</div>
 					</div>
 				</div>

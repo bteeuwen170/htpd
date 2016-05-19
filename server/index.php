@@ -6,7 +6,7 @@
 	if (!file_exists(URL_STORAGE . "configured"))
 		header("Location: /init/init.php");
 
-	if (!verify_login(USER_STUDENT))
+	if (!verify_login(USR_STUDENT))
 		header("Location: /user/logout.php");
 ?>
 
@@ -26,17 +26,14 @@
 				src="/include/lib/jquery/jquery.js"></script>
 		<script type="text/javascript"
 				src="/include/lib/bootstrap/js/bootstrap.js"></script>
-		<script type="text/javascript"
-				src="/include/js/sidebar.js"></script>
+		<script type="text/javascript" src="/include/js/sidebar.js"></script>
 	</head>
 	<body>
 		<nav class="navbar navbar-default navbar-static-top noselect">
 			<div class="container">
 				<div class="navbar-header">
 					<a
-						class="navbar-brand"
-						href="/user/home.php"
-						target="content">
+						class="navbar-brand nopointer">
 						HTPD
 					</a>
 				</div>
@@ -49,7 +46,7 @@
 						</a>
 					</li>
 					<?php
-						if ($_COOKIE["gid"] < USER_STUDENT)
+						if ($_COOKIE["gid"] < USR_STUDENT)
 							echo("
 								<li>
 									<a
@@ -66,7 +63,17 @@
 									</a>
 								</li>
 							");
-						if ($_COOKIE["gid"] == USER_ADMIN)
+						else
+							echo("
+								<li>
+									<a
+										href='/user/settings.php'
+										target='content'>
+										Instellingen
+									</a>
+								</li>
+							");
+						if ($_COOKIE["gid"] == USR_ADMIN)
 							echo("
 								<li>
 									<a
@@ -77,19 +84,11 @@
 								</li>
 							");
 					?>
-					<li>
-						<a
-							href="/user/settings.php"
-							target="content">
-							Instellingen
-						</a>
-					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
 						<p class="navbar-text nopointer">
-							<?php echo($_COOKIE["firstname"] . " " .
-									$_COOKIE["lastname"]) ?>
+							<?php echo($_COOKIE["name"]) ?>
 						</p>
 					</li>
 					<li>
@@ -102,9 +101,10 @@
 		</nav>
 		<div class="wrapper">
 			<?php
-				if ($_COOKIE["gid"] != USER_ADMIN) {
+				if ($_COOKIE["gid"] != USR_ADMIN) {
 					$projects = array();
-					$teacher = ($_COOKIE["gid"] == USER_TEACHER);
+					$teacher = ($_COOKIE["gid"] == USR_TEACHER);
+					$users = array();
 					$years = get_years();
 
 					echo("<div class='sidebar noselect'>");
@@ -119,7 +119,7 @@
 					$ptable = $dbconn->query($qptable);
 					check($dbconn, $ptable, false);
 
-					while ($prow = $ptable->fetch_array()) {
+					while ($prow = $ptable->fetch_array()) {					 //XXX This can't be efficient right?
 						$groups = array();
 						$hasuser = false;
 						$qgtable =
@@ -143,6 +143,19 @@
 						array_push($project, $prow["year"]);
 						array_push($project, $groups);
 						array_push($projects, $project);
+					}
+
+					if ($_COOKIE["gid"] == USR_TEACHER) {
+						$qutable =
+							sprintf("SELECT name FROM %s", DB_USERS);
+						$utable = $dbconn->query($qutable);
+						check($dbconn, $utable, false);
+
+						//TODO
+
+						$utable->close();
+					} else {
+						unset($users);
 					}
 
 					$ptable->close();
@@ -181,7 +194,7 @@
 										<ol class='sidebar-item1'>
 								");
 
-   								if ($_COOKIE["gid"] == USER_STUDENT) {
+   								if ($_COOKIE["gid"] == USR_STUDENT) {
 									$path = $_COOKIE["uid"] . "/" .
 											$projects[$j][0] . "/";
 
@@ -207,7 +220,7 @@
 										if ($projects[$j][3][$k][2] !=
 												$_COOKIE["uid"]) {
 											$path = $projects[$j][3][$k][2] . "/" .
-													$projects[$j][1] . "/";
+													$projects[$j][0] . "/";
 
 											echo("
 												<li
@@ -219,14 +232,14 @@
 														'/editor/teacher.php?path="
 														. $path . "'
 														target='content'>" .
-														$students[$k] . "
+														$projects[$j][3][$k][2] . "
 													</a>
 												</li>
 											");
 										}
 									}
 
-									$students = array();
+									/*$students = array();
 									$tst = explode(",", $psi[$j][3]);
 									for ($l = 0; $l < count($tst); $l++)
 										if (substr_count($tst[$l], "(")) //FIXME Inconsistent and unreliable way of checking whether teacher or not
@@ -251,7 +264,7 @@
 												</a>
 											</li>
 										");
-									}
+									}*/
 								}
 								echo("</ol></li>");
 							}

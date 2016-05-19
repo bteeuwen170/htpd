@@ -1,12 +1,12 @@
  Stages
 ============
-x 1 Design a layout
-x 2 Implement the login system
-x 3 Implement the file editor
-x 4 Implement the user manager
-. 5 Implement the group manager
-- 6 Finishing touches (clear all entires on list below)
-- 7 Complete optional requirements
+1. Design a layout					Start: 2016-04-02	End: 2016-00-00
+2. Implement the login system		Start: 2016-03-28	End: 2016-04-10
+3. Implement the file editor		Start: 2016-04-22	End: 2016-05-13
+4. Implement the user manager		Start: 2016-04-29	End: 2016-00-00
+5. Implement the group manager		Start: 2016-05-14	End: 2016-00-00
+6. Finishing touches				Start: 2016-00-00	End: 2016-00-00
+7. Complete optional requirements	Start: 2016-00-00	End: 2016-00-00
 
  TODO
 ============
@@ -23,14 +23,13 @@ n All files in storage have to be owned by http, FIXME?
 n The server directory has to be owned by http, FIXME?
 x Maybe a different file tree?
 x Select current project in sidebar
-- Select ALL (not just ^) active sidebar items
-- Confirmation before saving
-- Make sure user can only be logged in on one location at the time
+n Select ALL (not just ^) active sidebar items
+- Make sure user can only be logged in at one location at the time
 x Reimplement editor as this one is massively screwed up
 x Cursor has a wrong starting position
 n Arrow in sidebar to indicate year is populated
 x No select and no pointer on login page
-- .nopointer and .noselect in seperate css file (eg. "include/utils.css")
+x .nopointer and .noselect in seperate css file (eg. "include/utils.css")
 n Remove ID from SQL DB
 n Allow teachers to create other teachers?
 x Maybe create an admin account by default when creating the first account
@@ -45,30 +44,32 @@ x Implement motd
 	x Admin
 n Shortcut for saving
 - Redirect to HTTP forbidden page if inside iFrame and verify_login() failed
+- Confirmation before saving
 - Ask for password before finishing file
-p Implement a file manager
+n Implement a file manager
 x Implement group system based on client feedback
 x Make sorttable stfu in the console
 x Don't use projectname as foldername, use PID
 x Don't use username as foldername, use UID
 p Try JQuery's .load() instead of iframes
 - Implement importing CSV files from ItsLearning
+	- Export file afterwards containing randomly generated passwords for users
 p Implement exporting to CSV
-- Scrollbar overlaps editor and *list in manager_layout.css
+? Scrollbar overlaps editor and *list in manager_layout.css
 - Don't use inline JS anymore
 - Make year sorting work in projectmanager
 n Rename "Portfolio" to what the client had wanted in the first place
 - Option to download entire portfolio
 x install.php > init.php
 x admin.php > install.php
-- Use consts as GID instead of plain ints (in some cases)
-- Use cookies less often (talking 'bout index.php)
+x Use consts as GID instead of plain ints (in some cases)
+x Use cookies less often (talking 'bout index.php)
 x Footer in PHP file
 x Automatic system for dates, just enter start date
 x Implement useradd
 x Implement userdel
 x Implement usermod
-- Check for username and email availablity in usermod
+? Check for username and email availablity in usermod
 - Deldir in functions.php
 x Implement projectmod
 - Implement groupadd
@@ -77,16 +78,16 @@ x Implement projectmod
 x Group in brackets, students in projects will look like this:
 		"student(group),student(group),..."
 - Prevent sorting from changing column width
-- Add column for project owner UID, only this person can add, remove or change
+n Add column for project owner UID, only this person can add, remove or change
 		users from a group
-	- Don't allow teachers to delete each other's projects
+	n Don't allow teachers to delete each other's projects
 x No delete button for teachers in usermanager
 p No edit button, change in table itself instead (like group in groupmanager)
 - Add breadcrumb (Bootstrap) to index.php
 x Remove 'active' column from DB_PROJECTS
-- Use sprintf more often as it makes the code look cleaner.
-- Rename students to users in DB_PROJECTS
-- Use $dbconn->real_escape_string(*) everywhere
+x Use sprintf more often as it makes the code look cleaner.
+n Rename students to users in DB_PROJECTS
+x Use $dbconn->real_escape_string(*) everywhere
 x Clean up dir structure
 - Clean up php sql connections
 - Clean up js files
@@ -103,33 +104,34 @@ x Fix ghosting button tooltip in Summernote
 x Don't allow images to go off the screen in teacher viewer class .right
 - Hide sidebar if not on "Portfolio" tab (so no admin check either)
 - Retractable sidebar
-- Combine 
+x Combine firstname and lastname from DB_USERS
+x Remove email from DB_USERS
+- Remove group entries using projectdel.php as well
+x Don't allow teacher to change him/herself in usermanager
+- Fix groups.php
 
 
  Questions
 ============
 n Ask client about functionality editor
 n Ask client (and school) for correct logo
-. Ask team to make logo
+n Ask team to make logo
 n Ask client (and school) for correct footer
 - Ask client about licensing
 - Get advice on color scheme (from school or team?)
-- Ask client about home page content
+n Ask client about home page content
 x Ask client about registration procedure
 n Ask expert (and potentially client) about portfolio creation procedure
 x Ask expert if Node.js (perhaps even C?) is preferred over PHP
 	> PHP is recommended
-. Ask client to export new csv with only required columns
-	- Columns: "Groep" (teacher or student), "Gebruikersnaam", "Naam",
-			"Vakken" and "E-mail"
-			(if all are available)
+x Ask client to export new csv with only required columns
 n Ask client if students should be distributed amongst classes
 	> They are now not distributed amongst anything
 n Ask client whether classes are global covered by classes or if classes are
 	defined per teacher, where the former is more future proof
 	> Just went with the former, impatience was dominant
 n Ask client if multiple teachers be involved in one project
-- Ask client about teacher permissions in usermanager
+x Ask client about teacher permissions in usermanager
 
 
  Legend
@@ -141,3 +143,5 @@ n Ask client if multiple teachers be involved in one project
 x = Done
 n = Cancelled
 p = Postponed until further notice
+
+> = Sidenote

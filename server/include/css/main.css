@@ -15,9 +15,20 @@ p
 	margin:				0 0 10px;
 }
 
-a, a:hover, a:active, a:focus
+:focus
 {
-	outline:			0;
+	outline:			none !important;
+}
+
+::-moz-focus-inner
+{
+	border:				0;
+}
+
+select:-moz-focusring
+{
+	color:				transparent;
+	text-shadow:		0 0 0 #000;
 }
 
 label

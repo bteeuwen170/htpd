@@ -1,7 +1,7 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
-	if (!verify_login(USER_TEACHER))
+	if (!verify_login(USR_TEACHER))
 		header("Location: /user/logout.php");
 
 	echo("Verbinding maken met SQL database... ");

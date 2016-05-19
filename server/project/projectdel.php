@@ -1,7 +1,7 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
-	if (!verify_login(USER_TEACHER))
+	if (!verify_login(USR_TEACHER))
 		header("Location: /user/logout.php");
 
 	echo("Verbinding maken met SQL database... ");
@@ -12,18 +12,20 @@
 
 	for ($i = 0; $i < count($pids); $i++) {
 		echo("Project informatie wordt opgehaald... ");
-		$columns = "SELECT pid FROM " . DB_PROJECTS . " WHERE pid = '" .
-				$pids[$i] . "'";
+		$columns =
+			sprintf("SELECT pid FROM %s WHERE pid=%s", DB_PROJECTS, $pids[$i]);
 		$result = $dbconn->query($columns);
 		check($dbconn, $result->num_rows);
 		$row = $result->fetch_assoc();
 
 		echo("Project wordt verwijderd... ");
 		$project =
-			"DELETE FROM " . DB_PROJECTS . " WHERE pid='" . $pids[$i] . "'";
+			sprintf("DELETE FROM %s WHERE pid=%s", DB_PROJECTS, $pids[$i]);
 		check($dbconn, $dbconn->query($project));
 
 		//TODO Option to delete files as well, maybe only as admin?
+
+		//TODO Delete group entries as well!
 
 		$result->free();
 	}

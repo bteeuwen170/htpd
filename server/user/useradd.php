@@ -1,45 +1,38 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
-	if (!verify_login(USER_TEACHER))
+	if (!verify_login(USR_TEACHER))
 		header("Location: /user/logout.php");
 
 	echo("Verbinding maken met SQL database... ");
 	$dbconn = new mysqli(DB_URL . ":" . DB_PORT, DB_USER, DB_PASS, DB_NAME);
 	check($dbconn, !$dbconn->connect_error);
 
-	$gid = $_POST["gid"];
-	$firstname = $_POST["firstname"];
-	$lastname = $_POST["lastname"];
-	$username = $_POST["username"];
-	$password = $_POST["password"];
-	$email = $_POST["email"];
+	$gid = $dbconn->real_escape_string($_POST["gid"]);
+	$name = $dbconn->real_escape_string($_POST["firstname"]) . " " .
+			$dbconn->real_escape_string($_POST["lastname"]);
+	$username = $dbconn->real_escape_string($_POST["username"]);
+	$password = $dbconn->real_escape_string($_POST["password"]);
 
 	echo("Controleren op gebruikersnaam beschikbaarheid... ");
-	$usernamecheck = "SELECT username FROM " . DB_USERS . " WHERE username = '"
-			. $username . "'";
-	check($dbconn, mysqli_num_rows($dbconn->query($usernamecheck)) == 0);
-
-	echo("Controleren op emailadres beschikbaarheid... ");
-	$emailcheck = "SELECT email FROM " . DB_USERS . " WHERE email = '" .
-			$email . "'";
-	check($dbconn, mysqli_num_rows($dbconn->query($emailcheck)) == 0);
+	$usernamecheck = sprintf("SELECT username FROM %s WHERE username='%s'",
+			DB_USERS, $username);
+	check($dbconn, !($dbconn->query($usernamecheck))->num_rows);
 
 	echo("Wachtwoord wordt gehashed... ");
 	$hash = password_hash($password, PASSWORD_BCRYPT);
 	check($dbconn, is_string($hash));
 
 	echo("Gebruiker wordt aangemaakt... ");
-	$user = "INSERT INTO " . DB_USERS . "
-			(gid, firstname, lastname, username, password, email)
-			VALUES(" . $gid . ", '" . $firstname . "', '" . $lastname . "', '" .
-			$username . "', '" . $hash . "', '" . $email . "')";
+	$user = sprintf("INSERT INTO %s (gid, name, username, password)
+			VALUES(%s, '%s', '%s', '%s')",
+			DB_USERS, $gid, $name, $username, $hash);
 	check($dbconn, $dbconn->query($user));
 
-	if ($gid == USER_STUDENT) {
+	if ($gid == USR_STUDENT) {
 		echo("Persoonlijke map wordt aangemaakt... ");
-		$columns = "SELECT uid FROM " . DB_USERS . " WHERE username='" .
-				$username . "'";
+		$columns = sprintf("SELECT uid FROM %s WHERE username='%s'",
+				DB_USERS, $username);
 		$result = $dbconn->query($columns);
 		$row = $result->fetch_assoc();
 		$path = URL_USERS . $row["uid"];

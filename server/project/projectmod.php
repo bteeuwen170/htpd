@@ -1,7 +1,7 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
-	if (!verify_login(USER_TEACHER))
+	if (!verify_login(USR_TEACHER))
 		header("Location: /user/logout.php");
 
 	echo("Verbinding maken met SQL database... ");
@@ -9,14 +9,14 @@
 	check($dbconn, !$dbconn->connect_error);
 
 	$pid = $_POST["pid"];
-	$name = $_POST["name"];
+	$name = $dbconn->real_escape_string($_POST["name"]);
 	$groups = $_POST["groups"];
 	$year = $_POST["year"];
 
 	echo("Project wordt bewerkt... ");
-	$project = "UPDATE " . DB_PROJECTS . " SET name='" . $name .
-			"', groups='" . $groups . "', year='" . $year .
-			"' WHERE pid='" . $pid . "'"; echo $project;
+	$project =
+		sprintf("UPDATE %s SET name='%s', groups=%s, year=%s WHERE pid=%s",
+			DB_PROJECTS, $name, $groups, $year, $pid);
 	check($dbconn, $dbconn->query($project));
 
 	$dbconn->close();

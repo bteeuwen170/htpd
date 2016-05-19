@@ -3,7 +3,7 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
-	if (!verify_login(USER_ADMIN))
+	if (!verify_login(USR_ADMIN))
 		header("Location: /user/logout.php");
 
 	$path = URL_STORAGE . "motd";

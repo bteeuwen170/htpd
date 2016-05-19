@@ -17,54 +17,54 @@
 	$dbconn = new mysqli(DB_URL . ":" . DB_PORT, DB_USER, DB_PASS, DB_NAME);
 	check($dbconn, !$dbconn->connect_error);
 
+	$name = $dbconn->real_escape_string($_POST["firstname"]) . " " .
+			$dbconn->real_escape_string($_POST["lastname"]);
+	$username = $dbconn->real_escape_string($_POST["username"]);
+	$password = $dbconn->real_escape_string($_POST["password"]);
+
 	echo("Wachtwoord wordt gehashed... ");
-	$hash = password_hash($_POST["password"], PASSWORD_BCRYPT);
+	$hash = password_hash($password, PASSWORD_BCRYPT);
 	check($dbconn, is_string($hash));
 
 	echo("Administrator account gegevens worden opgehaald... ");
-	$astatus = "SELECT uid FROM " . DB_USERS . " WHERE gid='0'";
-	if (!check($dbconn,
-			mysqli_num_rows($dbconn->query($astatus)) > 0, true, true)) {
+	$astatus = "SELECT uid FROM " . DB_USERS . " WHERE gid=0";
+	if (!check($dbconn, ($dbconn->query($astatus))->num_rows, true, true)) {
 		echo("Administrator account wordt aangemaakt... ");
-		$user = "INSERT INTO " . DB_USERS . "
-				(gid, firstname, lastname, username, password, email)
-				VALUES(0, '" . $_POST["firstname"] . "', '" .
-				$_POST["lastname"] . "', '" . $_POST["username"] . "', '" .
-				$hash . "', '" . $_POST["email"] . "')";
+		$user = sprintf("INSERT INTO %s (gid, name, username, password)
+				VALUES(0, '%s', '%s', '%s')",
+				DB_USERS, $name, $username, $hash);
 		check($dbconn, $dbconn->query($user));
 	}
 
 	echo("Tabel met projectengegevens wordt opgehaald... ");
 	$tstatus = "SHOW TABLES LIKE '" . DB_PROJECTS ."'";
-	if (!check($dbconn,
-			mysqli_num_rows($dbconn->query($tstatus)) > 0, true, true)) {
-		echo("Nieuwe tabel \"" . DB_NAME . "." . DB_PROJECTS .
-				"\" wordt aangemaakt... ");
-		$table = "
-			CREATE TABLE " . DB_PROJECTS . " (
+	if (!check($dbconn, ($dbconn->query($tstatus))->num_rows, true, true)) {
+		echo(sprintf("Nieuwe tabel '%s.%s' wordt aangemaakt... ",
+				DB_NAME, DB_PROJECTS));
+		$table = sprintf("
+			CREATE TABLE %s (
 				pid         INT(64) UNSIGNED AUTO_INCREMENT NOT NULL,
 				name        VARCHAR(64) UNIQUE NOT NULL,
 				groups      TINYINT UNSIGNED NOT NULL,
 				year        TINYINT UNSIGNED NOT NULL,
 							PRIMARY KEY(pid)
 			)
-		"; //TODO Remove students
+		", DB_PROJECTS);
 		check($dbconn, $dbconn->query($table));
 	}
 
 	echo("Tabel met project groepen wordt opgehaald... ");
 	$tstatus = "SHOW TABLES LIKE '" . DB_GROUPS ."'";
-	if (!check($dbconn,
-			mysqli_num_rows($dbconn->query($tstatus)) > 0, true, true)) {
-		echo("Nieuwe tabel \"" . DB_NAME . "." . DB_PROJECTS .
-				"\" wordt aangemaakt... ");
-		$table = "
-			CREATE TABLE " . DB_PROJECTS . " (
+	if (!check($dbconn, ($dbconn->query($tstatus))->num_rows, true, true)) {
+		echo(sprintf("Nieuwe tabel '%s.%s' wordt aangemaakt... ",
+				DB_NAME, DB_GROUPS));
+		$table = sprintf("
+			CREATE TABLE %s (
 				pid         INT(64) UNSIGNED NOT NULL,
 				grp         TINYINT UNSIGNED NOT NULL,
 				uid         INT(64) UNSIGNED NOT NULL
 			)
-		";
+		", DB_GROUPS);
 		check($dbconn, $dbconn->query($table));
 	}
 
