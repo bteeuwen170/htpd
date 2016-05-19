@@ -2,7 +2,7 @@
 	/* XXX These variables may only be modified before the inital setup! XXX */
 
 	/* General */
-	define("URL_SITE",		"hydra.tnm");
+	define("URL_SITE",		"10.5.32.19");
 	define("SESS_ENCRY",	"sha512");
 	define("SESS_TIMEOUT",	180);
 
@@ -21,6 +21,7 @@
 
 	define("DB_USERS",		"users");
 	define("DB_PROJECTS",	"projects");
+	define("DB_GROUPS",		"groups");
 
 	/* Storage */
 	define("URL_STORAGE",	$_SERVER["DOCUMENT_ROOT"] . "/../storage/");

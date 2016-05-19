@@ -102,6 +102,8 @@ x Fix ghosting button tooltip in Summernote
 - Implement grades
 x Don't allow images to go off the screen in teacher viewer class .right
 - Hide sidebar if not on "Portfolio" tab (so no admin check either)
+- Retractable sidebar
+- Combine 
 
 
  Questions

@@ -34,7 +34,7 @@
 		check($dbconn, $dbconn->query($user));
 	}
 
-	echo("Tabel met projectgegevens wordt opgehaald... ");
+	echo("Tabel met projectengegevens wordt opgehaald... ");
 	$tstatus = "SHOW TABLES LIKE '" . DB_PROJECTS ."'";
 	if (!check($dbconn,
 			mysqli_num_rows($dbconn->query($tstatus)) > 0, true, true)) {
@@ -45,11 +45,26 @@
 				pid         INT(64) UNSIGNED AUTO_INCREMENT NOT NULL,
 				name        VARCHAR(64) UNIQUE NOT NULL,
 				groups      TINYINT UNSIGNED NOT NULL,
-				students    VARCHAR(1024),
 				year        TINYINT UNSIGNED NOT NULL,
 							PRIMARY KEY(pid)
 			)
-		"; //TODO Expand students to fit 255 students WITH GROUPS
+		"; //TODO Remove students
+		check($dbconn, $dbconn->query($table));
+	}
+
+	echo("Tabel met project groepen wordt opgehaald... ");
+	$tstatus = "SHOW TABLES LIKE '" . DB_GROUPS ."'";
+	if (!check($dbconn,
+			mysqli_num_rows($dbconn->query($tstatus)) > 0, true, true)) {
+		echo("Nieuwe tabel \"" . DB_NAME . "." . DB_PROJECTS .
+				"\" wordt aangemaakt... ");
+		$table = "
+			CREATE TABLE " . DB_PROJECTS . " (
+				pid         INT(64) UNSIGNED NOT NULL,
+				grp         TINYINT UNSIGNED NOT NULL,
+				uid         INT(64) UNSIGNED NOT NULL
+			)
+		";
 		check($dbconn, $dbconn->query($table));
 	}
 

@@ -103,6 +103,10 @@
 		<div class="wrapper">
 			<?php
 				if ($_COOKIE["gid"] != USER_ADMIN) {
+					$projects = array();
+					$teacher = ($_COOKIE["gid"] == USER_TEACHER);
+					$years = get_years();
+
 					echo("<div class='sidebar noselect'>");
 					echo("<ol class='sidebar-list'>");
 
@@ -110,38 +114,44 @@
 							DB_USER, DB_PASS, DB_NAME);
 					check($dbconn, !$dbconn->connect_error, false);
 
-					$qutable = sprintf(
-							"SELECT pid, name, students, year FROM %s",
-							DB_PROJECTS);
-					$prows = $dbconn->query($qutable);
-					check($dbconn, $prows, false);
+					$qptable =
+						sprintf("SELECT pid, name, year FROM %s", DB_PROJECTS);
+					$ptable = $dbconn->query($qptable);
+					check($dbconn, $ptable, false);
 
-					$psi = array();
-					$teacher = ($_COOKIE["gid"] == USER_TEACHER);
+					while ($prow = $ptable->fetch_array()) {
+						$groups = array();
+						$hasuser = false;
+						$qgtable =
+							sprintf("SELECT pid, grp, uid FROM %s WHERE pid=%s",
+									DB_GROUPS, $prow["pid"]);
+						$gtable = $dbconn->query($qgtable);
+						check($dbconn, $gtable, false);
+						while ($grow = $gtable->fetch_array()) {
+							array_push($groups, $grow);
+							if ($grow["uid"] == $_COOKIE["uid"])
+								$hasuser = true;
+						}
+						$gtable->close();
 
-					while ($prow = $prows->fetch_array()) {
-						$students = explode(",", $prow["students"]);
-						for ($i = 0; $i < count($students); $i++)
-							if ($_COOKIE["uid"] == preg_replace("/\([^)]*\)/",
-									"", $students[$i])) {
-								$pi = array();
-								array_push($pi, $prow["year"]);
-								array_push($pi, $prow["pid"]);
-								array_push($pi, $prow["name"]);
-								if ($teacher)
-									array_push($pi, $prow["students"]);
-								array_push($psi, $pi);
-							}
+						if (!$hasuser)
+							continue;
+
+						$project = array();
+						array_push($project, $prow["pid"]);
+						array_push($project, $prow["name"]);
+						array_push($project, $prow["year"]);
+						array_push($project, $groups);
+						array_push($projects, $project);
 					}
 
-					$prows->close();
+					$ptable->close();
 					$dbconn->close();
 
-					$years = get_years();
 					for ($i = 0; $i < count($years); $i++) {
 						$c = false;
-						for ($j = 0; $j < count($psi); $j++) {
-							if ($psi[$j][0] == $i) {
+						for ($j = 0; $j < count($projects); $j++) {
+							if ($projects[$j][2] == $i) {
 								if (!$c) {
 									echo("
 										<li>
@@ -163,7 +173,7 @@
 										<label
 											class='sidebar-item-label'
 											for='p" . $j . "'>"
-											. $psi[$j][2] . "
+											. $projects[$j][1] . "
 										</label>
 										<input
 											type='checkbox'
@@ -173,7 +183,7 @@
 
    								if ($_COOKIE["gid"] == USER_STUDENT) {
 									$path = $_COOKIE["uid"] . "/" .
-											$psi[$j][1] . "/";
+											$projects[$j][0] . "/";
 
 									for ($k = 0; $k < count(PRJ_FILES); $k++) {
 										echo("
@@ -191,7 +201,31 @@
 											</li>
 										");
 									}
-								} else { //FIXME Not very efficient...
+								} else {
+									for ($k = 0; $k < count($projects[$j][3]);
+											$k++) {
+										if ($projects[$j][3][$k][2] !=
+												$_COOKIE["uid"]) {
+											$path = $projects[$j][3][$k][2] . "/" .
+													$projects[$j][1] . "/";
+
+											echo("
+												<li
+													id='" . $i . $j . $k . "'>
+													<a
+														onclick=\"set_sidebar(
+														$(this).closest('li')
+														.attr('id'))\" href=
+														'/editor/teacher.php?path="
+														. $path . "'
+														target='content'>" .
+														$students[$k] . "
+													</a>
+												</li>
+											");
+										}
+									}
+
 									$students = array();
 									$tst = explode(",", $psi[$j][3]);
 									for ($l = 0; $l < count($tst); $l++)
