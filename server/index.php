@@ -6,7 +6,7 @@
 	if (!file_exists(URL_STORAGE . "configured"))
 		header("Location: /init/init.php");
 
-	if (!verify_login(USR_STUDENT))
+	if (!verify_login(GID_STUDENT))
 		header("Location: /user/logout.php");
 ?>
 
@@ -34,7 +34,13 @@
 				<div class="navbar-header">
 					<a
 						class="navbar-brand nopointer">
-						HTPD
+						<img
+							id="logo"
+							class="noselect"
+							src="/include/img/logo.png"
+							title="Helinium Technasium Portfolio Database"
+							alt="Helinium Technasium Portfolio Database"
+							width="40">
 					</a>
 				</div>
 				<ul class="nav navbar-nav">
@@ -46,7 +52,7 @@
 						</a>
 					</li>
 					<?php
-						if ($_COOKIE["gid"] < USR_STUDENT)
+						if ($_COOKIE["gid"] < GID_STUDENT)
 							echo("
 								<li>
 									<a
@@ -73,7 +79,7 @@
 									</a>
 								</li>
 							");
-						if ($_COOKIE["gid"] == USR_ADMIN)
+						if ($_COOKIE["gid"] == GID_ADMIN)
 							echo("
 								<li>
 									<a
@@ -101,9 +107,9 @@
 		</nav>
 		<div class="wrapper">
 			<?php
-				if ($_COOKIE["gid"] != USR_ADMIN) {
+				if ($_COOKIE["gid"] != GID_ADMIN) {
 					$projects = array();
-					$teacher = ($_COOKIE["gid"] == USR_TEACHER);
+					$teacher = ($_COOKIE["gid"] == GID_TEACHER);
 					$users = array();
 					$years = get_years();
 
@@ -145,7 +151,7 @@
 						array_push($projects, $project);
 					}
 
-					if ($_COOKIE["gid"] == USR_TEACHER) {
+					if ($_COOKIE["gid"] == GID_TEACHER) {
 						$qutable =
 							sprintf("SELECT name FROM %s", DB_USERS);
 						$utable = $dbconn->query($qutable);
@@ -194,7 +200,7 @@
 										<ol class='sidebar-item1'>
 								");
 
-   								if ($_COOKIE["gid"] == USR_STUDENT) {
+   								if ($_COOKIE["gid"] == GID_STUDENT) {
 									$path = $_COOKIE["uid"] . "/" .
 											$projects[$j][0] . "/";
 

@@ -2,16 +2,16 @@
 	/* XXX These variables may only be modified before the inital setup! XXX */
 
 	/* Algemeen */
-	define("VERSION",		"1.0");
-	define("URL_SITE",		"hydra.tnm");	/* Website URL */
+	define("VERSION",		"1.0");			/* Website version */
+	define("URL_SITE",		"localhost");	/* Website URL */
 	define("SESS_ENCRY",	"sha512");		/* Sessie encryptie */
 	define("SESS_TIMEOUT",	180);			/* Sessie timout in dagen */
 
 	/* GIDs */
 	define("GIDS",			array("Administrator", "Leraar", "Leerling"));
-	define("USR_ADMIN",	0);					/* Administrator */
-	define("USR_TEACHER",	1);				/* Leraar */
-	define("USR_STUDENT",	2);				/* Leerling */
+	define("GID_ADMIN",		0);				/* Administrator */
+	define("GID_TEACHER",	1);				/* Leraar */
+	define("GID_STUDENT",	2);				/* Leerling */
 
 	/* Database */
 	define("DB_URL",		"localhost");	/* Database URL */
@@ -36,9 +36,11 @@
 
 	/* Importeren parser */
 	define("COL_USERNAME",	0);				/* Leerlingnummer */
-	define("COL_FIRSTNAME",	1);				/* Roepnaam */
-	define("COL_LASTNAME",	2);				/* Achternaam */
-	define("COL_SUBJECTS",	3);				/* Vakken */
+	define("COLN_USERNAME",	"Leerlingnummer");
+	define("COL_NAME",		1);				/* Naam */
+	define("COLN_NAME",		"Naam");
+	define("COL_SUBJECTS",	2);				/* Vakken */
+	define("COLN_SUBJECTS",	"Vakken");
 	define("TAR_SUBJECT",	"o&o");			/* Te filteren vak */
 
 	/* XXX These variables may only be modified before the inital setup! XXX */

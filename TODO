@@ -3,9 +3,9 @@
 1. Design a layout					Start: 2016-04-02	End: 2016-00-00
 2. Implement the login system		Start: 2016-03-28	End: 2016-04-10
 3. Implement the file editor		Start: 2016-04-22	End: 2016-05-13
-4. Implement the user manager		Start: 2016-04-29	End: 2016-00-00
+4. Implement the user manager		Start: 2016-04-29	End: 2016-05-26
 5. Implement the group manager		Start: 2016-05-14	End: 2016-00-00
-6. Finishing touches				Start: 2016-00-00	End: 2016-00-00
+6. Finishing touches				Start: 2016-05-28	End: 2016-00-00
 7. Complete optional requirements	Start: 2016-00-00	End: 2016-00-00
 
  TODO
@@ -35,7 +35,7 @@ n Allow teachers to create other teachers?
 x Maybe create an admin account by default when creating the first account
 p Implement SSL correctly (not my priority)
 x Implement user management view
-	- Sort users in classes ("Stamgroep") if contains "o&o" in "Vakken"
+n Sort users in classes ("Stamgroep") if contains "o&o" in "Vakken"
 x Check username on every page
 - Check GID besides username in verify_login()
 - Make sure all DB connections and queries are closed
@@ -45,21 +45,21 @@ x Implement motd
 n Shortcut for saving
 - Redirect to HTTP forbidden page if inside iFrame and verify_login() failed
 - Confirmation before saving
-- Ask for password before finishing file
+	- Ask for password before finishing file
 n Implement a file manager
 x Implement group system based on client feedback
 x Make sorttable stfu in the console
 x Don't use projectname as foldername, use PID
 x Don't use username as foldername, use UID
 p Try JQuery's .load() instead of iframes
-- Implement importing CSV files from ItsLearning
+x Implement importing CSV files from ItsLearning
 	- Export file afterwards containing randomly generated passwords for users
 p Implement exporting to CSV
 ? Scrollbar overlaps editor and *list in manager_layout.css
 - Don't use inline JS anymore
 - Make year sorting work in projectmanager
 n Rename "Portfolio" to what the client had wanted in the first place
-- Option to download entire portfolio
+p Option to download entire portfolio
 x install.php > init.php
 x admin.php > install.php
 x Use consts as GID instead of plain ints (in some cases)
@@ -77,13 +77,13 @@ x Implement projectmod
 - Implement groupdel (perhaps combine with groupmod)
 x Group in brackets, students in projects will look like this:
 		"student(group),student(group),..."
-- Prevent sorting from changing column width
+p Prevent sorting from changing column width
 n Add column for project owner UID, only this person can add, remove or change
 		users from a group
 	n Don't allow teachers to delete each other's projects
 x No delete button for teachers in usermanager
 p No edit button, change in table itself instead (like group in groupmanager)
-- Add breadcrumb (Bootstrap) to index.php
+- Add breadcrumb (Bootstrap)
 x Remove 'active' column from DB_PROJECTS
 x Use sprintf more often as it makes the code look cleaner.
 n Rename students to users in DB_PROJECTS
@@ -99,7 +99,7 @@ x Download button for teacher for "reflectie" student
 x Fix multiline editor buttons
 x Show download button after finishing document
 x Fix ghosting button tooltip in Summernote
-- Fix height editor (see note in editor.css)
+x Fix height editor (see note in editor.css)
 - Implement grades
 x Don't allow images to go off the screen in teacher viewer class .right
 - Hide sidebar if not on "Portfolio" tab (so no admin check either)
@@ -109,6 +109,16 @@ x Remove email from DB_USERS
 - Remove group entries using projectdel.php as well
 x Don't allow teacher to change him/herself in usermanager
 - Fix groups.php
+! Check in php for finished header (don't allow to bypass using js)
+! Give submit button a name and check for submit on every submit handler page
+- Hide download button if feedback is not available yet for student
+- Links shouldn't open in new tab from viewer
+- Check if all fields are present post php
+- Add a remember me button to login.php
+- Redirect to index.php instead of /user/logout.php after verifylogin()
+! Get escape character for SOM csv format
+x USR_ to GID_ in vars.php
+- Notification after importing
 
 
  Questions
@@ -116,14 +126,14 @@ x Don't allow teacher to change him/herself in usermanager
 n Ask client about functionality editor
 n Ask client (and school) for correct logo
 n Ask team to make logo
-n Ask client (and school) for correct footer
+x Ask client (and school) for correct footer
 - Ask client about licensing
-- Get advice on color scheme (from school or team?)
+. Get advice on color scheme (from school or team?)
 n Ask client about home page content
 x Ask client about registration procedure
 n Ask expert (and potentially client) about portfolio creation procedure
-x Ask expert if Node.js (perhaps even C?) is preferred over PHP
-	> PHP is recommended
+x Ask expert if Node.js (perhaps even C?) is preferred over php
+	> php is recommended
 x Ask client to export new csv with only required columns
 n Ask client if students should be distributed amongst classes
 	> They are now not distributed amongst anything

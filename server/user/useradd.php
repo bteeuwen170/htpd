@@ -1,7 +1,7 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
-	if (!verify_login(USR_TEACHER))
+	if (!verify_login(GID_TEACHER))
 		header("Location: /user/logout.php");
 
 	echo("Verbinding maken met SQL database... ");
@@ -9,8 +9,11 @@
 	check($dbconn, !$dbconn->connect_error);
 
 	$gid = $dbconn->real_escape_string($_POST["gid"]);
-	$name = $dbconn->real_escape_string($_POST["firstname"]) . " " .
-			$dbconn->real_escape_string($_POST["lastname"]);
+	if (isset($_POST["firstname"]) && isset($_POST["lastname"]))
+		$name = $dbconn->real_escape_string($_POST["firstname"]) . " " .
+				$dbconn->real_escape_string($_POST["lastname"]);
+	else
+		$name = $dbconn->real_escape_string($_POST["name"]);
 	$username = $dbconn->real_escape_string($_POST["username"]);
 	$password = $dbconn->real_escape_string($_POST["password"]);
 
@@ -29,7 +32,7 @@
 			DB_USERS, $gid, $name, $username, $hash);
 	check($dbconn, $dbconn->query($user));
 
-	if ($gid == USR_STUDENT) {
+	if ($gid == GID_STUDENT) {
 		echo("Persoonlijke map wordt aangemaakt... ");
 		$columns = sprintf("SELECT uid FROM %s WHERE username='%s'",
 				DB_USERS, $username);
@@ -45,4 +48,5 @@
 	$dbconn->close();
 
 	header("Location: " . $_SERVER["HTTP_REFERER"]);
+			//TODO Prevent error from import.php
 ?>

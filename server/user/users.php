@@ -3,7 +3,7 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
-	if (!verify_login(USR_TEACHER))
+	if (!verify_login(GID_TEACHER))
 		header("Location: /user/logout.php");
 ?>
 
@@ -104,7 +104,7 @@
 							<span class="glyphicon glyphicon-pencil"></span>
 						</button>
 						<?php
-							if ($_COOKIE["gid"] == USR_ADMIN)
+							if ($_COOKIE["gid"] == GID_ADMIN)
 								echo("
 									<button
 										type='submit'
@@ -122,7 +122,7 @@
 					</div>
 					<div class="btn-group">
 						<?php
-							if ($_COOKIE["gid"] == USR_ADMIN)
+							if ($_COOKIE["gid"] == GID_ADMIN)
 								echo("
 									<button
 										type='button'
@@ -285,6 +285,7 @@
 										<input
 											type="submit"
 											class="btn btn-primary"
+											name="submit"
 											value="Opslaan">
 									</div>
 								</div>
@@ -339,6 +340,7 @@
 										<input
 											type="submit"
 											class="btn btn-primary"
+											name="submit"
 											value="Opslaan">
 									</div>
 								</div>
@@ -370,7 +372,31 @@
 									<li>Vakken</li>
 								</ol>
 							</p>
-							TODO
+							<form
+								method="post"
+								enctype="multipart/form-data"
+								action="import.php">
+								<div class="form-group row">
+									<label class="col-sm-4 form-control-label">
+										CSV Bestand
+									</label>
+									<div class="col-sm-8">
+										<input
+											type="file"
+											accept="text/csv"
+											name="upload" required>
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-sm-offset-4 col-sm-8">
+										<input
+											type="submit"
+											class="btn btn-primary"
+											name="submit"
+											value="Importeren">
+									</div>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>

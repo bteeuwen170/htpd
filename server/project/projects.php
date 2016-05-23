@@ -3,7 +3,7 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
-	if (!verify_login(USR_TEACHER))
+	if (!verify_login(GID_TEACHER))
 		header("Location: /user/logout.php");
 ?>
 

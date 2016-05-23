@@ -1,8 +1,14 @@
+body + .left /* Feels like a dirty hack... */
+{
+	overflow:			hidden;
+}
+
 .left
 {
 	float:				left;
 	width:				50%;
 	height:				100%;
+	overflow:			hidden;
 }
 
 .left > .note-editor
@@ -15,19 +21,13 @@
 	box-shadow:			none;
 }
 
-/*.btn-group
-{
-	margin:				0 5px 0 5px;
-}*/
-
 .note-editor.note-frame
 {
-	height:				100%;
+	height:				calc(100% - 32px);
 	margin-bottom:		0;
 	border:				none;
 }
 
-/* FIXME Not right */
 .note-editor.note-frame > .note-editing-area,
 		.note-editor.note-frame > .note-editing-area > .note-editable
 {
@@ -55,6 +55,5 @@
 
 #editor, #viewer
 {
-	overflow:			auto;
 	padding:			10px;
 }

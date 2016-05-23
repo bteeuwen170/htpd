@@ -1,7 +1,7 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
-	if (!verify_login(USR_STUDENT))
+	if (!verify_login(GID_STUDENT))
 		header("Location: /login.php");
 
 	setcookie("session", null, -1, "/", URL_SITE);

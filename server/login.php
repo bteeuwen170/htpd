@@ -6,7 +6,7 @@
 	if (!file_exists(URL_STORAGE . "configured"))
 		header("Location: /init/init.php");
 
-	if (verify_login(USR_STUDENT))
+	if (verify_login(GID_STUDENT))
 		header("Location: /index.php");
 
 	if (isset($_POST["username"])) {

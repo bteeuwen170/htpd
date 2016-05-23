@@ -3,7 +3,7 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
-	if (!verify_login(USR_STUDENT))
+	if (!verify_login(GID_STUDENT))
 		header("Location: /user/logout.php");
 
 	if (isset($_POST["path"])) {
@@ -48,10 +48,17 @@
 				});
 
 				var path = <?php echo("\"" . $path . "\""); ?>;
-				if (!path.endsWith(<?php echo("'" . PRJ_FILES[1] . "'"); ?>))
+				if (path.endsWith(<?php echo("'" . PRJ_FILES[0] . "'"); ?>)) {
 					if ($("#editor").html()
 							.indexOf("<!-- project: finished -->") == -1)
 						edit(1);
+				} else if (path.endsWith(
+						<?php echo("'" . PRJ_FILES[1] . "'"); ?>)) {
+					if ($("#editor").html()
+							.indexOf("<!-- project: finished -->") == -1)
+						document.getElementById("editor").innerHTML =
+							"Feedback is nog niet beschikbaar.";
+				}
 			});
 
 			function save(reopen)
