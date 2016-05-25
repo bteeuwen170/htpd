@@ -55,9 +55,12 @@
 				} else if (path.endsWith(
 						<?php echo("'" . PRJ_FILES[1] . "'"); ?>)) {
 					if ($("#editor").html()
-							.indexOf("<!-- project: finished -->") == -1)
+							.indexOf("<!-- project: finished -->") == -1) {
 						document.getElementById("editor").innerHTML =
 							"Feedback is nog niet beschikbaar.";
+						document.getElementById("optionbar").style.display =
+							"none";
+					}
 				}
 			});
 

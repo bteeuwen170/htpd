@@ -4,9 +4,10 @@
 2. Implement the login system		Start: 2016-03-28	End: 2016-04-10
 3. Implement the file editor		Start: 2016-04-22	End: 2016-05-13
 4. Implement the user manager		Start: 2016-04-29	End: 2016-05-26
-5. Implement the group manager		Start: 2016-05-14	End: 2016-00-00
-6. Finishing touches				Start: 2016-05-28	End: 2016-00-00
-7. Complete optional requirements	Start: 2016-00-00	End: 2016-00-00
+5. Implement the project manager	Start: 2016-05-14	End: 2016-00-00
+6. Implement the group manager		Start: 2016-05-14	End: 2016-00-00
+7. Finishing touches				Start: 2016-05-28	End: 2016-00-00
+8. Complete optional requirements	Start: 2016-00-00	End: 2016-00-00
 
  TODO
 ============
@@ -126,6 +127,7 @@ p Seperate config file
 x Check if not removing admin
 x Simplify projectmanager due to shortage of time
 - Fix select all
+- Fix UI navigation buttons
 
 
  Questions

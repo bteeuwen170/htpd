@@ -1,0 +1,8 @@
+Bastiaan Teeuwen <bastiaan.teeuwen170@gmail.com>
+ - Main programmer and current project maintainer
+
+Lex van Teeffelen <lexvanteeffelen@gmail.com>
+ - Interface designer
+
+Merijn Plagge <merijn.123@hotmail.nl>
+ - Interface designer
