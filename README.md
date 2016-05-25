@@ -1,6 +1,6 @@
 # Helinium Technasium Portfolio Database
 
-This is the README file for htpd, a website that I've created for school.
+This is the README file for htpd.
 
 ## Browser Support
 htpd is guaranteed to work on the following browsers:
