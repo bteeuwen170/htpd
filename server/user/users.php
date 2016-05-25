@@ -177,10 +177,7 @@
 
 							while ($row = $rows->fetch_array()) {
 								echo("<tr id='u" . $row["uid"] . "'>");
-								if ($row["gid"] == 0 ||
-									$row["uid"] == $_COOKIE["uid"])
-									echo("<td></td>");
-								else
+								if ($row["gid"] == GID_STUDENT)					//TODO Check on server side as well
 									echo("
 										<td>
 											<input type='checkbox' class='cb'
@@ -188,6 +185,8 @@
 											"' onclick='row_set(this)'>
 										</td>
 									");
+								else
+									echo("<td></td>");
 								echo("<td>" . $row["uid"] . "</td>");
 								echo("<td>" . $row["name"] . "</td>");
 								echo("<td>" . $row["username"] . "</td>");

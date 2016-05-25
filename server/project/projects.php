@@ -39,7 +39,7 @@
 					$("#editdpid").val(row[1].innerHTML);
 					$("#editdname").val(row[2].innerHTML);
 					$("#editdgroups").val(row[3].innerHTML);
-					$("#editdyear").val(row[4].innerHTML);
+					$("#editdyear").val(row[4].getAttribute("data-year"));
 				});
 
 				$(".pr").click(function()
@@ -76,16 +76,6 @@
 				} else {
 					document.getElementById("edit").disabled = true;
 					document.getElementById("delete").disabled = true;
-				}
-			}
-
-			function year_select()
-			{ //FIXME What the crap is going on here?!
-				var year = document.getElementById("yearslist");
-				var projects = document.getElementsByClassName(year.value);
-
-				for (i = 1; i <= projects.length; i++) {
-					projects[i].style.visibility = "hidden";
 				}
 			}
 		</script>
@@ -131,27 +121,6 @@
 							<span class="glyphicon glyphicon-trash"></span>
 						</button>
 					</div>
-					<div class="input-group input-group-sm" id="years">
-						<span class="input-group-addon">Jaar</span>
-						<select
-							class="form-control"
-							id="yearslist"
-							onchange="year_select()">
-							<?php
-								$years = get_years();
-								for ($i = 0; $i < count($years); $i++) {
-									echo("
-										<option
-											value='y" . $i . "' " .
-											(($i == get_year()) ?
-											"selected>" : ">") .
-											$years[$i] . "
-										</option>
-									");
-								}
-							?>
-						</select>
-					</div>
 				</div>
 				<div class="datacontainer">
 					<table class="table table-striped sortable">
@@ -164,7 +133,7 @@
 							<th>ID</th>
 							<th>Projectnaam</th>
 							<th>Groepen</th>
-							<th>Schooljaar (TODO: hide)</th>
+							<th>Schooljaar</th>
 						</tr>
 						<?php
 							$dbconn = new mysqli(DB_URL . ":" . DB_PORT,
@@ -179,9 +148,7 @@
 
 							while ($prow = $prows->fetch_array()) {
 								echo("
-									<tr
-										class='y" . $prow["year"] . "'
-										id='p" . $prow["pid"] . "'>");
+									<tr id='p" . $prow["pid"] . "'>");
 								echo("
 									<td>
 										<input type='checkbox' class='cb'
@@ -195,8 +162,9 @@
 										$prow["name"] . "</td>");
 								echo("<td class='pr'>" .
 										$prow["groups"] . "</td>");
-								echo("<td class='pr'>" .
-										$prow["year"] . "</td>");
+								echo("<td class='pr' data-year='" .
+										$prow["year"]. "'>" .
+										get_years()[$prow["year"]] . "</td>");
 								echo("</tr>");
 							}
 

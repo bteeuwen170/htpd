@@ -217,9 +217,9 @@
 									}
 								} else {
 									for ($k = 0; $k < $projects[$j][2]; $k++) {
-										$path =
-											$projects[$j][4][$k][2] . "/" .
-													$projects[$j][0] . "/";
+										//$path =
+										//	$projects[$j][4][$k][2] . "/" .
+										//			$projects[$j][0] . "/";
 
 										echo("
 											<li
@@ -229,7 +229,7 @@
 													$(this).closest('li')
 													.attr('id'))\" href=
 													'/project/users.php?pid="
-													. $path . "'
+													. /*$path .*/ "'
 													target='content'>Groep "
 													. ($k + 1) . "
 												</a>

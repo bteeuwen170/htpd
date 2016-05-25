@@ -57,7 +57,7 @@ x Implement importing CSV files from ItsLearning
 p Implement exporting to CSV
 ? Scrollbar overlaps editor and *list in manager_layout.css
 - Don't use inline JS anymore
-- Make year sorting work in projectmanager
+x Make year sorting work in projectmanager
 n Rename "Portfolio" to what the client had wanted in the first place
 p Option to download entire portfolio
 x install.php > init.php
@@ -122,8 +122,10 @@ x Don't allow teacher to change him/herself in usermanager
 x USR_ to GID_ in vars.php
 - Notification after importing (and a bunch of other things just to inform
 		the user)
-- Seperate config file
-- Check if not removing admin
+p Seperate config file
+x Check if not removing admin
+x Simplify projectmanager due to shortage of time
+- Fix select all
 
 
  Questions
