@@ -27,6 +27,14 @@
 		<script type="text/javascript"
 				src="/include/lib/bootstrap/js/bootstrap.js"></script>
 		<script type="text/javascript" src="/include/js/sidebar.js"></script>
+
+		<script type="text/javascript">
+			$(document).ready(function()
+			{
+				if (<?php echo(($_COOKIE["gid"] == GID_ADMIN) ? 1 : 0); ?>)
+					sidebar_hide();
+			});
+		</script>
 	</head>
 	<body>
 		<nav class="navbar navbar-default navbar-static-top noselect">
@@ -110,22 +118,18 @@
 				if ($_COOKIE["gid"] != GID_ADMIN) {
 					$projects = array();
 					$teacher = ($_COOKIE["gid"] == GID_TEACHER);
-					$users = array();
 					$years = get_years();
-
-					echo("<div class='sidebar noselect'>");
-					echo("<ol class='sidebar-list'>");
 
 					$dbconn = new mysqli(DB_URL . ":" . DB_PORT,
 							DB_USER, DB_PASS, DB_NAME);
 					check($dbconn, !$dbconn->connect_error, false);
 
-					$qptable =
-						sprintf("SELECT pid, name, year FROM %s", DB_PROJECTS);
+					$qptable = sprintf("SELECT pid, name, groups, year FROM %s",
+							DB_PROJECTS);
 					$ptable = $dbconn->query($qptable);
 					check($dbconn, $ptable, false);
 
-					while ($prow = $ptable->fetch_array()) {					 //XXX This can't be efficient right?
+					while ($prow = $ptable->fetch_array()) {					 //XXX There's got to be a more efficient way...
 						$groups = array();
 						$hasuser = false;
 						$qgtable =
@@ -146,31 +150,22 @@
 						$project = array();
 						array_push($project, $prow["pid"]);
 						array_push($project, $prow["name"]);
+						array_push($project, $prow["groups"]);
 						array_push($project, $prow["year"]);
 						array_push($project, $groups);
 						array_push($projects, $project);
 					}
 
-					if ($_COOKIE["gid"] == GID_TEACHER) {
-						$qutable =
-							sprintf("SELECT name FROM %s", DB_USERS);
-						$utable = $dbconn->query($qutable);
-						check($dbconn, $utable, false);
-
-						//TODO
-
-						$utable->close();
-					} else {
-						unset($users);
-					}
-
 					$ptable->close();
 					$dbconn->close();
+
+					echo("<div class='sidebar noselect'>");
+					echo("<ol class='sidebar-list'>");
 
 					for ($i = 0; $i < count($years); $i++) {
 						$c = false;
 						for ($j = 0; $j < count($projects); $j++) {
-							if ($projects[$j][2] == $i) {
+							if ($projects[$j][3] == $i) {
 								if (!$c) {
 									echo("
 										<li>
@@ -209,7 +204,7 @@
 											<li
 												id='" . $i . $j . $k . "'>
 												<a
-													onclick=\"set_sidebar(
+													onclick=\"sidebar_set(
 													$(this).closest('li')
 													.attr('id'))\" href=
 													'/editor/student.php?path="
@@ -221,56 +216,26 @@
 										");
 									}
 								} else {
-									for ($k = 0; $k < count($projects[$j][3]);
-											$k++) {
-										if ($projects[$j][3][$k][2] !=
-												$_COOKIE["uid"]) {
-											$path = $projects[$j][3][$k][2] . "/" .
+									for ($k = 0; $k < $projects[$j][2]; $k++) {
+										$path =
+											$projects[$j][4][$k][2] . "/" .
 													$projects[$j][0] . "/";
-
-											echo("
-												<li
-													id='" . $i . $j . $k . "'>
-													<a
-														onclick=\"set_sidebar(
-														$(this).closest('li')
-														.attr('id'))\" href=
-														'/editor/teacher.php?path="
-														. $path . "'
-														target='content'>" .
-														$projects[$j][3][$k][2] . "
-													</a>
-												</li>
-											");
-										}
-									}
-
-									/*$students = array();
-									$tst = explode(",", $psi[$j][3]);
-									for ($l = 0; $l < count($tst); $l++)
-										if (substr_count($tst[$l], "(")) //FIXME Inconsistent and unreliable way of checking whether teacher or not
-											array_push($students,
-													preg_replace("/\([^)]*\)/",
-													"", $tst[$l]));
-									for ($k = 0; $k < count($students); $k++) {
-										$path = $students[$k] . "/" .
-												$psi[$j][1] . "/";
 
 										echo("
 											<li
 												id='" . $i . $j . $k . "'>
 												<a
-													onclick=\"set_sidebar(
+													onclick=\"sidebar_set(
 													$(this).closest('li')
 													.attr('id'))\" href=
-													'/editor/teacher.php?path="
+													'/project/users.php?pid="
 													. $path . "'
-													target='content'>" .
-													$students[$k] . "
+													target='content'>Groep "
+													. ($k + 1) . "
 												</a>
 											</li>
 										");
-									}*/
+									}
 								}
 								echo("</ol></li>");
 							}

@@ -71,6 +71,8 @@ x Implement userdel
 x Implement usermod
 ? Check for username and email availablity in usermod
 - Deldir in functions.php
+x Implement projectadd
+x Implement projectdel
 x Implement projectmod
 - Implement groupadd
 - Implement groupmod
@@ -118,7 +120,10 @@ x Don't allow teacher to change him/herself in usermanager
 - Redirect to index.php instead of /user/logout.php after verifylogin()
 ! Get escape character for SOM csv format
 x USR_ to GID_ in vars.php
-- Notification after importing
+- Notification after importing (and a bunch of other things just to inform
+		the user)
+- Seperate config file
+- Check if not removing admin
 
 
  Questions

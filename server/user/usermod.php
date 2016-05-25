@@ -12,6 +12,8 @@
 	$name = $dbconn->real_escape_string($_POST["name"]);
 	$username = $dbconn->real_escape_string($_POST["username"]);
 
+	check($dbconn, $uid != 1);
+
 	/*echo("Controleren op gebruikersnaam beschikbaarheid... ");
 	$usernamecheck = sprintf("SELECT username FROM %s WHERE username='%s'",
 			DB_USERS, $username); //TODO Not working but handled nevertheless

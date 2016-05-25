@@ -11,6 +11,8 @@
 	$uids = $_POST["cb"];
 
 	for ($i = 0; $i < count($uids); $i++) {
+		check($dbconn, $uids[$i] != 1);
+
 		echo("Gebruikers informatie wordt opgehaald... ");
 		$columns =
 			sprintf("SELECT gid FROM %s WHERE uid=%s", DB_USERS, $uids[$i]);

@@ -78,6 +78,16 @@
 					document.getElementById("delete").disabled = true;
 				}
 			}
+
+			function year_select()
+			{ //FIXME What the crap is going on here?!
+				var year = document.getElementById("yearslist");
+				var projects = document.getElementsByClassName(year.value);
+
+				for (i = 1; i <= projects.length; i++) {
+					projects[i].style.visibility = "hidden";
+				}
+			}
 		</script>
 	</head>
 	<body>
@@ -123,7 +133,10 @@
 					</div>
 					<div class="input-group input-group-sm" id="years">
 						<span class="input-group-addon">Jaar</span>
-						<select class="form-control">
+						<select
+							class="form-control"
+							id="yearslist"
+							onchange="year_select()">
 							<?php
 								$years = get_years();
 								for ($i = 0; $i < count($years); $i++) {
@@ -141,9 +154,7 @@
 					</div>
 				</div>
 				<div class="datacontainer">
-					<table
-						class="table table-striped sortable"
-						id="projectlist">
+					<table class="table table-striped sortable">
 						<tr>
 							<th><!--<input
 									type="checkbox"
@@ -167,7 +178,10 @@
 							check($dbconn, $prows, false);
 
 							while ($prow = $prows->fetch_array()) {
-								echo("<tr id='p" . $prow["pid"] . "'>");
+								echo("
+									<tr
+										class='y" . $prow["year"] . "'
+										id='p" . $prow["pid"] . "'>");
 								echo("
 									<td>
 										<input type='checkbox' class='cb'

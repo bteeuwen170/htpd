@@ -118,7 +118,143 @@
 							<th>Achternaam</th>
 							<th>Groep</th>
 						</tr>
-						<?php
+					<?php
+					/*$projects = array();
+					$teacher = ($_COOKIE["gid"] == GID_TEACHER);
+					$users = array();
+					$years = get_years();
+
+					$dbconn = new mysqli(DB_URL . ":" . DB_PORT,
+							DB_USER, DB_PASS, DB_NAME);
+					check($dbconn, !$dbconn->connect_error, false);
+
+					$qptable =
+						sprintf("SELECT pid, name, year FROM %s", DB_PROJECTS);
+					$ptable = $dbconn->query($qptable);
+					check($dbconn, $ptable, false);
+
+					while ($prow = $ptable->fetch_array()) {					 //XXX This can't be efficient right?
+						$groups = array();
+						$hasuser = false;
+						$qgtable =
+							sprintf("SELECT pid, grp, uid FROM %s WHERE pid=%s",
+									DB_GROUPS, $prow["pid"]);
+						$gtable = $dbconn->query($qgtable);
+						check($dbconn, $gtable, false);
+						while ($grow = $gtable->fetch_array()) {
+							array_push($groups, $grow);
+							if ($grow["uid"] == $_COOKIE["uid"])
+								$hasuser = true;
+						}
+						$gtable->close();
+
+						if (!$hasuser)
+							continue;
+
+						$project = array();
+						array_push($project, $prow["pid"]);
+						array_push($project, $prow["name"]);
+						array_push($project, $prow["year"]);
+						array_push($project, $groups);
+						array_push($projects, $project);
+					}
+
+					if ($_COOKIE["gid"] == GID_TEACHER) {
+						$qutable =
+							sprintf("SELECT name FROM %s", DB_USERS);
+						$utable = $dbconn->query($qutable);
+						check($dbconn, $utable, false);
+
+						//TODO
+
+						$utable->close();
+					} else {
+						unset($users);
+					}
+
+					$ptable->close();
+					$dbconn->close();
+
+					echo("<div class='sidebar noselect'>");
+					echo("<ol class='sidebar-list'>");
+
+					for ($i = 0; $i < count($years); $i++) {
+						$c = false;
+						for ($j = 0; $j < count($projects); $j++) {
+							if ($projects[$j][2] == $i) {
+								if (!$c) {
+									echo("
+										<li>
+											<label
+												class='sidebar-item-label'
+												for='y" . $i . "'>"
+												. $years[$i] . "
+											</label>
+											<input
+												type='checkbox'
+												id='y" . $i . "'/>
+											<ol class='sidebar-item0'>
+									");
+									$c = true;
+								}
+
+								echo("
+									<li>
+										<label
+											class='sidebar-item-label'
+											for='p" . $j . "'>"
+											. $projects[$j][1] . "
+										</label>
+										<input
+											type='checkbox'
+											id='p" . $j . "'/>
+										<ol class='sidebar-item1'>
+								");
+
+   								if ($_COOKIE["gid"] == GID_STUDENT) {
+									$path = $_COOKIE["uid"] . "/" .
+											$projects[$j][0] . "/";
+
+									for ($k = 0; $k < count(PRJ_FILES); $k++) {
+										echo("
+											<li
+												id='" . $i . $j . $k . "'>
+												<a
+													onclick=\"sidebar_set(
+													$(this).closest('li')
+													.attr('id'))\" href=
+													'/editor/student.php?path="
+													. $path . PRJ_FILES[$k] .
+													"'target='content'>"
+													. PRJ_NAMES[$k] . "
+												</a>
+											</li>
+										");
+									}
+								} else {
+									for ($k = 0; $k < count($projects[$j][3]);
+											$k++) {
+										if ($projects[$j][3][$k][2] !=
+												$_COOKIE["uid"]) {
+											$path = $projects[$j][3][$k][2] . "/" .
+													$projects[$j][0] . "/";
+
+											echo("
+												<li
+													id='" . $i . $j . $k . "'>
+													<a
+														onclick=\"sidebar_set(
+														$(this).closest('li')
+														.attr('id'))\" href=
+														'/editor/teacher.php?path="
+														. $path . "'
+														target='content'>" .
+														$projects[$j][3][$k][2] . "
+													</a>
+												</li>
+											");
+										}
+									}*/
 							$dbconn = new mysqli(DB_URL . ":" . DB_PORT,
 							DB_USER, DB_PASS, DB_NAME);
 							check($dbconn, !$dbconn->connect_error, false);

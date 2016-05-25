@@ -103,7 +103,7 @@ function edit(mode, viewer)
 				["dimen",	["subscript", "superscript", "height"]],
 				["align",	["ul", "ol", "paragraph"]],
 				["table",	["table"]],
-				["insert",	["link", "picture", "video"]]
+				["insert",	[/*"link", */"picture", "video"]]
 			],
 			lang: "nl-NL",
 			buttons: {
@@ -125,7 +125,7 @@ function edit(mode, viewer)
 				["dimen",	["subscript", "superscript", "height"]],
 				["align",	["ul", "ol", "paragraph"]],
 				["table",	["table"]],
-				["insert",	["link", "picture", "video"]]
+				["insert",	[/*"link", */"picture", "video"]]
 			],
 			lang: "nl-NL",
 			buttons: {
