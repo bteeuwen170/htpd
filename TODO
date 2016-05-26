@@ -70,7 +70,7 @@ x Automatic system for dates, just enter start date
 x Implement useradd
 x Implement userdel
 x Implement usermod
-? Check for username and email availablity in usermod
+n Check for username and email availablity in usermod
 - Deldir in functions.php
 x Implement projectadd
 x Implement projectdel
@@ -128,6 +128,10 @@ x Check if not removing admin
 x Simplify projectmanager due to shortage of time
 - Fix select all
 - Fix UI navigation buttons
+n Don't import student if already exists
+x Restrict access to users.php for teachers
+x Ignore sidebar_*() if admin
+- Monospace font for php only pages
 
 
  Questions
@@ -136,7 +140,7 @@ n Ask client about functionality editor
 n Ask client (and school) for correct logo
 n Ask team to make logo
 x Ask client (and school) for correct footer
-- Ask client about licensing
+x Ask client about licensing
 . Get advice on color scheme (from school or team?)
 n Ask client about home page content
 x Ask client about registration procedure

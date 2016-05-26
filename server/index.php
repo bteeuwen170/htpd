@@ -29,10 +29,12 @@
 		<script type="text/javascript" src="/include/js/sidebar.js"></script>
 
 		<script type="text/javascript">
+			var admin = <?php echo(($_COOKIE["gid"] == GID_ADMIN) ? 1 : 0); ?>;
+
 			$(document).ready(function()
 			{
-				if (<?php echo(($_COOKIE["gid"] == GID_ADMIN) ? 1 : 0); ?>)
-					sidebar_hide();
+				if (admin)
+					sidebar_hide(admin);
 			});
 		</script>
 	</head>
@@ -55,6 +57,7 @@
 					<li class="active">
 						<a
 							href="/user/home.php"
+							onclick="sidebar_show(admin)"
 							target="content">
 							Portfolio
 						</a>
@@ -64,16 +67,29 @@
 							echo("
 								<li>
 									<a
+										href='/project/projects.php'
+										target='content'
+										onclick='sidebar_hide(admin)'>
+										Projecten
+									</a>
+								</li>
+							");
+						if ($_COOKIE["gid"] == GID_ADMIN)
+							echo("
+								<li>
+									<a
 										href='/user/users.php'
-										target='content'>
+										target='content'
+										onclick='sidebar_hide(admin)'>
 										Gebruikers
 									</a>
 								</li>
 								<li>
 									<a
-										href='/project/projects.php'
-										target='content'>
-										Projecten
+										href='/editor/motd.php'
+										target='content'
+										onclick='sidebar_hide(admin)'>
+										Welkomstbericht
 									</a>
 								</li>
 							");
@@ -82,18 +98,9 @@
 								<li>
 									<a
 										href='/user/settings.php'
-										target='content'>
+										target='content'
+										onclick='sidebar_hide(admin)'>
 										Instellingen
-									</a>
-								</li>
-							");
-						if ($_COOKIE["gid"] == GID_ADMIN)
-							echo("
-								<li>
-									<a
-										href='/editor/motd.php'
-										target='content'>
-										Welkomstbericht
 									</a>
 								</li>
 							");

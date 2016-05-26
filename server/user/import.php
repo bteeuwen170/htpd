@@ -38,8 +38,6 @@
 				curl_setopt($curl, CURLOPT_POSTFIELDS, $fieldsstr);
 				$res = curl_exec($curl);
 				curl_close($curl);
-				echo "resuyl";
-				print_r($res);
 			}
 		}
 

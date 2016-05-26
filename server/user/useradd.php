@@ -17,11 +17,6 @@
 	$username = $dbconn->real_escape_string($_POST["username"]);
 	$password = $dbconn->real_escape_string($_POST["password"]);
 
-	echo("Controleren op gebruikersnaam beschikbaarheid... ");
-	$usernamecheck = sprintf("SELECT username FROM %s WHERE username='%s'",
-			DB_USERS, $username);
-	check($dbconn, !($dbconn->query($usernamecheck))->num_rows);
-
 	echo("Wachtwoord wordt gehashed... ");
 	$hash = password_hash($password, PASSWORD_BCRYPT);
 	check($dbconn, is_string($hash));

@@ -1,14 +1,25 @@
 var prev;
 
-function sidebar_hide()
+function sidebar_hide(admin)
 {
+	if (!admin) {
+		document.getElementById("content").src = "about:blank";
+
+		document.getElementsByClassName("sidebar")[0].style.display = "none";
+	}
+
 	document.getElementById("content").style.marginLeft = 0;
 	document.getElementById("content").style.width = "100%";
 }
 
-function sidebar_show()
+function sidebar_show(admin)
 {
-	document.getElementById("content").removeAttribute("style");
+	if (!admin) {
+		document.getElementById("content").src = "about:blank";
+
+		document.getElementsByClassName("sidebar")[0].style.display = "inline";
+		document.getElementById("content").removeAttribute("style");
+	}
 }
 
 function sidebar_set(id)

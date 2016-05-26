@@ -3,7 +3,7 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
-	if (!verify_login(GID_TEACHER))
+	if (!verify_login(GID_ADMIN))
 		header("Location: /user/logout.php");
 ?>
 
@@ -103,41 +103,29 @@
 							data-target="#editd" disabled>
 							<span class="glyphicon glyphicon-pencil"></span>
 						</button>
-						<?php
-							if ($_COOKIE["gid"] == GID_ADMIN)
-								echo("
-									<button
-										type='submit'
-										class='btn btn-default btn-sm'
-										id='delete'
-										name='delete'
-										title='Verwijderen'
-										data-tooltip='true'
-										data-placement='bottom' disabled>
-										<span class='glyphicon glyphicon-trash'>
-										</span>
-									</button>
-								");
-						?>
+						<button
+							type="submit"
+							class="btn btn-default btn-sm"
+							id="delete"
+							name="delete"
+							title="Verwijderen"
+							data-tooltip="true"
+							data-placement="bottom" disabled>
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
 					</div>
 					<div class="btn-group">
-						<?php
-							if ($_COOKIE["gid"] == GID_ADMIN)
-								echo("
-									<button
-										type='button'
-										class='btn btn-default btn-sm'
-										title='Importeren'
-										data-toggle='modal'
-										data-tooltip='true'
-										data-placement='bottom'
-										data-backdrop='static'
-										data-target='#importd'>
-										<span class='glyphicon
-												glyphicon-import'></span>
-									</button>
-								");
-						?>
+						<button
+							type="button"
+							class="btn btn-default btn-sm"
+							title="Importeren"
+							data-toggle="modal"
+							data-tooltip="true"
+							data-placement="bottom"
+							data-backdrop="static"
+							data-target="#importd">
+							<span class="glyphicon glyphicon-import"></span>
+						</button>
 						<button
 							type="button"
 							class="btn btn-default btn-sm"
@@ -177,7 +165,9 @@
 
 							while ($row = $rows->fetch_array()) {
 								echo("<tr id='u" . $row["uid"] . "'>");
-								if ($row["gid"] == GID_STUDENT)					//TODO Check on server side as well
+								if ($row["gid"] == GID_ADMIN)					//TODO Check on server side as well
+									echo("<td></td>");
+								else
 									echo("
 										<td>
 											<input type='checkbox' class='cb'
@@ -185,8 +175,6 @@
 											"' onclick='row_set(this)'>
 										</td>
 									");
-								else
-									echo("<td></td>");
 								echo("<td>" . $row["uid"] . "</td>");
 								echo("<td>" . $row["name"] . "</td>");
 								echo("<td>" . $row["username"] . "</td>");
@@ -367,17 +355,26 @@
 								vanuit SOM:
 								<ol>
 									<li>Leerlingnummer</li>
-									<li>Naam</li>
+									<li>Naam (Voor- en Achternaam)</li>
 									<li>Vakken</li>
 								</ol>
+								Leerlingen die geen <?php echo(TAR_SUBJECT); ?>
+								in zijn/haar vakkenpakket of leerlingen die
+								reeds in de database staan hebben zullen
+								automatisch worden weggefilterd.<br><br>
+								Naderhand zal een CSV bestand naar uw computer
+								worden gedownload bevattende de automatisch
+								gegenereerde wachtwoorden van de toegevoegde
+								leerlingen.
 							</p>
+							<br>
 							<form
 								method="post"
 								enctype="multipart/form-data"
 								action="import.php">
 								<div class="form-group row">
 									<label class="col-sm-4 form-control-label">
-										CSV Bestand
+										CSV bestand
 									</label>
 									<div class="col-sm-8">
 										<input
