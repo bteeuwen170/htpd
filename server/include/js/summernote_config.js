@@ -90,8 +90,15 @@ function edit(mode, viewer)
 	if (optionbar != null)
 		optionbar.style.display = "none";
 
-	if (mode) {
+	if (mode) { //FIXME What a mess
 		$("#editor").summernote({
+			lang: "nl-NL",
+			disableLinkTarget: true,
+			fontNames: [
+				"Arial", "Helvetica Neue", "Impact", "Lucida Grande", "Tahoma",
+				"Times New Roman", "Verdana"
+			],
+			defaultFontName: "Arial",
 			toolbar: [
 				["save",	["save", "download", "finish"]],
 				["tools",	["undo", "redo"]],
@@ -103,9 +110,8 @@ function edit(mode, viewer)
 				["dimen",	["subscript", "superscript", "height"]],
 				["align",	["ul", "ol", "paragraph"]],
 				["table",	["table"]],
-				["insert",	[/*"link", */"picture", "video"]]
+				["insert",	["link", "picture", "video"]]
 			],
-			lang: "nl-NL",
 			buttons: {
 				save: button_save,
 				download: button_download_students,
@@ -114,6 +120,13 @@ function edit(mode, viewer)
 		});
 	} else {
 		$("#editor").summernote({
+			lang: "nl-NL",
+			disableLinkTarget: true,
+			fontNames: [
+				"Arial", "Helvetica Neue", "Impact", "Lucida Grande", "Tahoma",
+				"Times New Roman", "Verdana"
+			],
+			defaultFontName: "Arial",
 			toolbar: [
 				["save",	["save", "download"]],
 				["tools",	["undo", "redo"]],
@@ -125,9 +138,8 @@ function edit(mode, viewer)
 				["dimen",	["subscript", "superscript", "height"]],
 				["align",	["ul", "ol", "paragraph"]],
 				["table",	["table"]],
-				["insert",	[/*"link", */"picture", "video"]]
+				["insert",	["link", "picture", "video"]]
 			],
-			lang: "nl-NL",
 			buttons: {
 				save: button_save,
 				download: button_download

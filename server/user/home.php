@@ -38,16 +38,16 @@
 							fclose($motd);
 						}
 					?>
-					<td>
+					<!--<td>
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">Laatste feedback</h3>
 							</div>
 							<div class="panel-body">
-								Latest feedback will be here... Eventually.
+								TODO
 							</div>
 						</div>
-					</td>
+					</td>-->
 				</tr>
 			</table>
 		</div>

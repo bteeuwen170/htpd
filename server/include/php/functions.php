@@ -18,6 +18,19 @@
 		}
 	}
 
+	function deldir($j) {
+		foreach(scandir($j) as $k) {
+			if ("." === $k || ".." === $k)
+				continue;
+			elseif (is_dir("$j/$k"))
+				deldir("$j/$k");
+			else
+				unlink("$j/$k");
+		}
+
+		rmdir($j);
+	}
+
 	function get_years()
 	{
 		$year = date("Y");

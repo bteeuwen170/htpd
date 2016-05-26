@@ -4,12 +4,12 @@ This is the README file for htpd.
 
 ## Browser Support
 htpd is guaranteed to work on the following browsers:
-- Google Chrome 28+
-- Internet Explorer 10+
-- Microsoft Edge 20+
-- Mozilla Firefox 26+
+- Google Chrome 38+
+- Internet Explorer 11+
+- Microsoft Edge
+- Mozilla Firefox 16+
 - Opera 12.10+
-- Safari 7+
+- Safari 8+
 
 ## About
 TODO

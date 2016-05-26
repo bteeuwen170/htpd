@@ -37,17 +37,4 @@
 	$dbconn->close();
 
 	header("Location: " . $_SERVER["HTTP_REFERER"]);
-
-	function deldir($j) {
-		foreach(scandir($j) as $k) {
-			if ("." === $k || ".." === $k)
-				continue;
-			elseif (is_dir("$j/$k"))
-				deldir("$j/$k");
-			else
-				unlink("$j/$k");
-		}
-
-		rmdir($j);
-	}
 ?>

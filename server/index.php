@@ -59,7 +59,14 @@
 							href="/user/home.php"
 							onclick="sidebar_show(admin)"
 							target="content">
-							Portfolio
+						<?php
+								if ($_COOKIE["gid"] == GID_ADMIN)
+									echo("Hoofdpagina");
+								else if ($_COOKIE["gid"] == GID_TEACHER)
+									echo("Feedback");
+								else
+									echo("Portfolio");
+							?>
 						</a>
 					</li>
 					<?php
@@ -70,7 +77,7 @@
 										href='/project/projects.php'
 										target='content'
 										onclick='sidebar_hide(admin)'>
-										Projecten
+										Projectbeheer
 									</a>
 								</li>
 							");
@@ -81,7 +88,7 @@
 										href='/user/users.php'
 										target='content'
 										onclick='sidebar_hide(admin)'>
-										Gebruikers
+										Gebruikersbeheer
 									</a>
 								</li>
 								<li>
@@ -203,8 +210,6 @@
 								");
 
    								if ($_COOKIE["gid"] == GID_STUDENT) {
-									$path = $_COOKIE["uid"] . "/" .
-											$projects[$j][0] . "/";
 
 									for ($k = 0; $k < count(PRJ_FILES); $k++) {
 										echo("
@@ -214,8 +219,9 @@
 													onclick=\"sidebar_set(
 													$(this).closest('li')
 													.attr('id'))\" href=
-													'/editor/student.php?path="
-													. $path . PRJ_FILES[$k] .
+													'/editor/student.php?pid=" .
+													$projects[$j][0] . "&file="
+													. $k .
 													"'target='content'>"
 													. PRJ_NAMES[$k] . "
 												</a>

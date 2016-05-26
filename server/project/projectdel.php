@@ -25,7 +25,10 @@
 
 		//TODO Option to delete files as well, maybe only as admin?
 
-		//TODO Delete group entries as well!
+		echo("Groepen worden verwijderd... ");
+		$groups =
+			sprintf("DELETE FROM %s WHERE pid=%s", DB_GROUPS, $pids[$i]);
+		check($dbconn, $dbconn->query($groups));
 
 		$result->free();
 	}

@@ -12,7 +12,8 @@
 		fwrite($file, $_POST["data"]);
 		fclose($file);
 	} else {
-		$path = URL_STORAGE . "students/" . $_GET["path"];
+		$path = URL_USERS . $_COOKIE["uid"] . "/" . $_GET["pid"] . "/" .
+				PRJ_FILES[$_GET["file"]];
 	}
 ?>
 
@@ -48,12 +49,11 @@
 				});
 
 				var path = <?php echo("\"" . $path . "\""); ?>;
-				if (path.endsWith(<?php echo("'" . PRJ_FILES[0] . "'"); ?>)) {
+				if (<?php echo($_GET["file"]); ?> == 0) {
 					if ($("#editor").html()
 							.indexOf("<!-- project: finished -->") == -1)
 						edit(1);
-				} else if (path.endsWith(
-						<?php echo("'" . PRJ_FILES[1] . "'"); ?>)) {
+				} else if (<?php echo($_GET["file"]); ?> == 1) {
 					if ($("#editor").html()
 							.indexOf("<!-- project: finished -->") == -1) {
 						document.getElementById("editor").innerHTML =

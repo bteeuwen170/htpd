@@ -61,7 +61,7 @@
 		$table = sprintf("
 			CREATE TABLE %s (
 				pid         INT(64) UNSIGNED NOT NULL,
-				grp         TINYINT UNSIGNED NOT NULL,
+				grp         TINYINT NOT NULL,
 				uid         INT(64) UNSIGNED NOT NULL
 			)
 		", DB_GROUPS);
@@ -69,14 +69,14 @@
 	}
 
 	echo("Opslagmap wordt aangemaakt... ");
-	if (!check($dbconn, file_exists(URL_STORAGE), true)) {
+	if (!check($dbconn, file_exists(URL_STORAGE), true, true)) {
 		mkdir(URL_STORAGE, 0755);
 		check($dbconn, file_exists(URL_STORAGE));
 	}
 
 	echo("Gebruikersmap wordt aangemaakt... ");
 	$path = URL_USERS;
-	if (!check($dbconn, file_exists($path), true)) {
+	if (!check($dbconn, file_exists($path), true, true)) {
 		mkdir($path, 0755);
 		check($dbconn, file_exists($path));
 	}

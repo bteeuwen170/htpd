@@ -114,81 +114,53 @@
 									onclick="select_all(this)">-->
 							</th>
 							<th>ID</th>
-							<th>Voornaam</th>
-							<th>Achternaam</th>
+							<th>Naam</th>
 							<th>Groep</th>
 						</tr>
 						<?php
+							$users = array();
+
 							$dbconn = new mysqli(DB_URL . ":" . DB_PORT,
 							DB_USER, DB_PASS, DB_NAME);
 							check($dbconn, !$dbconn->connect_error, false);
 
-							$columns = "SELECT groups, students FROM " .
-									DB_PROJECTS . " WHERE pid=" . $_GET["pid"];
-							$result = $dbconn->query($columns);
-							check($dbconn, $result, false);
-							$project = $result->fetch_assoc();
+							$qgtable = sprintf("SELECT pid, grp, uid FROM %s
+									WHERE pid=%s", DB_GROUPS, $_GET["pid"]);
+							$grows = $dbconn->query($qgtable);
+							check($dbconn, $grows, false);
 
-							$where = " WHERE";
-							$students = explode(",", $project["students"]);
-							for ($i = 0; $i < count($students); $i++) {
-								$where = $where . " uid=" .
-										preg_replace("/\([^)]*\)/", "",
-										$students[$i]) . " OR";
-							}
-							$where = substr($where, 0, -3);
+							$qutable =
+								sprintf("SELECT uid, name FROM %s", DB_USERS);
+							$urows = $dbconn->query($qutable);
+							check($dbconn, $urows, false);
 
-							$columns =
-								"SELECT uid, gid, firstname, lastname FROM " .
-										DB_USERS . $where;
-							$rows = $dbconn->query($columns);
-							check($dbconn, $rows, false);
+							while ($grow = $grows->fetch_array())
+								if ($grow["pid"] == $_GET["pid"])
+									$users[$grow["uid"]] = $grow["grp"];
 
-							while ($row = $rows->fetch_array()) {
-								echo("<tr>");
-								echo("
-									<td>
-										<input type='checkbox' class='cb'
-										name='cb[]' value='" . $row["uid"] .
-										"' onclick='row_set(this)'>
-									</td>
-								");
-								echo("<td>" . $row["uid"] . "</td>");
-								echo("<td>" . $row["firstname"] . "</td>");
-								echo("<td>" . $row["lastname"] . "</td>");
-								echo("<td>");
-								if ($row["gid"] == 2) {
-									for ($i = 0; $i < count($students); $i++) {
-										if ($row["uid"] ==
-												preg_replace("/\([^)]*\)/", "",
-												$students[$i])) {
-											if (preg_match(
-													"/(?<=\()(.+?)(?=\))/",
-													$students[$i], $group))
-												$group = $group[0] + 1;
-											else
-												$group = -1;
-											break;
-										}
-									}
-
-									echo("<select>");
-									for ($i = -1;
-											$i < $project["groups"]; $i++) {
-										echo("<option value='" . $i . "'" .
-												(($i == $group) ?
-												" selected" : "") . ">" .
-												(($i == -1) ? "Geen" : $i + 1) .
-												"</option>");
-									}
-									echo("</select>");
-								} else {
-									echo("Leraar");
+							while ($urow = $urows->fetch_array()) {
+								if (array_key_exists($urow["uid"], $users)) {
+									echo("<tr>");
+									echo("
+										<td>
+											<input type='checkbox' class='cb'
+											name='cb[]' value='" . $urow["uid"]
+											. "' onclick='row_set(this)'>
+										</td>
+									");
+									echo("<td>" . $urow["uid"] . "</td>");
+									echo("<td>" . $urow["name"] . "</td>");
+									echo("<td>");
+									if ($users[$urow["uid"]] == -1)
+										echo(GIDS[1]);
+									else
+										echo($users[$urow["uid"]] + 1);
+									echo("</td>");
+									echo("</tr>");
 								}
-								echo("</td></tr>");
 							}
 
-							$result->close();
+							$grows->close();
 							$dbconn->close();
 						?>
 					</table>

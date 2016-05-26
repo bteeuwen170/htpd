@@ -132,7 +132,7 @@
 							</th>
 							<th>ID</th>
 							<th>Projectnaam</th>
-							<th>Groepen</th>
+							<th>Aantal groepen</th>
 							<th>Schooljaar</th>
 						</tr>
 						<?php

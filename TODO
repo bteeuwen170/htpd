@@ -3,11 +3,12 @@
 1. Design a layout					Start: 2016-04-02	End: 2016-00-00
 2. Implement the login system		Start: 2016-03-28	End: 2016-04-10
 3. Implement the file editor		Start: 2016-04-22	End: 2016-05-13
-4. Implement the user manager		Start: 2016-04-29	End: 2016-05-26
-5. Implement the project manager	Start: 2016-05-14	End: 2016-00-00
-6. Implement the group manager		Start: 2016-05-14	End: 2016-00-00
-7. Finishing touches				Start: 2016-05-28	End: 2016-00-00
-8. Complete optional requirements	Start: 2016-00-00	End: 2016-00-00
+4. Implement the user manager		Start: 2016-04-29	End: 2016-05-28
+5. Implement the project manager	Start: 2016-05-14	End: 2016-05-26
+6. Implement the group manager		Start: 2016-05-18	End: 2016-00-00
+7. Implement the feedback interface	Start: 2016-05-26	End: 2016-00-00
+8. Finishing touches				Start: 2016-05-28	End: 2016-00-00
+9. Complete optional requirements	Start: 2016-00-00	End: 2016-00-00
 
  TODO
 ============
@@ -53,11 +54,11 @@ x Make sorttable stfu in the console
 x Don't use projectname as foldername, use PID
 x Don't use username as foldername, use UID
 p Try JQuery's .load() instead of iframes
-x Implement importing CSV files from ItsLearning
+x Implement importing csv files from ItsLearning
 	- Export file afterwards containing randomly generated passwords for users
-p Implement exporting to CSV
+p Implement exporting to csv
 ? Scrollbar overlaps editor and *list in manager_layout.css
-- Don't use inline JS anymore
+p Don't use inline JS anymore
 x Make year sorting work in projectmanager
 n Rename "Portfolio" to what the client had wanted in the first place
 p Option to download entire portfolio
@@ -71,7 +72,7 @@ x Implement useradd
 x Implement userdel
 x Implement usermod
 n Check for username and email availablity in usermod
-- Deldir in functions.php
+x deldir in functions.php
 x Implement projectadd
 x Implement projectdel
 x Implement projectmod
@@ -105,21 +106,21 @@ x Fix ghosting button tooltip in Summernote
 x Fix height editor (see note in editor.css)
 - Implement grades
 x Don't allow images to go off the screen in teacher viewer class .right
-- Hide sidebar if not on "Portfolio" tab (so no admin check either)
+x Hide sidebar if not on "Portfolio" tab (so no admin check either)
 - Retractable sidebar
 x Combine firstname and lastname from DB_USERS
 x Remove email from DB_USERS
-- Remove group entries using projectdel.php as well
+x Remove group entries using projectdel.php as well
 x Don't allow teacher to change him/herself in usermanager
-- Fix groups.php
-! Check in php for finished header (don't allow to bypass using js)
-! Give submit button a name and check for submit on every submit handler page
-- Hide download button if feedback is not available yet for student
-- Links shouldn't open in new tab from viewer
+x Fix groups.php
+- Check in php for finished header (don't allow to bypass using js)
+- Give submit button a name and check for submit on every submit handler page
+x Hide download button if feedback is not available yet for student
+x Links should open in new tab from viewer
 - Check if all fields are present post php
 - Add a remember me button to login.php
 - Redirect to index.php instead of /user/logout.php after verifylogin()
-! Get escape character for SOM csv format
+- Get escape character for SOM csv format
 x USR_ to GID_ in vars.php
 - Notification after importing (and a bunch of other things just to inform
 		the user)
@@ -129,32 +130,54 @@ x Simplify projectmanager due to shortage of time
 - Fix select all
 - Fix UI navigation buttons
 n Don't import student if already exists
-x Restrict access to users.php for teachers
+x Restrict access to /user/users.php for teachers
 x Ignore sidebar_*() if admin
-- Monospace font for php only pages
+p Monospace font for php only pages
+x Set fontNames for summernote
+p Links copied from and external resource don't open in a new tab
+- Display viewer above editor on editor/teacher.php
+- Don't allow students in multiple groups
+x Don't create path if invalid editor
+x Fix .endsWith (JS) on Internet Explorer, what a shitty browser...
+- Default font is still not Arial
+- Implement /project/users.php
+- Implement /user/settings.php
 
 
  Questions
 ============
-n Ask client about functionality editor
-n Ask client (and school) for correct logo
+x Ask client about functionality editor
+	> Done and implemented
+x Ask client (and school) for correct logo
+	> Got logo from client
 n Ask team to make logo
+	> Got logo from client
 x Ask client (and school) for correct footer
+	> Don't care
 x Ask client about licensing
+	> Open source is fine
 . Get advice on color scheme (from school or team?)
 n Ask client about home page content
+	> Not important
 x Ask client about registration procedure
+	> Came up with my own way, and client agreed
 n Ask expert (and potentially client) about portfolio creation procedure
+	> Came up with my own way
 x Ask expert if Node.js (perhaps even C?) is preferred over php
 	> php is recommended
 x Ask client to export new csv with only required columns
+	> Done
+x Ask client about webhosting and domainname
+	> He'll look into it
 n Ask client if students should be distributed amongst classes
 	> They are now not distributed amongst anything
 n Ask client whether classes are global covered by classes or if classes are
 	defined per teacher, where the former is more future proof
 	> Just went with the former, impatience was dominant
 n Ask client if multiple teachers be involved in one project
+	> Maybe, but not important anyways
 x Ask client about teacher permissions in usermanager
+	> Done, answer = none
 
 
  Legend

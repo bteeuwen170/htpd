@@ -12,7 +12,7 @@
 		fwrite($file, $_POST["data"]);
 		fclose($file);
 	} else {
-		$path = URL_STORAGE . "students/" . $_GET["path"];
+		$path = URL_USERS . $_GET["path"];
 	}
 ?>
 

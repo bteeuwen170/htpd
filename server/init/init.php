@@ -8,7 +8,7 @@
 		die("De server is al geconfigureerd!");
 	}
 
-	echo("Welkom bij HTPD versie " . VERSION . "!");
+	echo("Welkom bij HTPD versie " . VERSION . "!<br>");
 
 	echo("Current working directory: " . getcwd() . "<br><br>");
 

@@ -126,7 +126,7 @@
 							data-target="#importd">
 							<span class="glyphicon glyphicon-import"></span>
 						</button>
-						<button
+						<!--<button
 							type="button"
 							class="btn btn-default btn-sm"
 							title="Exporteren"
@@ -136,7 +136,7 @@
 							data-backdrop="static"
 							data-target="#exportd">
 							<span class="glyphicon glyphicon-export"></span>
-						</button>
+						</button>-->
 					</div>
 				</div>
 				<div class="datacontainer">
@@ -157,32 +157,32 @@
 							DB_USER, DB_PASS, DB_NAME);
 							check($dbconn, !$dbconn->connect_error, false);
 
-							$columns = sprintf(
+							$qurows = sprintf(
 									"SELECT uid, gid, name, username FROM %s", 
 									DB_USERS);
-							$rows = $dbconn->query($columns);
-							check($dbconn, $rows, false);
+							$urows = $dbconn->query($qurows);
+							check($dbconn, $urows, false);
 
-							while ($row = $rows->fetch_array()) {
-								echo("<tr id='u" . $row["uid"] . "'>");
-								if ($row["gid"] == GID_ADMIN)					//TODO Check on server side as well
+							while ($urow = $urows->fetch_array()) {
+								echo("<tr id='u" . $urow["uid"] . "'>");
+								if ($urow["gid"] == GID_ADMIN)					//TODO Check on server side as well (not like the admin'll try and remove himself
 									echo("<td></td>");
 								else
 									echo("
 										<td>
 											<input type='checkbox' class='cb'
-											name='cb[]' value='" . $row["uid"] .
+											name='cb[]' value='" . $urow["uid"] .
 											"' onclick='row_set(this)'>
 										</td>
 									");
-								echo("<td>" . $row["uid"] . "</td>");
-								echo("<td>" . $row["name"] . "</td>");
-								echo("<td>" . $row["username"] . "</td>");
-								echo("<td>" . GIDS[$row["gid"]] . "</td>");
+								echo("<td>" . $urow["uid"] . "</td>");
+								echo("<td>" . $urow["name"] . "</td>");
+								echo("<td>" . $urow["username"] . "</td>");
+								echo("<td>" . GIDS[$urow["gid"]] . "</td>");
 								echo("</tr>");
 							}
 
-							$rows->free();
+							$urows->close();
 							$dbconn->close();
 						?>
 					</table>
@@ -355,7 +355,7 @@
 								vanuit SOM:
 								<ol>
 									<li>Leerlingnummer</li>
-									<li>Naam (Voor- en Achternaam)</li>
+									<li>Naam (voor- en achternaam)</li>
 									<li>Vakken</li>
 								</ol>
 								Leerlingen die geen <?php echo(TAR_SUBJECT); ?>
