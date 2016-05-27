@@ -39,13 +39,13 @@ p Implement SSL correctly (not my priority)
 x Implement user management view
 n Sort users in classes ("Stamgroep") if contains "o&o" in "Vakken"
 x Check username on every page
-- Check GID besides username in verify_login()
+x Check GID besides username in verify_login()
 - Make sure all DB connections and queries are closed
 x Implement motd
 	n Teacher
 	x Admin
 n Shortcut for saving
-- Redirect to HTTP forbidden page if inside iFrame and verify_login() failed
+x Redirect to HTTP forbidden page if verify_login() failed
 - Confirmation before saving
 	- Ask for password before finishing file
 n Implement a file manager
@@ -113,7 +113,7 @@ x Remove email from DB_USERS
 x Remove group entries using projectdel.php as well
 x Don't allow teacher to change him/herself in usermanager
 x Fix groups.php
-- Check in php for finished header (don't allow to bypass using js)
+- Check in php for "project: finished" header (students.php)
 - Give submit button a name and check for submit on every submit handler page
 x Hide download button if feedback is not available yet for student
 x Links should open in new tab from viewer
@@ -139,9 +139,11 @@ p Links copied from and external resource don't open in a new tab
 - Don't allow students in multiple groups
 x Don't create path if invalid editor
 x Fix .endsWith (JS) on Internet Explorer, what a shitty browser...
-- Default font is still not Arial
+- Default font is still not Arial in editor
 - Implement /project/users.php
 - Implement /user/settings.php
+x Get permissions teacher right
+- Show user status is sidebar (teacher) (feedback has been given, et al.)
 
 
  Questions

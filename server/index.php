@@ -6,8 +6,7 @@
 	if (!file_exists(URL_STORAGE . "configured"))
 		header("Location: /init/init.php");
 
-	if (!verify_login(GID_STUDENT))
-		header("Location: /user/logout.php");
+	verify_login(GID_STUDENT);
 ?>
 
 <html>
@@ -214,7 +213,7 @@
 									for ($k = 0; $k < count(PRJ_FILES); $k++) {
 										echo("
 											<li
-												id='" . $i . $j . $k . "'>
+												id='" . $i * 200 . $j . $k . "'>
 												<a
 													onclick=\"sidebar_set(
 													$(this).closest('li')
@@ -236,7 +235,7 @@
 
 										echo("
 											<li
-												id='" . $i . $j . $k . "'>
+												id='" . $i * 200 . $j . $k . "'>
 												<a
 													onclick=\"sidebar_set(
 													$(this).closest('li')
@@ -268,8 +267,7 @@
 			</iframe>
 
 			<?php
-				include($_SERVER["DOCUMENT_ROOT"] .
-						"/include/php/footer.php");
+				include($_SERVER["DOCUMENT_ROOT"] . "/include/php/footer.php");
 			?>
 		</div>
 	</body>

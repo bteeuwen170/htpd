@@ -3,8 +3,7 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
-	if (!verify_login(GID_STUDENT))
-		header("Location: /user/logout.php");
+	verify_login(GID_TEACHER);
 
 	if (isset($_POST["path"])) {
 		$file = fopen($_POST["path"], "w") or

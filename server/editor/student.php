@@ -3,15 +3,29 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
-	if (!verify_login(GID_STUDENT))
-		header("Location: /user/logout.php");
+	verify_login(GID_STUDENT);
 
-	if (isset($_POST["path"])) {
-		$file = fopen($_POST["path"], "w") or
+	if (isset($_POST["pid"]) && isset($_POST["file"])) {
+		if (!is_numeric($_POST["pid"]) || !is_numeric($_POST["file"])) {
+			header("HTTP/1.0 403 Forbidden");
+			header("Location: /include/html/403.html");
+		}
+
+		//TODO Check if doesn't contain project: finished header XXX XXX XXX
+
+		$path = URL_USERS . $_COOKIE["uid"] . "/" . $_POST["pid"] . "/" .
+				PRJ_FILES[$_POST["file"]];
+
+		$file = fopen($path, "w") or
 			die("Er is een fout opgeteden tijdens het opslaan.");
 		fwrite($file, $_POST["data"]);
 		fclose($file);
 	} else {
+		if (!is_numeric($_GET["pid"]) || !is_numeric($_GET["file"])) {
+			header("HTTP/1.0 403 Forbidden");
+			header("Location: /include/html/403.html");
+		}
+
 		$path = URL_USERS . $_COOKIE["uid"] . "/" . $_GET["pid"] . "/" .
 				PRJ_FILES[$_GET["file"]];
 	}
@@ -72,8 +86,12 @@
 					$("#editor").prepend("<!-- project: finished -->");
 
 				var data = new FormData();
-				data.append("path", <?php echo("\"" . $path . "\""); ?>);
-				data.append("data", $("#editor").html());
+				data.append("pid",
+						<?php echo("\"" . $_GET["pid"] . "\""); ?>);
+				data.append("file",
+						<?php echo("\"" . $_GET["file"] . "\""); ?>);
+				data.append("data",
+						document.getElementById("editor").innerHTML);
 
 				var req = new XMLHttpRequest();
 				req.open("post", "student.php", true);

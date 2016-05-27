@@ -1,8 +1,7 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
-	if (!verify_login(GID_TEACHER))
-		header("Location: /user/logout.php");
+	verify_login(GID_ADMIN);
 
 	echo("Verbinding maken met SQL database... ");
 	$dbconn = new mysqli(DB_URL . ":" . DB_PORT, DB_USER, DB_PASS, DB_NAME);
