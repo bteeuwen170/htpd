@@ -20,7 +20,7 @@
 				continue;
 			}
 
-			if (strpos($row[COL_SUBJECTS], TAR_SUBJECT) != 0) {
+			if (strpos($row[COL_SUBJECTS], TAR_SUBJECT) !== false) {
 				$post = array(
 					"gid" => urlencode(GID_STUDENT),
 					"name" => urlencode($row[COL_NAME]),
@@ -44,5 +44,5 @@
 			echo("Ongeldig bestand");
 	}
 
-	header("Location: " . $_SERVER["HTTP_REFERER"]);
+	header("Location: " . $_SERVER["HTTP_REFERER"]); //FIXME May throw error
 ?>

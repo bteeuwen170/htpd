@@ -44,11 +44,12 @@
 
 				header("Location: /index.php");
 			} else {
+				header("HTTP/1.1 401 Unauthorized");
 				$wup = true;
 			}
 		}
 
-		$result->free();
+		$result->close();
 		$dbconn->close();
 	}
 ?>

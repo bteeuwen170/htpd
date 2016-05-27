@@ -167,7 +167,7 @@
 								echo("</tr>");
 							}
 
-							$prows->free();
+							$prows->close();
 							$dbconn->close();
 						?>
 					</table>

@@ -67,7 +67,7 @@
 	</head>
 	<body>
 		<div class="wrapper">
-			<form method="post" action="groupadd.php">
+			<form method="post" action="groupdel.php">
 				<div id="optionbar">
 					<div class="btn-group">
 						<button
@@ -117,6 +117,13 @@
 							<th>Groep</th>
 						</tr>
 						<?php
+							echo("
+								<input
+									type='hidden'
+									name='pid'
+									value='" . $_GET["pid"] . "'>
+							");
+
 							$users = array();
 
 							$dbconn = new mysqli(DB_URL . ":" . DB_PORT,
@@ -128,8 +135,8 @@
 							$grows = $dbconn->query($qgtable);
 							check($dbconn, $grows, false);
 
-							$qutable =
-								sprintf("SELECT uid, name FROM %s", DB_USERS);
+							$qutable = sprintf("SELECT uid, gid, name FROM %s",
+									DB_USERS);
 							$urows = $dbconn->query($qutable);
 							check($dbconn, $urows, false);
 
@@ -150,10 +157,14 @@
 									echo("<td>" . $urow["uid"] . "</td>");
 									echo("<td>" . $urow["name"] . "</td>");
 									echo("<td>");
-									if ($users[$urow["uid"]] == -1)
-										echo(GIDS[1]);
-									else
+									if ($users[$urow["uid"]] == -1) {
+										if ($urow["gid"] == GID_TEACHER)
+											echo(GIDS[1]);
+										else //TODO Also if higher than max grps
+											echo("Geen");
+									} else {
 										echo($users[$urow["uid"]] + 1);
+									}
 									echo("</td>");
 									echo("</tr>");
 								}
@@ -179,7 +190,55 @@
 						</div>
 						<div class="modal-body">
 							<form method="post" action="groupadd.php">
-								TODO Interface
+								<table
+									class="table table-striped sortable"
+									id="userlist">
+									<tr>
+										<th><!--<input
+												type="checkbox"
+												id="sall"
+												onclick="select_all(this)">-->
+										</th>
+										<th>ID</th>
+										<th>Naam</th>
+									</tr>
+									<?php
+										$dbconn = new mysqli(DB_URL . ":" .
+										DB_PORT, DB_USER, DB_PASS, DB_NAME);
+										check($dbconn, !$dbconn->connect_error,
+												false);
+
+										$qurows = sprintf(
+												"SELECT uid, gid, name FROM %s", 
+												DB_USERS);
+										$urows = $dbconn->query($qurows);
+										check($dbconn, $urows, false);
+
+										while ($urow = $urows->fetch_array()) {
+											if ($urow["gid"] == GID_STUDENT) {
+												echo("<tr id='u" . $urow["uid"]
+														. "'>");
+												echo("
+													<td>
+														<input type='checkbox'
+														class='cb' name='cb[]'
+														value='" . $urow["uid"]
+														. "'
+														onclick='row_set(this)'>
+													</td>
+												");
+												echo("<td>" . $urow["uid"] .
+														"</td>");
+												echo("<td>" . $urow["name"] .
+														"</td>");
+												echo("</tr>");
+											}
+										}
+
+										$urows->close();
+										$dbconn->close();
+									?>
+								</table>
 								<div class="form-group row">
 									<div class="col-sm-offset-4 col-sm-8">
 										<input

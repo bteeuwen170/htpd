@@ -10,13 +10,6 @@
 	$pids = $_POST["cb"];
 
 	for ($i = 0; $i < count($pids); $i++) {
-		echo("Project informatie wordt opgehaald... ");
-		$columns =
-			sprintf("SELECT pid FROM %s WHERE pid=%s", DB_PROJECTS, $pids[$i]);
-		$result = $dbconn->query($columns);
-		check($dbconn, $result->num_rows);
-		$row = $result->fetch_assoc();
-
 		echo("Project wordt verwijderd... ");
 		$project =
 			sprintf("DELETE FROM %s WHERE pid=%s", DB_PROJECTS, $pids[$i]);
@@ -28,8 +21,6 @@
 		$groups =
 			sprintf("DELETE FROM %s WHERE pid=%s", DB_GROUPS, $pids[$i]);
 		check($dbconn, $dbconn->query($groups));
-
-		$result->free();
 	}
 
 	$dbconn->close();

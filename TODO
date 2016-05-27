@@ -76,9 +76,9 @@ x deldir in functions.php
 x Implement projectadd
 x Implement projectdel
 x Implement projectmod
-- Implement groupadd
+. Implement groupadd
 - Implement groupmod
-- Implement groupdel (perhaps combine with groupmod)
+x Implement groupdel ~(perhaps combine with groupmod)~
 x Group in brackets, students in projects will look like this:
 		"student(group),student(group),..."
 p Prevent sorting from changing column width
@@ -143,7 +143,8 @@ x Fix .endsWith (JS) on Internet Explorer, what a shitty browser...
 - Implement /project/users.php
 - Implement /user/settings.php
 x Get permissions teacher right
-- Show user status is sidebar (teacher) (feedback has been given, et al.)
+p Show user status is sidebar (teacher) (feedback has been given, et al.)
+- Fix modal layout in /project/groups.php
 
 
  Questions

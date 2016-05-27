@@ -36,7 +36,7 @@
 		mkdir($path, 0755);
 		check($dbconn, file_exists($path));
 
-		$result->free();
+		$result->close();
 	}
 
 	$dbconn->close();

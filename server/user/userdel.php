@@ -30,7 +30,7 @@
 			check($dbconn, !file_exists($path));
 		}
 
-		$result->free();
+		$result->close();
 	}
 
 	$dbconn->close();
