@@ -62,14 +62,14 @@
 		<title>Helinium Technasium Portfolio Database</title>
 
 		<link rel="stylesheet" type="text/css"
-				href="/include/lib/bootstrap/css/bootstrap.css">
+				href="/include/lib/bootstrap/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="/include/css/main.css">
 		<link rel="stylesheet" type="text/css" href="/include/css/login.css">
 
 		<script type="text/javascript"
 				src="/include/lib/jquery/jquery.js"></script>
 		<script type="text/javascript"
-				src="/include/lib/bootstrap/js/bootstrap.js"></script>
+				src="/include/lib/bootstrap/bootstrap.js"></script>
 	</head>
 	<body>
 		<div class="wrapper">

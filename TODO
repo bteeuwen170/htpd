@@ -93,7 +93,7 @@ x Use sprintf more often as it makes the code look cleaner.
 n Rename students to users in DB_PROJECTS
 x Use $dbconn->real_escape_string(*) everywhere
 x Clean up dir structure
-- Clean up php sql connections
+? Clean up php sql connections
 - Clean up js files
 x Clean up css files
 n Merge manager.css and editor.css
@@ -119,7 +119,7 @@ x Hide download button if feedback is not available yet for student
 x Links should open in new tab from viewer
 - Check if all fields are present post php
 - Add a remember me button to login.php
-- Redirect to index.php instead of /user/logout.php after verifylogin()
+x Redirect to index.php instead of /user/logout.php after verifylogin()
 - Get escape character for SOM csv format
 x USR_ to GID_ in vars.php
 - Notification after importing (and a bunch of other things just to inform
@@ -127,7 +127,7 @@ x USR_ to GID_ in vars.php
 p Seperate config file
 x Check if not removing admin
 x Simplify projectmanager due to shortage of time
-- Fix select all
+x Fix select all
 - Fix UI navigation buttons
 n Don't import student if already exists
 x Restrict access to /user/users.php for teachers
@@ -136,7 +136,7 @@ p Monospace font for php only pages
 x Set fontNames for summernote
 p Links copied from and external resource don't open in a new tab
 - Display viewer above editor on editor/teacher.php
-- Don't allow students in multiple groups
+- Don't allow students in project multiple times
 x Don't create path if invalid editor
 x Fix .endsWith (JS) on Internet Explorer, what a shitty browser...
 - Default font is still not Arial in editor
@@ -145,6 +145,8 @@ x Fix .endsWith (JS) on Internet Explorer, what a shitty browser...
 x Get permissions teacher right
 p Show user status is sidebar (teacher) (feedback has been given, et al.)
 - Fix modal layout in /project/groups.php
+- Tags inbalanced in /project/projects.php
+- Implement selecting a selection using shift in /include/js/table.js
 
 
  Questions

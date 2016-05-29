@@ -19,7 +19,7 @@
 	<head>
 		<meta charset="UTF-8">
 
-		<link rel="stylesheet" href="/include/lib/bootstrap/css/bootstrap.css">
+		<link rel="stylesheet" href="/include/lib/bootstrap/bootstrap.css">
 		<link rel="stylesheet" href="/include/lib/summernote/summernote.css">
 		<link rel="stylesheet" href="/include/css/main.css">
 		<link rel="stylesheet" href="/include/css/content.css">
@@ -28,11 +28,11 @@
 		<script type="text/javascript"
 				src="/include/lib/jquery/jquery.js"></script>
 		<script type="text/javascript"
-				src="/include/lib/bootstrap/js/bootstrap.js"></script>
+				src="/include/lib/bootstrap/bootstrap.js"></script>
 		<script type="text/javascript"
 				src="/include/lib/summernote/summernote.js"></script>
 		<script type="text/javascript"
-				src="/include/js/summernote_config.js"></script>
+				src="/include/js/summernote.js"></script>
 		<script type="text/javascript"
 				src="/include/lib/html-docx-js/html-docx.js"></script>
 		<script type="text/javascript"

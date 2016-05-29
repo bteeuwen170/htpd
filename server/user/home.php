@@ -11,7 +11,7 @@
 		<meta charset="UTF-8">
 
 		<link rel="stylesheet" type="text/css" 
-				href="/include/lib/bootstrap/css/bootstrap.css">
+				href="/include/lib/bootstrap/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="/include/css/main.css">
 		<link rel="stylesheet" type="text/css" href="/include/css/content.css">
 		<link rel="stylesheet" type="text/css" href="/include/css/home.css">

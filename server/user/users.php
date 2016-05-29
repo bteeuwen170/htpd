@@ -10,7 +10,7 @@
 	<head>
 		<meta charset="UTF-8">
 
-		<link rel="stylesheet" href="/include/lib/bootstrap/css/bootstrap.css">
+		<link rel="stylesheet" href="/include/lib/bootstrap/bootstrap.css">
 		<link rel="stylesheet" href="/include/css/main.css">
 		<link rel="stylesheet" href="/include/css/content.css">
 		<link rel="stylesheet" href="/include/css/manager.css">
@@ -18,19 +18,21 @@
 		<script type="text/javascript"
 				src="/include/lib/jquery/jquery.js"></script>
 		<script type="text/javascript"
-				src="/include/lib/bootstrap/js/bootstrap.js"></script>
+				src="/include/lib/bootstrap/bootstrap.js"></script>
 		<script type="text/javascript"
-				src="/include/lib/sorttable/sorttable.js"></script>
+				src="/include/lib/tablesorter/tablesorter.js"></script>
+		<script type="text/javascript"
+				src="/include/js/table.js"></script>
 
 		<script type="text/javascript">
-			var rows = new Array();
-
 			$(document).ready(function()
 			{
 				$("[data-tooltip='true']").tooltip({
 					container: "body",
 					trigger: "hover"
 				});
+
+				//$("#userlist").tablesorter();
 
 				$("#editd").on("shown.bs.modal", function(e)
 				{
@@ -40,36 +42,6 @@
 					$("#editdusername").val(row[3].innerHTML);
 				});
 			});
-
-			function select_all(sa) //TODO NYI
-			{
-				var checkboxes = document.getElementsByClassName("cb");
-
-				for (i = 0; i < checkboxes.length; i++)
-					checkboxes[i].checked = sa.checked;
-
-				document.getElementById("edit").disabled = true;
-				document.getElementById("delete").disabled = false;
-			}
-
-			function row_set(row)
-			{
-				if (row.checked)
-					rows.push(row.value);
-				else
-					rows.splice(rows.indexOf(row.value), 1);
-
-				if (rows.length > 1) {
-					document.getElementById("edit").disabled = true;
-					document.getElementById("delete").disabled = false;
-				} else if (rows.length > 0) {
-					document.getElementById("edit").disabled = false;
-					document.getElementById("delete").disabled = false;
-				} else {
-					document.getElementById("edit").disabled = true;
-					document.getElementById("delete").disabled = true;
-				}
-			}
 		</script>
 	</head>
 	<body>
@@ -139,18 +111,23 @@
 					</div>
 				</div>
 				<div class="datacontainer">
-					<table class="table table-striped sortable" id="userlist">
-						<tr>
-							<th><!--<input
-									type="checkbox"
-									id="sall"
-									onclick="select_all(this)">-->
-							</th>
-							<th>ID</th>
-							<th>Naam</th>
-							<th>Gebruikersnaam</th>
-							<th>Groep</th>
-						</tr>
+					<table
+						class="table table-striped tablesorter"
+						id="userlist">
+						<thead>
+							<tr>
+								<th>
+									<input
+										type="checkbox"
+										id="sall"
+										onclick="select_all()">
+								</th>
+								<th>ID</th>
+								<th>Naam</th>
+								<th>Gebruikersnaam</th>
+								<th>Groep</th>
+							</tr>
+						</thead>
 						<?php
 							$dbconn = new mysqli(DB_URL . ":" . DB_PORT,
 							DB_USER, DB_PASS, DB_NAME);
@@ -169,9 +146,12 @@
 								else
 									echo("
 										<td>
-											<input type='checkbox' class='cb'
-											name='cb[]' value='" . $urow["uid"] .
-											"' onclick='row_set(this)'>
+											<input
+												type='checkbox'
+												class='cb'
+												name='cb[]'
+												value='" . $urow["uid"] . "'
+												onclick='row_set(this)'>
 										</td>
 									");
 								echo("<td>" . $urow["uid"] . "</td>");

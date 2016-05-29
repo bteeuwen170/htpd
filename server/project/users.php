@@ -11,7 +11,7 @@
 		<meta charset="UTF-8">
 
 		<link rel="stylesheet" type="text/css"
-				href="/include/lib/bootstrap/css/bootstrap.css">
+				href="/include/lib/bootstrap/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="/include/css/main.css">
 		<link rel="stylesheet" type="text/css" href="/include/css/content.css">
 		<link rel="stylesheet" type="text/css" href="/include/css/manager.css">
@@ -19,50 +19,22 @@
 		<script type="text/javascript"
 				src="/include/lib/jquery/jquery.js"></script>
 		<script type="text/javascript"
-				src="/include/lib/bootstrap/js/bootstrap.js"></script>
+				src="/include/lib/bootstrap/bootstrap.js"></script>
 		<script type="text/javascript"
-				src="/include/lib/sorttable/sorttable.js"></script>
+				src="/include/lib/tablesorter/tablesorter.js"></script>
+		<script type="text/javascript"
+				src="/include/js/table.js"></script>
 
 		<script type="text/javascript">
-			var rows = new Array();
-
 			$(document).ready(function()
 			{
 				$("[data-tooltip='true']").tooltip({
 					container: "body",
 					trigger: "hover"
 				});
+
+				$("#userlist").tablesorter();
 			});
-
-			function select_all(sa) //TODO NYI
-			{
-				var checkboxes = document.getElementsByClassName("cb");
-
-				for (i = 0; i < checkboxes.length; i++)
-					checkboxes[i].checked = sa.checked;
-
-				document.getElementById("edit").disabled = true;
-				document.getElementById("delete").disabled = false;
-			}
-
-			function row_set(row)
-			{
-				if (row.checked)
-					rows.push(row.value);
-				else
-					rows.splice(rows.indexOf(row.value), 1);
-
-				if (rows.length > 1) {
-					document.getElementById("edit").disabled = true;
-					document.getElementById("delete").disabled = false;
-				} else if (rows.length > 0) {
-					document.getElementById("edit").disabled = false;
-					document.getElementById("delete").disabled = false;
-				} else {
-					document.getElementById("edit").disabled = true;
-					document.getElementById("delete").disabled = true;
-				}
-			}
 		</script>
 	</head>
 	<body>
@@ -106,17 +78,18 @@
 				</div>
 				<div class="datacontainer">
 					<table class="table table-striped sortable" id="grouplist">
-						<tr>
-							<th><!--<input
+						<thead><tr>
+							<th>
+								<input
 									type="checkbox"
 									id="sall"
-									onclick="select_all(this)">-->
+									onclick="select_all()">
 							</th>
 							<th>ID</th>
 							<th>Voornaam</th>
 							<th>Achternaam</th>
 							<th>Groep</th>
-						</tr>
+						</tr></thead>
 					<?php
 					/*$projects = array();
 					$teacher = ($_COOKIE["gid"] == GID_TEACHER);

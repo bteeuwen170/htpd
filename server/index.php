@@ -17,14 +17,14 @@
 		<title>Helinium Technasium Portfolio Database</title>
 
 		<link rel="stylesheet" type="text/css"
-				href="/include/lib/bootstrap/css/bootstrap.css">
+				href="/include/lib/bootstrap/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="/include/css/main.css">
 		<link rel="stylesheet" type="text/css" href="/include/css/sidebar.css">
 
 		<script type="text/javascript"
 				src="/include/lib/jquery/jquery.js"></script>
 		<script type="text/javascript"
-				src="/include/lib/bootstrap/js/bootstrap.js"></script>
+				src="/include/lib/bootstrap/bootstrap.js"></script>
 		<script type="text/javascript" src="/include/js/sidebar.js"></script>
 
 		<script type="text/javascript">
