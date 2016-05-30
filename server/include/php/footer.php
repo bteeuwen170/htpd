@@ -4,7 +4,7 @@
 		<footer class='footer nopointer noselect'>
 			<div class='container'>
 				<p class='text-muted'>HTPD " . VERSION . " © " .
-						(($cy == 2016) ? "" : "2016 - ") . $cy . "</p>
+						(($cy == 2016) ? "" : "2016 - ") . $cy . " Helinium</p>
 			</div>
 		</footer>
 	");

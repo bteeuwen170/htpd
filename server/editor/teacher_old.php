@@ -11,9 +11,7 @@
 		fwrite($file, $_POST["data"]);
 		fclose($file);
 	} else {
-		$path = URL_USERS . $_GET["uid"] . "/" . $_GET["pid"] . "/";
-		$epath = $path . PRJ_FILES[1];
-		$vpath = $path . PRJ_FILES[0];
+		$path = URL_USERS . $_GET["path"];
 	}
 ?>
 
@@ -48,6 +46,26 @@
 					trigger: "hover"
 				});
 
+				$("#seperator").mousedown(function (e)
+				{
+					e.preventDefault();
+					$(document).mousemove(function (e)
+					{
+						e.preventDefault();
+						var x = e.pageX - $(".left").offset().left;
+						if (x > 300 && x < 3600 &&
+								e.pageX < ($(window).width() - 300)) {
+							$(".left").css("width", x);
+							$(".right").css("margin-left", x + 16);
+						}
+					});
+				});
+
+				$(document).mouseup(function (e)
+				{
+					$(document).unbind("mousemove");
+				});
+
 				//if ($("#viewer").html()
 				//		.indexOf("<!-- project: finished -->") == -1) //TODO Handle as well
 				edit(0, true);
@@ -59,7 +77,7 @@
 
 				var data = new FormData();
 				data.append("path",
-						<?php echo("\"" . $epath . "\""); ?>);
+						<?php echo("\"" . $path . PRJ_FILES[1] . "\""); ?>);
 				data.append("data", $("#editor").html());
 
 				var req = new XMLHttpRequest();
@@ -73,62 +91,52 @@
 	<body>
 		<div class="wrapper">
 			<?php
-				$avail = true;
+				if (!file_exists($path))
+					mkdir($path, 0755);
 
-				if (file_exists($vpath)) {
-					$file = fopen($vpath, "r") or
-						die("Er is een fout opgetreden!");
-					if (filesize($vpath) > 0) {
-						echo("
-							<div id='optionbaralt'>
-								<div class='btn-group'>
-									<button
-										class='btn btn-default btn-sm'
-										title='Downloaden'
-										data-tooltip='true'
-										data-placement='bottom'
-										onclick=\"download(-1, 'viewer')\">
-										<span class='glyphicon
-												glyphicon-download-alt'>
-										</span>
-									</button>
-								</div>
-							</div>
-							<div id='viewer'>
-						");
-						echo(fread($file, filesize($vpath)));
-						echo("</div>");
-
-						echo("<div id='editor'>");
-						if (file_exists($epath)) {
-							$file = fopen($epath, "r") or
-								die("Er is een fout opgetreden!");
-							if (filesize($epath) > 0)
-								echo(fread($file, filesize($epath)));
-							else
-								echo("<br>");
-							fclose($file);
-						} else {
-							touch($epath);
+				echo("<div class='left'><div id='seperator'>
+						</div><div id='editor'>");
+				$fpath = $path . PRJ_FILES[1];
+				for ($i = 0; $i < 2; $i++) { //FIXME Crappy f*cking code
+					if (file_exists($fpath)) {
+						$file = fopen($fpath, "r") or
+							die("Er is een fout opgetreden!");
+						if (filesize($fpath) > 0)
+							echo(fread($file, filesize($fpath)));
+						else
 							echo("<br>");
-						}
-						echo("</div>");
+						fclose($file);
 					} else {
-						$avail = false;
+						touch($fpath);
+						echo("<br>");
 					}
 
-					fclose($file);
-				} else {
-					$avail = false;
+					if (!$i) {
+						$fpath = $path . PRJ_FILES[0];
+						echo("
+							</div></div>
+							<div class='right'>
+								<div id='optionbaralt'>
+									<div class='btn-group'>
+										<button
+											class='btn btn-default btn-sm'
+											title='Downloaden'
+											data-tooltip='true'
+											data-placement='bottom'
+											onclick=\"download(-1, 'viewer')\">
+											<span class='glyphicon
+													glyphicon-download-alt'>
+											</span>
+										</button>
+									</div>
+								</div>
+								<div id='viewer'>
+						");
+					}
 				}
-
-				if (!$avail)
-					echo("
-						<div id='viewer'>
-							Reflectie is nog niet beschikbaar.
-						</div>
-					");
+				echo("</div></div>");
 			?>
+			</div>
 		</div>
 	</body>
 </html>

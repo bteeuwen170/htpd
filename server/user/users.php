@@ -120,7 +120,7 @@
 									<input
 										type="checkbox"
 										id="sall"
-										onclick="select_all()">
+										onclick="select_all(this)">
 								</th>
 								<th>ID</th>
 								<th>Naam</th>

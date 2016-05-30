@@ -6,8 +6,8 @@
 4. Implement the user manager		Start: 2016-04-29	End: 2016-05-28
 5. Implement the project manager	Start: 2016-05-14	End: 2016-05-26
 6. Implement the group manager		Start: 2016-05-18	End: 2016-00-00
-7. Implement the feedback interface	Start: 2016-05-26	End: 2016-00-00
-8. Finishing touches				Start: 2016-05-28	End: 2016-00-00
+7. Implement the feedback interface	Start: 2016-05-30	End: 2016-05-30
+8. Finishing touches				Start: 2016-06-04	End: 2016-00-00
 9. Complete optional requirements	Start: 2016-00-00	End: 2016-00-00
 
  TODO
@@ -91,7 +91,7 @@ p No edit button, change in table itself instead (like group in groupmanager)
 x Remove 'active' column from DB_PROJECTS
 x Use sprintf more often as it makes the code look cleaner.
 n Rename students to users in DB_PROJECTS
-x Use $dbconn->real_escape_string(*) everywhere
+? Use $dbconn->real_escape_string(*) everywhere
 x Clean up dir structure
 ? Clean up php sql connections
 - Clean up js files
@@ -113,16 +113,17 @@ x Remove email from DB_USERS
 x Remove group entries using projectdel.php as well
 x Don't allow teacher to change him/herself in usermanager
 x Fix groups.php
-- Check in php for "project: finished" header (students.php)
-- Give submit button a name and check for submit on every submit handler page
+- Check in php for "project: finished" header (/editor/students.php)
+- Check in php for "project: finished" header (/editor/teacher.php)
 x Hide download button if feedback is not available yet for student
 x Links should open in new tab from viewer
+- Give submit button a name and check for submit on every submit handler page
 - Check if all fields are present post php
 - Add a remember me button to login.php
 x Redirect to index.php instead of /user/logout.php after verifylogin()
 - Get escape character for SOM csv format
 x USR_ to GID_ in vars.php
-- Notification after importing (and a bunch of other things just to inform
+p Notification after importing (and a bunch of other things just to inform
 		the user)
 p Seperate config file
 x Check if not removing admin
@@ -135,18 +136,18 @@ x Ignore sidebar_*() if admin
 p Monospace font for php only pages
 x Set fontNames for summernote
 p Links copied from and external resource don't open in a new tab
-- Display viewer above editor on editor/teacher.php
+x Display viewer above editor on editor/teacher.php
 - Don't allow students in project multiple times
 x Don't create path if invalid editor
 x Fix .endsWith (JS) on Internet Explorer, what a shitty browser...
 - Default font is still not Arial in editor
-- Implement /project/users.php
+x Implement /project/users.php
 - Implement /user/settings.php
 x Get permissions teacher right
 p Show user status is sidebar (teacher) (feedback has been given, et al.)
 - Fix modal layout in /project/groups.php
-- Tags inbalanced in /project/projects.php
-- Implement selecting a selection using shift in /include/js/table.js
+- Tags inbalanced in /project/projects.php (really?)
+- Implement selecting a selection using SHIFT in /include/js/table.js
 
 
  Questions

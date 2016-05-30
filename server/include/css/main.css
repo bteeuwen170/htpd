@@ -58,9 +58,6 @@ input[type="checkbox"]
 .container
 {
 	width:				100%;
-	margin-left:		0;
-	margin-right:		0;
-	padding-left:		32px;
 	padding-right:		32px;
 }
 

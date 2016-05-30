@@ -40,18 +40,6 @@
 	<body>
 		<nav class="navbar navbar-default navbar-static-top noselect">
 			<div class="container">
-				<div class="navbar-header">
-					<a
-						class="navbar-brand nopointer">
-						<img
-							id="logo"
-							class="noselect"
-							src="/include/img/logo.png"
-							title="Helinium Technasium Portfolio Database"
-							alt="Helinium Technasium Portfolio Database"
-							width="40">
-					</a>
-				</div>
 				<ul class="nav navbar-nav">
 					<li class="active">
 						<a
@@ -142,7 +130,7 @@
 					$ptable = $dbconn->query($qptable);
 					check($dbconn, $ptable, false);
 
-					while ($prow = $ptable->fetch_array()) {					 //XXX There's got to be a more efficient way...
+					while ($prow = $ptable->fetch_array()) {					 //XXX This is crap
 						$groups = array();
 						$hasuser = false;
 						$qgtable =
@@ -209,7 +197,6 @@
 								");
 
    								if ($_COOKIE["gid"] == GID_STUDENT) {
-
 									for ($k = 0; $k < count(PRJ_FILES); $k++) {
 										echo("
 											<li
@@ -217,11 +204,12 @@
 												<a
 													onclick=\"sidebar_set(
 													$(this).closest('li')
-													.attr('id'))\" href=
-													'/editor/student.php?pid=" .
+													.attr('id'))\"
+													href='
+													/editor/student.php?pid=" .
 													$projects[$j][0] . "&file="
 													. $k .
-													"'target='content'>"
+													"' target='content'>"
 													. PRJ_NAMES[$k] . "
 												</a>
 											</li>
@@ -229,21 +217,18 @@
 									}
 								} else {
 									for ($k = 0; $k < $projects[$j][2]; $k++) {
-										//$path =
-										//	$projects[$j][4][$k][2] . "/" .
-										//			$projects[$j][0] . "/";
-
 										echo("
 											<li
 												id='" . $i * 200 . $j . $k . "'>
 												<a
 													onclick=\"sidebar_set(
 													$(this).closest('li')
-													.attr('id'))\" href=
-													'/project/users.php?pid="
-													. /*$path .*/ "'
-													target='content'>Groep "
-													. ($k + 1) . "
+													.attr('id'))\"
+													href='
+													/project/users.php?pid=" .
+													$projects[$j][0] . "&grp=" .
+													$k . "' target='content'>
+													Groep " . ($k + 1) . "
 												</a>
 											</li>
 										");

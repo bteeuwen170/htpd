@@ -34,6 +34,7 @@
 				});
 
 				//$("#grouplist").tablesorter();
+				//$("#userlist").tablesorter();
 			});
 		</script>
 	</head>
@@ -86,7 +87,7 @@
 									<input
 										type="checkbox"
 										id="sall"
-										onclick="select_all()">
+										onclick="select_all(this)">
 								</th>
 								<th>ID</th>
 								<th>Naam</th>
@@ -118,8 +119,7 @@
 							check($dbconn, $urows, false);
 
 							while ($grow = $grows->fetch_array())
-								if ($grow["pid"] == $_GET["pid"])
-									$users[$grow["uid"]] = $grow["grp"];
+								$users[$grow["uid"]] = $grow["grp"];
 
 							while ($urow = $urows->fetch_array()) {
 								if (array_key_exists($urow["uid"], $users)) {
@@ -171,17 +171,20 @@
 						<div class="modal-body">
 							<form method="post" action="groupadd.php">
 								<table
-									class="table table-striped sortable"
+									class="table table-striped tablesorter"
 									id="userlist">
-									<tr>
-										<th><!--<input
-												type="checkbox"
-												id="sall"
-												onclick="select_all(this)">-->
-										</th>
-										<th>ID</th>
-										<th>Naam</th>
-									</tr>
+									<thead>
+										<tr>
+											<th>
+												<input
+													type="checkbox"
+													id="sall1"
+													onclick="select_all(this)">
+											</th>
+											<th>ID</th>
+											<th>Naam</th>
+										</tr>
+									</thead>
 									<?php
 										$dbconn = new mysqli(DB_URL . ":" .
 										DB_PORT, DB_USER, DB_PASS, DB_NAME);

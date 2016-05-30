@@ -1,9 +1,8 @@
 var rows = new Array();
 
-function select_all()
+function select_all(sa)
 {
-	var sa = document.getElementById("sall");
-	var checkboxes = document.getElementsByClassName("cb");
+	var checkboxes = $(sa).closest("table").find(".cb");
 
 	rows = new Array();
 
@@ -22,7 +21,7 @@ function row_set(row)
 	if (row.checked) {
 		rows.push(row.value);
 	} else {
-		document.getElementById("sall").checked = false;
+		//document.getElementById("sall").checked = false;							FIXME Not working for secondary sall
 		rows.splice(rows.indexOf(row.value), 1);
 	}
 
