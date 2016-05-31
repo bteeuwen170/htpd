@@ -160,8 +160,17 @@
 					$ptable->close();
 					$dbconn->close();
 
-					echo("<div class='sidebar noselect'>");
-					echo("<ol class='sidebar-list'>");
+					echo("
+						<div class='sidebar noselect'>
+							<ol class='sidebar-list'>
+								<li>
+									<a
+										href='/user/home.php'
+										target='content'>
+										Hoofdpagina
+									</a>
+								</li>
+					");
 
 					for ($i = 0; $i < count($years); $i++) {
 						$c = false;

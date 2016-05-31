@@ -6,7 +6,7 @@
 4. Implement the user manager		Start: 2016-04-29	End: 2016-05-28
 5. Implement the project manager	Start: 2016-05-14	End: 2016-05-26
 6. Implement the group manager		Start: 2016-05-18	End: 2016-00-00
-7. Implement the feedback interface	Start: 2016-05-30	End: 2016-05-30
+7. Implement the feedback interface	Start: 2016-05-30	End: 2016-05-31
 8. Finishing touches				Start: 2016-06-04	End: 2016-00-00
 9. Complete optional requirements	Start: 2016-00-00	End: 2016-00-00
 
@@ -107,7 +107,7 @@ x Fix height editor (see note in editor.css)
 - Implement grades
 x Don't allow images to go off the screen in teacher viewer class .right
 x Hide sidebar if not on "Portfolio" tab (so no admin check either)
-- Retractable sidebar
+n Retractable sidebar
 x Combine firstname and lastname from DB_USERS
 x Remove email from DB_USERS
 x Remove group entries using projectdel.php as well
@@ -142,12 +142,15 @@ x Don't create path if invalid editor
 x Fix .endsWith (JS) on Internet Explorer, what a shitty browser...
 - Default font is still not Arial in editor
 x Implement /project/users.php
-- Implement /user/settings.php
+x Implement /user/settings.php
 x Get permissions teacher right
 p Show user status is sidebar (teacher) (feedback has been given, et al.)
 - Fix modal layout in /project/groups.php
 - Tags inbalanced in /project/projects.php (really?)
 - Implement selecting a selection using SHIFT in /include/js/table.js
+- Check if overflow works as intended on all pages using content.css
+- Give admin way to reset user password
+- Refresh sidebar teacher if projectmanager has been used
 
 
  Questions

@@ -13,7 +13,6 @@
 		<link rel="stylesheet" href="/include/lib/bootstrap/bootstrap.css">
 		<link rel="stylesheet" href="/include/css/main.css">
 		<link rel="stylesheet" href="/include/css/content.css">
-		<link rel="stylesheet" href="/include/css/manager.css">
 
 		<script type="text/javascript"
 				src="/include/lib/jquery/jquery.js"></script>
@@ -243,7 +242,20 @@
 											type="password"
 											name="password"
 											class="form-control"
+											minlength="8"
 											maxlength="32" required>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-4 form-control-label">
+										Wachtwoord herhalen
+									</label>
+									<div class="col-sm-8">
+										<input
+											type="password"
+											name="passwordrep"
+											class="form-control"
+											maxlength="255" required>
 									</div>
 								</div>
 								<div class="form-group row">

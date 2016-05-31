@@ -67,6 +67,12 @@
 				<p>Wachtwoord: <input
 					type='password'
 					name='password'
+					minlength='8'
+					required>
+				</p>
+				<p>Wachtwoord herhalen: <input
+					type='password'
+					name='passwordrep'
 					required>
 				</p>
 				<p><input

@@ -21,6 +21,10 @@
 			$dbconn->real_escape_string($_POST["lastname"]);
 	$username = $dbconn->real_escape_string($_POST["username"]);
 	$password = $dbconn->real_escape_string($_POST["password"]);
+	$passwordrep = $dbconn->real_escape_string($_POST["passwordrep"]);
+
+	echo("Wachtwoord wordt gecontroleerd... ");
+	check($dbconn, $password == $passwordrep);
 
 	echo("Wachtwoord wordt gehashed... ");
 	$hash = password_hash($password, PASSWORD_BCRYPT);

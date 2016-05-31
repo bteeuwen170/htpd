@@ -28,7 +28,7 @@ function row_set(row)
 	row_updateui();
 }
 
-function row_updateui()
+function row_updateui() //FIXME Not if secondary
 {
 	if (rows.length > 1) {
 		document.getElementById("edit").disabled = true;

@@ -23,3 +23,24 @@ html, body
 	margin-right:		5px;
 	margin-left:		0;
 }
+
+.datacontainer
+{
+/*	overflow:			auto;*/
+	height:				calc(100% - 60px);
+	padding:			10px;
+}
+
+.message
+{
+	padding:			10px;
+}
+
+#newpass
+{
+	display:			none;
+}
+
+.pr {
+	cursor:				pointer;
+}

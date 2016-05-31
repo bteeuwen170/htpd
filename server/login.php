@@ -11,22 +11,22 @@
 
 	if (isset($_POST["username"])) {
 		$dbconn = new mysqli(DB_URL . ":" . DB_PORT, DB_USER, DB_PASS, DB_NAME);
-		//TODO Check for more errors
+		check($dbconn, !$dbconn->connect_error, false);
 		
 		$username = $dbconn->real_escape_string($_POST["username"]);
 		$password = $dbconn->real_escape_string($_POST["password"]);
 
-		$login = sprintf("SELECT * FROM %s WHERE username='%s'",
+		$qurows = sprintf("SELECT * FROM %s WHERE username='%s'",
 				DB_USERS, $username);
-		$result = $dbconn->query($login);
+		$urows = $dbconn->query($qurows);
 
-		if (!check($dbconn, $result->num_rows, false, true))
+		if (!check($dbconn, $urows->num_rows, false, true))
 			$wup = true;
 
 		if (!isset($wup)) {
-			$row = $result->fetch_assoc();
+			$urow = $urows->fetch_assoc();
 
-			if (password_verify($password, $row["password"])) {
+			if (password_verify($password, $urow["password"])) {
 				if (isset($_POST["remember"]))
 					$timeout = time() + 60 * 60 * 24 * SESS_TIMEOUT;
 				else
@@ -34,12 +34,12 @@
 
 				setcookie("session",
 						hash(SESS_ENCRY, $_SERVER["HTTP_USER_AGENT"] .
-						$row["password"]), $timeout, "/", URL_SITE);
-				setcookie("uid", $row["uid"],
+						$urow["password"]), $timeout, "/", URL_SITE);
+				setcookie("uid", $urow["uid"],
 						$timeout, "/", URL_SITE);
-				setcookie("gid", $row["gid"],
+				setcookie("gid", $urow["gid"],
 						$timeout, "/", URL_SITE);
-				setcookie("name", $row["name"],
+				setcookie("name", $urow["name"],
 						$timeout, "/", URL_SITE);
 
 				header("Location: /index.php");
@@ -49,7 +49,7 @@
 			}
 		}
 
-		$result->close();
+		$urows->close();
 		$dbconn->close();
 	}
 ?>
