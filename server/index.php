@@ -87,17 +87,16 @@
 									</a>
 								</li>
 							");
-						else
-							echo("
-								<li>
-									<a
-										href='/user/settings.php'
-										target='content'
-										onclick='sidebar_hide(admin)'>
-										Instellingen
-									</a>
-								</li>
-							");
+						echo("
+							<li>
+								<a
+									href='/user/settings.php'
+									target='content'
+									onclick='sidebar_hide(admin)'>
+									Instellingen
+								</a>
+							</li>
+						");
 					?>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">

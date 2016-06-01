@@ -33,7 +33,7 @@
 				});
 
 				//$("#grouplist").tablesorter();
-				//$("#userlist").tablesorter();
+				$("#userlist").tablesorter();
 			});
 		</script>
 	</head>
@@ -174,12 +174,7 @@
 									id="userlist">
 									<thead>
 										<tr>
-											<th>
-												<input
-													type="checkbox"
-													id="sall1"
-													onclick="select_all(this)">
-											</th>
+											<th></th>
 											<th>ID</th>
 											<th>Naam</th>
 										</tr>
@@ -205,8 +200,7 @@
 														<input type='checkbox'
 														class='cb' name='cb[]'
 														value='" . $urow["uid"]
-														. "'
-														onclick='row_set(this)'>
+														. "'>
 													</td>
 												");
 												echo("<td>" . $urow["uid"] .

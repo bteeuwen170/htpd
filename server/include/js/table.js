@@ -21,14 +21,14 @@ function row_set(row)
 	if (row.checked) {
 		rows.push(row.value);
 	} else {
-		//document.getElementById("sall").checked = false;							FIXME Not working for secondary sall
+		document.getElementById("sall").checked = false;
 		rows.splice(rows.indexOf(row.value), 1);
 	}
 
 	row_updateui();
 }
 
-function row_updateui() //FIXME Not if secondary
+function row_updateui()
 {
 	if (rows.length > 1) {
 		document.getElementById("edit").disabled = true;
