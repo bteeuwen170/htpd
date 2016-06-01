@@ -337,7 +337,7 @@
 								data-dismiss="modal">
 								&times;
 							</button>
-							<h4 class="modal-title">Gebruikers importeren</h4>
+							<h4 class="modal-title">Leerlingen importeren</h4>
 						</div>
 						<div class="modal-body">
 							<p>
@@ -353,10 +353,10 @@
 								in zijn/haar vakkenpakket of leerlingen die
 								reeds in de database staan hebben zullen
 								automatisch worden weggefilterd.<br><br>
-								Naderhand zal een CSV bestand naar uw computer
-								worden gedownload bevattende de automatisch
-								gegenereerde wachtwoorden van de toegevoegde
-								leerlingen.
+								Naderhand zal <b>EENMALIG</b> een CSV bestand
+								naar uw computer worden gedownload bevattende
+								de automatisch gegenereerde wachtwoorden van de
+								toegevoegde leerlingen.
 							</p>
 							<br>
 							<form

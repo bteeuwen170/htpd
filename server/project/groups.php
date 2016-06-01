@@ -165,7 +165,7 @@
 								data-dismiss="modal">
 								&times;
 							</button>
-							<h4 class="modal-title">Leerlingen toevoegen</h4>
+							<h4 class="modal-title">Gebruikers toevoegen</h4>
 						</div>
 						<div class="modal-body">
 							<form method="post" action="groupadd.php">
@@ -177,9 +177,17 @@
 											<th></th>
 											<th>ID</th>
 											<th>Naam</th>
+											<th>Groep</th>
 										</tr>
 									</thead>
 									<?php
+										echo("
+											<input
+												type='hidden'
+												name='pid'
+												value='" . $_GET["pid"] . "'>
+										");
+
 										$dbconn = new mysqli(DB_URL . ":" .
 										DB_PORT, DB_USER, DB_PASS, DB_NAME);
 										check($dbconn, !$dbconn->connect_error,
@@ -192,7 +200,7 @@
 										check($dbconn, $urows, false);
 
 										while ($urow = $urows->fetch_array()) {
-											if ($urow["gid"] == GID_STUDENT) {
+											if ($urow["gid"] != GID_ADMIN) {
 												echo("<tr id='u" . $urow["uid"]
 														. "'>");
 												echo("
@@ -207,6 +215,8 @@
 														"</td>");
 												echo("<td>" . $urow["name"] .
 														"</td>");
+												echo("<td>" . GIDS[$urow["gid"]]
+														. "</td>");
 												echo("</tr>");
 											}
 										}

@@ -99,11 +99,6 @@
 
 				if (reopen) edit(1);
 			}
-
-			function finish()
-			{
-				save(0);
-			}
 		</script>
 	</head>
 	<body>

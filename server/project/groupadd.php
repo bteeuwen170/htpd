@@ -11,8 +11,8 @@
 	$uids = $_POST["cb"];
 
 	for ($i = 0; $i < count($uids); $i++) {
-		echo("Gebruiker wordt uit project verwijderd... ");
-		$user = sprintf("DELETE FROM %s WHERE pid=%s AND uid=%s",
+		echo("Gebruiker wordt aan project toegevoegd... ");
+		$user = sprintf("INSERT INTO %s (pid, grp, uid) VALUES(%s, -1, %s)",
 				DB_GROUPS, $pid, $uids[$i]);
 		check($dbconn, $dbconn->query($user));
 	}

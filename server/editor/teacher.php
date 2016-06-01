@@ -48,14 +48,20 @@
 					trigger: "hover"
 				});
 
-				//if ($("#viewer").html()
-				//		.indexOf("<!-- project: finished -->") == -1) //TODO Handle as well
-				edit(0, true);
+				if ($("#editor").html()
+						.indexOf("<!-- project: finished -->") == -1) {
+					edit(1, true); //TODO Allow override
+					document.getElementById("optionbar").style.display =
+					"none";
+				}
 			});
 
 			function save(reopen)
 			{
 				$("#editor").summernote("destroy");
+
+				if (!reopen)
+					$("#editor").prepend("<!-- project: finished -->");
 
 				var data = new FormData();
 				data.append("path",
@@ -66,7 +72,7 @@
 				req.open("post", "teacher.php", true);
 				req.send(data);
 
-				if (reopen) edit(0, true);
+				if (reopen) edit(1, true);
 			}
 		</script>
 	</head>
@@ -76,7 +82,7 @@
 				$avail = true;
 
 				if (file_exists($vpath)) {
-					$file = fopen($vpath, "r") or
+					$vfile = fopen($vpath, "r") or
 						die("Er is een fout opgetreden!");
 					if (filesize($vpath) > 0) {
 						echo("
@@ -96,18 +102,42 @@
 							</div>
 							<div id='viewer'>
 						");
-						echo(fread($file, filesize($vpath)));
-						echo("</div>");
+						echo(fread($vfile, filesize($vpath)));
 
-						echo("<div id='editor'>");
+						echo("
+							</div>
+							<div id='optionbar'>
+								<div class='btn-group'>
+									<button
+										class='btn btn-default btn-sm'
+										title='Bewerken'
+										data-tooltip='true'
+										data-placement='bottom'
+										onclick=\"edit(1, true)\">
+										<span class='glyphicon
+												glyphicon-pencil'></span>
+									</button>
+									<button
+										class='btn btn-default btn-sm'
+										title='Downloaden'
+										data-tooltip='true'
+										data-placement='bottom'
+										onclick=\"download(-1, 'editor')\">
+										<span class='glyphicon
+												glyphicon-download-alt'></span>
+									</button>
+								</div>
+							</div>
+							<div id='editor'>
+						");
 						if (file_exists($epath)) {
-							$file = fopen($epath, "r") or
+							$efile = fopen($epath, "r") or
 								die("Er is een fout opgetreden!");
 							if (filesize($epath) > 0)
-								echo(fread($file, filesize($epath)));
+								echo(fread($efile, filesize($epath)));
 							else
 								echo("<br>");
-							fclose($file);
+							fclose($efile);
 						} else {
 							touch($epath);
 							echo("<br>");
@@ -117,7 +147,7 @@
 						$avail = false;
 					}
 
-					fclose($file);
+					fclose($vfile);
 				} else {
 					$avail = false;
 				}
@@ -127,7 +157,7 @@
 						<div id='viewer'>
 							Reflectie is nog niet beschikbaar.
 						</div>
-					");
+					"); //TODO Allow override
 			?>
 		</div>
 	</body>
