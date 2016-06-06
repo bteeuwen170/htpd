@@ -11,7 +11,7 @@ htpd is guaranteed to work on the following browsers:
 - Internet Explorer 11+
 - Microsoft Edge 1+
 - Mozilla Firefox 26+
-- ~Opera 12.10+~
+- ~~Opera 12.10+~~
 - Safari 8+
 
 ## About
