@@ -49,7 +49,7 @@
 	define("COLN_PASSWORDS","Wachtwoord");
 	define("TAR_SUBJECT",	"o&o");			/* Te filteren vak */
 	define("IN_DEL",		";");			/* SOM scheidingsteken */
-	define("OUT_DEL",		";");			/* Export scheidingsteken */
+	define("OUT_DEL",		",");			/* Export scheidingsteken */
 	define("IN_ENC",		"\"");			/* SOM omheining */
 	define("OUT_ENC",		"\"");			/* Export omheining */
 	define("IN_ESC",		"\\");			/* SOM escape-teken */
