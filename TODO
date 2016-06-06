@@ -5,10 +5,13 @@
 3. Implement the file editor		Start: 2016-04-22	End: 2016-05-13
 4. Implement the user manager		Start: 2016-04-29	End: 2016-05-28
 5. Implement the project manager	Start: 2016-05-14	End: 2016-05-26
-6. Implement the group manager		Start: 2016-05-18	End: 2016-06-02
+6. Implement the group manager		Start: 2016-05-18	End: 2016-06-07
 7. Implement the feedback interface	Start: 2016-05-30	End: 2016-05-31
-8. Finishing touches				Start: 2016-06-04	End: 2016-00-00
+8. Finishing touches				Start: 2016-06-05	End: 2016-00-00
 9. Complete optional requirements	Start: 2016-00-00	End: 2016-00-00
+
+Functionality deadline: 2016-06-09
+Project deadline: 2016-06-28
 
  TODO
 ============
@@ -26,7 +29,7 @@ n The server directory has to be owned by http, FIXME?
 x Maybe a different file tree?
 x Select current project in sidebar
 n Select ALL (not just ^) active sidebar items
-- Make sure user can only be logged in at one location at the time
+p Make sure user can only be logged in at one location at the time
 x Reimplement editor as this one is massively screwed up
 x Cursor has a wrong starting position
 n Arrow in sidebar to indicate year is populated
@@ -35,7 +38,8 @@ x .nopointer and .noselect in seperate css file (eg. "include/utils.css")
 n Remove ID from SQL DB
 n Allow teachers to create other teachers?
 x Maybe create an admin account by default when creating the first account
-p Implement SSL correctly (not my priority)
+p Implement SSL correctly
+	> Not my priority
 x Implement user management view
 n Sort users in classes ("Stamgroep") if contains "o&o" in "Vakken"
 x Check username on every page
@@ -46,8 +50,9 @@ x Implement motd
 	x Admin
 n Shortcut for saving
 x Redirect to HTTP forbidden page if verify_login() failed
-- Confirmation before saving
-	- Ask for password before finishing file
+x Confirmation before s̶a̶v̶i̶n̶g̶ finshing
+- Confirmation before deleting
+n Ask for password before finishing file
 n Implement a file manager
 x Implement group system based on client feedback
 x Make sorttable stfu in the console
@@ -55,13 +60,13 @@ x Don't use projectname as foldername, use PID
 x Don't use username as foldername, use UID
 p Try JQuery's .load() instead of iframes
 x Implement importing csv files from ItsLearning
-	- Export file afterwards containing randomly generated passwords for users
+	x Export file afterwards containing randomly generated passwords for users
 p Implement exporting to csv
 ? Scrollbar overlaps editor and *list in manager_layout.css
 . Don't use inline JS anymore
 x Make year sorting work in projectmanager
 n Rename "Portfolio" to what the client had wanted in the first place
-p Option to download entire portfolio
+- Option to download entire portfolio at once (including CV)
 x install.php > init.php
 x admin.php > install.php
 x Use consts as GID instead of plain ints (in some cases)
@@ -78,7 +83,7 @@ x Implement projectdel
 x Implement projectmod
 x Implement groupadd
 . Implement groupmod
-x Implement groupdel ~(perhaps combine with groupmod)~
+x Implement groupdel (̶p̶e̶r̶h̶a̶p̶s̶ ̶c̶o̶m̶b̶i̶n̶e̶ ̶w̶i̶t̶h̶ ̶g̶r̶o̶u̶p̶m̶o̶d̶)̶
 x Group in brackets, students in projects will look like this:
 		"student(group),student(group),..."
 p Prevent sorting from changing column width
@@ -94,7 +99,7 @@ n Rename students to users in DB_PROJECTS
 ? Use $dbconn->real_escape_string(*) everywhere
 x Clean up dir structure
 ? Clean up php sql connections
-- Clean up js files
+. Clean up js files
 x Clean up css files
 n Merge manager.css and editor.css
 n Bottom section of sidebar for special actions like settings and managers
@@ -120,7 +125,7 @@ x Hide download button if feedback is not available yet for student
 x Links should open in new tab from viewer
 - Give submit button a name and check for submit on every submit handler page
 - Check if all fields are present post php
-- Remove remember me code
+x Remove remember me code
 x Redirect to index.php instead of /user/logout.php after verifylogin()
 - Get escape character for SOM csv format
 x USR_ to GID_ in vars.php
@@ -155,11 +160,16 @@ x Give admin way to reset user password
 x Option to "finish" teacher feedback as well
 - Finished header in vars.php
 x Download option finished feedback teacher
-- Ask user if sure to leave page if editor
+. Ask user if sure to leave page if editor is in focus
+		(also if leaving using navbar)
 - Change all q*table to *rows (PHP)
-- Implement Curriculum Vitae
+x Implement Curriculum Vitae
 x Use Content Security Policy
-- Implement CSP properly (that is, without unsafe-inline)
+- Implement CSP properly (without unsafe-inline)
+- Remove all inline onclicks (index.php first)
+! Generate a password properly (this is, using /dev/urandom) in /user/import.php
+! Don't put password in export file if not added to db
+- Refresh user manager after importing
 
 
  Questions

@@ -122,7 +122,7 @@
 					$ptable = $dbconn->query($qptable);
 					check($dbconn, $ptable, false);
 
-					while ($prow = $ptable->fetch_array()) {					 //XXX This is crap
+					while ($prow = $ptable->fetch_array()) { //XXX This is crap
 						$groups = array();
 						$hasuser = false;
 						$qgtable =
@@ -163,6 +163,17 @@
 									</a>
 								</li>
 					");
+
+					if ($_COOKIE["gid"] == GID_STUDENT)
+						echo("
+							<li>
+								<a
+									href='/editor/cv.php'
+									target='content'>
+									Curriculum Vitae
+								</a>
+							</li>
+						");
 
 					for ($i = 0; $i < count($years); $i++) {
 						$c = false;

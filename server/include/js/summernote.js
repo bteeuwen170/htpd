@@ -1,14 +1,32 @@
+var dirty = false;
+
+function unload_msg(e)
+{
+	if (dirty)
+		return "Weet u zeker dat u dit niet eerst wilt opslaan?";
+	else
+		return undefined;
+}
+
+window.top.onbeforeunload = unload_msg;
+//window.contentwindow.onbeforeunload = unload_msg; //FIXME Doesn't work
+
+function dirty_set()
+{
+	dirty = true; alert("asdf");
+}
+
 var button_save = function(context)
 {
 	var ui = $.summernote.ui;
 
 	var button = ui.button({
-		contents: "<span class='glyphicon glyphicon-floppy-save'> \
-				</span>",
+		contents: "<span class='glyphicon glyphicon-floppy-save'></span>",
 		tooltip: "Opslaan",
 		click: function()
 		{
 			$(this).tooltip("hide");
+			dirty = false;
 			save(1);
 		}
 	});
@@ -59,9 +77,12 @@ var button_finish = function(context)
 		tooltip: "Inleveren",
 		click: function()
 		{
-			$(this).tooltip("hide");
-			save(0);
-			optionbar.style.display = "";
+			if (confirm("Weet u zeker dat u dit bestand wilt inleveren?")) {
+				$(this).tooltip("hide");
+				dirty = false;
+				save(0);
+				optionbar.style.display = "";
+			}
 		}
 	});
 
@@ -116,6 +137,9 @@ function edit(mode, viewer)
 				save: button_save,
 				download: button_download_students,
 				finish: button_finish
+			},
+			callbacks: {
+				onChange: function(e) { dirty = true; }
 			}
 		});
 	} else {
@@ -143,6 +167,9 @@ function edit(mode, viewer)
 			buttons: {
 				save: button_save,
 				download: button_download
+			},
+			callbacks: {
+				onChange: function(e) { dirty = true; }
 			}
 		});
 

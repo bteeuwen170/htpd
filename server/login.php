@@ -27,20 +27,12 @@
 			$urow = $urows->fetch_assoc();
 
 			if (password_verify($password, $urow["password"])) {
-				if (isset($_POST["remember"]))
-					$timeout = time() + 60 * 60 * 24 * SESS_TIMEOUT;
-				else
-					$timeout = false;
-
 				setcookie("session",
 						hash(SESS_ENCRY, $_SERVER["HTTP_USER_AGENT"] .
-						$urow["password"]), $timeout, "/", URL_SITE);
-				setcookie("uid", $urow["uid"],
-						$timeout, "/", URL_SITE);
-				setcookie("gid", $urow["gid"],
-						$timeout, "/", URL_SITE);
-				setcookie("name", $urow["name"],
-						$timeout, "/", URL_SITE);
+						$urow["password"]), false, "/", URL_SITE);
+				setcookie("uid", $urow["uid"], false, "/", URL_SITE);
+				setcookie("gid", $urow["gid"], false, "/", URL_SITE);
+				setcookie("name", $urow["name"], false, "/", URL_SITE);
 
 				header("Location: /index.php");
 			} else {

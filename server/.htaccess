@@ -1,3 +1,4 @@
 Header set Content-Security-Policy "default-src 'self' 'unsafe-inline'"
 Header set X-Content-Security-Policy "default-src 'self' 'unsafe-inline'"
+ErrorDocument 403 /include/html/403.html
 ErrorDocument 404 /include/html/404.html

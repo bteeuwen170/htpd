@@ -21,7 +21,7 @@
 			<table class="home-table" width="100%">
 				<tr>
 					<?php
-						$path = URL_STORAGE . "motd";
+						$path = URL_STORAGE . MOTD_NAME;
 
 						if (file_exists($path)) {
 							$motd = fopen($path, "r") or

@@ -3,9 +3,9 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
-	verify_login(GID_ADMIN);
+	verify_login(GID_STUDENT);
 
-	$path = URL_STORAGE . MOTD_NAME;
+	$path = URL_USERS . $_COOKIE["uid"] . "/" . CV_NAME;
 
 	if (isset($_POST["data"])) {
 		$file = fopen($path, "w") or
@@ -53,7 +53,7 @@
 						document.getElementById("editor").innerHTML);
 
 				var req = new XMLHttpRequest();
-				req.open("post", "motd.php", true);
+				req.open("post", "cv.php", true);
 				req.send(data);
 
 				edit(0);

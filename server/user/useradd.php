@@ -11,7 +11,7 @@
 	if (isset($_POST["firstname"]) && isset($_POST["lastname"]))
 		$name = $dbconn->real_escape_string($_POST["firstname"]) . " " .
 				$dbconn->real_escape_string($_POST["lastname"]);
-	else (isset($_POST["name"])
+	else if (isset($_POST["name"]))
 		$name = $dbconn->real_escape_string($_POST["name"]);
 	$username = $dbconn->real_escape_string($_POST["username"]);
 	$password = $dbconn->real_escape_string($_POST["password"]);
