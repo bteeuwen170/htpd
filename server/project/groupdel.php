@@ -13,7 +13,7 @@
 	for ($i = 0; $i < count($uids); $i++) {
 		echo("Gebruiker wordt uit project verwijderd... ");
 		$user = sprintf("DELETE FROM %s WHERE pid=%s AND uid=%s",
-				DB_GROUPS, $pid, $uids[$i]);
+				DB_GROUPS, $pid, $dbconn->real_escape_string($uids[$i]));
 		check($dbconn, $dbconn->query($user));
 	}
 

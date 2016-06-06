@@ -24,18 +24,8 @@
 		<script type="text/javascript"
 				src="/include/js/table.js"></script>
 
-		<script type="text/javascript">
-			$(document).ready(function()
-			{
-				$("[data-tooltip='true']").tooltip({
-					container: "body",
-					trigger: "hover"
-				});
-
-				//$("#grouplist").tablesorter();
-				$("#userlist").tablesorter();
-			});
-		</script>
+		<script type="text/javascript" src="/include/js/main.js"></script>
+		<script type="text/javascript" src="/include/js/groups.js"></script>
 	</head>
 	<body>
 		<div class="wrapper">
@@ -107,14 +97,21 @@
 							DB_USER, DB_PASS, DB_NAME);
 							check($dbconn, !$dbconn->connect_error, false);
 
-							$qgtable = sprintf("SELECT pid, grp, uid FROM %s
+							$qprows = sprintf("SELECT groups FROM %s
+									WHERE pid=%s", DB_PROJECTS, $_GET["pid"]);
+							$prows = $dbconn->query($qprows);
+							check($dbconn, $prows, false);
+							$prow = $prows->fetch_array();
+							$groups = $prow["groups"];
+
+							$qgrows = sprintf("SELECT pid, grp, uid FROM %s
 									WHERE pid=%s", DB_GROUPS, $_GET["pid"]);
-							$grows = $dbconn->query($qgtable);
+							$grows = $dbconn->query($qgrows);
 							check($dbconn, $grows, false);
 
-							$qutable = sprintf("SELECT uid, gid, name FROM %s",
+							$qurows = sprintf("SELECT uid, gid, name FROM %s",
 									DB_USERS);
-							$urows = $dbconn->query($qutable);
+							$urows = $dbconn->query($qurows);
 							check($dbconn, $urows, false);
 
 							while ($grow = $grows->fetch_array())
@@ -122,6 +119,8 @@
 
 							while ($urow = $urows->fetch_array()) {
 								if (array_key_exists($urow["uid"], $users)) {
+									$group = $users[$urow["uid"]];
+
 									echo("<tr>");
 									echo("
 										<td>
@@ -136,16 +135,27 @@
 									echo("<td>" . $urow["uid"] . "</td>");
 									echo("<td>" . $urow["name"] . "</td>");
 									echo("<td>");
-									if ($users[$urow["uid"]] == -1) {
-										if ($urow["gid"] == GID_TEACHER)
-											echo(GIDS[1]);
-										else //TODO Also if higher than max grps
-											echo("Geen");
+									if ($urow["gid"] == GID_TEACHER &&
+											$group == -1) {
+										echo(GIDS[1]);
 									} else {
-										echo($users[$urow["uid"]] + 1);
+										echo("<select name='groups'>");
+										for ($i = -1;
+												$i < $groups; $i++) {
+											echo("
+												<option
+													value='" . (($i > $groups) ?
+													-1 : $i) . "'" .
+													(($i == $group) ?
+													"selected" : "") . ">" .
+													(($i == -1 || $i > $groups)
+													? "Geen" : $i + 1) .
+												"</option>
+											");
+										}
+										echo("</select>");
 									}
-									echo("</td>");
-									echo("</tr>");
+									echo("</td></tr>");
 								}
 							}
 
@@ -206,7 +216,7 @@
 												echo("
 													<td>
 														<input type='checkbox'
-														class='cb' name='cb[]'
+														class='cb' name='uids[]'
 														value='" . $urow["uid"]
 														. "'>
 													</td>

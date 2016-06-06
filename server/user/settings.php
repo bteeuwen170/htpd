@@ -19,23 +19,8 @@
 		<script type="text/javascript"
 				src="/include/lib/bootstrap/bootstrap.js"></script>
 
-		<script type="text/javascript">
-			$(document).ready(function()
-			{
-				$("[data-tooltip='true']").tooltip({
-					container: "body",
-					trigger: "hover"
-				});
-			});
-
-			function newpass_show(field)
-			{
-				if ($(field).val().length > 0)
-					document.getElementById("newpass").style.display = "inline";
-				else
-					document.getElementById("newpass").style.display = "none";
-			}
-		</script>
+		<script type="text/javascript" src="/include/js/main.js"></script>
+		<script type="text/javascript" src="/include/js/settings.js"></script>
 	</head>
 	<body>
 		<div class="wrapper">
@@ -88,7 +73,7 @@
 								name="password"
 								minlength="8"
 								maxlength="255" required>
-							<small class="text-muted">Minimaal 8 tekens.</small>
+							<small class="text-muted">Minimaal 8 tekens</small>
 						</fieldset>
 						<fieldset class="form-group">
 							<label>Nieuw wachtwoord herhalen</label>

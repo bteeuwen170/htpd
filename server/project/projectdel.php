@@ -10,16 +10,17 @@
 	$pids = $_POST["cb"];
 
 	for ($i = 0; $i < count($pids); $i++) {
+		$pid = $dbconn->real_escape_string($pids[$i]);
 		echo("Project wordt verwijderd... ");
 		$project =
-			sprintf("DELETE FROM %s WHERE pid=%s", DB_PROJECTS, $pids[$i]);
+			sprintf("DELETE FROM %s WHERE pid=%s", DB_PROJECTS, $pid);
 		check($dbconn, $dbconn->query($project));
 
 		//TODO Option to delete files as well, maybe only as admin?
 
 		echo("Groepen worden verwijderd... ");
 		$groups =
-			sprintf("DELETE FROM %s WHERE pid=%s", DB_GROUPS, $pids[$i]);
+			sprintf("DELETE FROM %s WHERE pid=%s", DB_GROUPS, $pid);
 		check($dbconn, $dbconn->query($groups));
 	}
 

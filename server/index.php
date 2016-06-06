@@ -13,7 +13,7 @@
 	<head>
 		<meta charset="UTF-8">
 
-		<link rel="icon" href="/include/img/navicon.png">
+		<link rel="icon" href="/include/img/favico.png">
 		<title>Helinium Technasium Portfolio Database</title>
 
 		<link rel="stylesheet" type="text/css"
@@ -27,15 +27,8 @@
 				src="/include/lib/bootstrap/bootstrap.js"></script>
 		<script type="text/javascript" src="/include/js/sidebar.js"></script>
 
-		<script type="text/javascript">
-			var admin = <?php echo(($_COOKIE["gid"] == GID_ADMIN) ? 1 : 0); ?>;
-
-			$(document).ready(function()
-			{
-				if (admin)
-					sidebar_hide(admin);
-			});
-		</script>
+		<script type="text/javascript" src="/include/js/main.js"></script>
+		<script type="text/javascript" src="/include/js/index.js"></script>
 	</head>
 	<body>
 		<nav class="navbar navbar-default navbar-static-top noselect">
@@ -44,7 +37,7 @@
 					<li class="active">
 						<a
 							href="/user/home.php"
-							onclick="sidebar_show(admin)"
+							id="thome"
 							target="content">
 						<?php
 								if ($_COOKIE["gid"] == GID_ADMIN)
@@ -62,8 +55,8 @@
 								<li>
 									<a
 										href='/project/projects.php'
-										target='content'
-										onclick='sidebar_hide(admin)'>
+										id='tprojects'
+										target='content'>
 										Projectbeheer
 									</a>
 								</li>

@@ -58,7 +58,7 @@
 	<head>
 		<meta charset="UTF-8">
 
-		<link rel="icon" href="/include/img/navicon.png">
+		<link rel="icon" href="/include/img/favico.png">
 		<title>Helinium Technasium Portfolio Database</title>
 
 		<link rel="stylesheet" type="text/css"

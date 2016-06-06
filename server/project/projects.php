@@ -23,32 +23,8 @@
 		<script type="text/javascript"
 				src="/include/js/table.js"></script>
 
-		<script type="text/javascript">
-			$(document).ready(function()
-			{
-				$("[data-tooltip='true']").tooltip({
-					container: "body",
-					trigger: "hover"
-				});
-
-				//$("#grouplist").tablesorter();
-
-				$(".pr").click(function()
-				{
-					location.href = "groups.php?pid=" +
-							$(this).closest("tr").attr("id").slice(1);
-				});
-
-				$("#editd").on("shown.bs.modal", function(e)
-				{
-					var row = document.getElementById("p" + rows[0]).children;
-					$("#editdpid").val(row[1].innerHTML);
-					$("#editdname").val(row[2].innerHTML);
-					$("#editdgroups").val(row[3].innerHTML);
-					$("#editdyear").val(row[4].getAttribute("data-year"));
-				});
-			});
-		</script>
+		<script type="text/javascript" src="/include/js/main.js"></script>
+		<script type="text/javascript" src="/include/js/projects.js"></script>
 	</head>
 	<body>
 		<div class="wrapper">

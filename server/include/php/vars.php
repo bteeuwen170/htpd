@@ -27,7 +27,7 @@
 	/* Opslag */
 	define("URL_STORAGE",	$_SERVER["DOCUMENT_ROOT"] . "/../storage/");
 	define("URL_USERS",		URL_STORAGE . "students/");
-	define("PRJ_NAMES",		array("Reflectie", "Feedback"));
+	define("PRJ_NAMES",		array("Portfolio Item", "Feedback Leraar"));
 	define("PRJ_FILES",		array("reflectie.html",
 								  "feedback.html"));
 

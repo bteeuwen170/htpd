@@ -58,7 +58,7 @@ x Implement importing csv files from ItsLearning
 	- Export file afterwards containing randomly generated passwords for users
 p Implement exporting to csv
 ? Scrollbar overlaps editor and *list in manager_layout.css
-p Don't use inline JS anymore
+. Don't use inline JS anymore
 x Make year sorting work in projectmanager
 n Rename "Portfolio" to what the client had wanted in the first place
 p Option to download entire portfolio
@@ -77,7 +77,7 @@ x Implement projectadd
 x Implement projectdel
 x Implement projectmod
 x Implement groupadd
-- Implement groupmod
+. Implement groupmod
 x Implement groupdel ~(perhaps combine with groupmod)~
 x Group in brackets, students in projects will look like this:
 		"student(group),student(group),..."
@@ -120,7 +120,7 @@ x Hide download button if feedback is not available yet for student
 x Links should open in new tab from viewer
 - Give submit button a name and check for submit on every submit handler page
 - Check if all fields are present post php
-- Add a remember me button to login.php
+- Remove remember me code
 x Redirect to index.php instead of /user/logout.php after verifylogin()
 - Get escape character for SOM csv format
 x USR_ to GID_ in vars.php
@@ -155,6 +155,11 @@ x Give admin way to reset user password
 x Option to "finish" teacher feedback as well
 - Finished header in vars.php
 x Download option finished feedback teacher
+- Ask user if sure to leave page if editor
+- Change all q*table to *rows (PHP)
+- Implement Curriculum Vitae
+x Use Content Security Policy
+- Implement CSP properly (that is, without unsafe-inline)
 
 
  Questions

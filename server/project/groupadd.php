@@ -13,7 +13,7 @@
 	for ($i = 0; $i < count($uids); $i++) {
 		echo("Gebruiker wordt aan project toegevoegd... ");
 		$user = sprintf("INSERT INTO %s (pid, grp, uid) VALUES(%s, -1, %s)",
-				DB_GROUPS, $pid, $uids[$i]);
+				DB_GROUPS, $pid, $dbconn->real_escape_string($uids[$i]));
 		check($dbconn, $dbconn->query($user));
 	}
 

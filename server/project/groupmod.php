@@ -8,15 +8,16 @@
 	check($dbconn, !$dbconn->connect_error);
 
 	$pid = $dbconn->real_escape_string($_POST["pid"]);
-	$name = $dbconn->real_escape_string($_POST["name"]);
-	$groups = $dbconn->real_escape_string($_POST["groups"]);
-	$year = $dbconn->real_escape_string($_POST["year"]);
+	$uids = $_POST["uids"];
+	$grps = $_POST["groups"];
 
-	echo("Project wordt bewerkt... ");
-	$project =
-		sprintf("UPDATE %s SET name='%s', groups=%s, year=%s WHERE pid=%s",
-			DB_PROJECTS, $name, $groups, $year, $pid);
-	check($dbconn, $dbconn->query($project));
+	for ($i = 0; $i < count($uids); $i++) {
+		echo("Gebruiker wordt aan groep toegevoegd... ");
+		$user = sprintf("UPDATE %s SET grp=%s WHERE pid=%s, uid=%s",
+				DB_GROUPS, $dbconn->real_escape_string($grps[$i]),
+				$pid, $dbconn->real_escape_string($uids[$i]));
+		check($dbconn, $dbconn->query($user));
+	}
 
 	$dbconn->close();
 
