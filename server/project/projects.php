@@ -29,7 +29,7 @@
 	<body>
 		<div class="wrapper">
 			<form method="post" action="projectdel.php">
-				<div id="optionbar">
+				<div class="noselect" id="optionbar">
 					<div class="btn-group">
 						<button
 							type="button"
@@ -72,13 +72,12 @@
 					<table
 						class="table table-striped tablesorter"
 						id="projecttable">
-						<thead>
+						<thead class="nopointer noselect">
 							<tr>
 								<th>
 									<input
 										type="checkbox"
-										id="sall"
-										onclick="select_all(this)">
+										id="sall">
 								</th>
 								<th>ID</th>
 								<th>Projectnaam</th>
@@ -105,9 +104,8 @@
 										<input
 											type='checkbox'
 											class='cb'
-											name='cb[]'
-											value='" . $prow["pid"] . "'
-											onclick='row_set(this)'>
+											name='pids[]'
+											value='" . $prow["pid"] . "'>
 									</td>
 								");
 								echo("<td class='pr'>" .

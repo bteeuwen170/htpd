@@ -37,7 +37,7 @@
 					<li class="active">
 						<a
 							href="/user/home.php"
-							id="thome"
+							class="tshow"
 							target="content">
 						<?php
 								if ($_COOKIE["gid"] == GID_ADMIN)
@@ -55,7 +55,7 @@
 								<li>
 									<a
 										href='/project/projects.php'
-										id='tprojects'
+										class='thide'
 										target='content'>
 										Projectbeheer
 									</a>
@@ -66,16 +66,16 @@
 								<li>
 									<a
 										href='/user/users.php'
-										target='content'
-										onclick='sidebar_hide(admin)'>
+										class='thide'
+										target='content'>
 										Gebruikersbeheer
 									</a>
 								</li>
 								<li>
 									<a
 										href='/editor/motd.php'
-										target='content'
-										onclick='sidebar_hide(admin)'>
+										class='thide'
+										target='content'>
 										Welkomstbericht
 									</a>
 								</li>
@@ -84,8 +84,8 @@
 							<li>
 								<a
 									href='/user/settings.php'
-									target='content'
-									onclick='sidebar_hide(admin)'>
+									class='thide'
+									target='content'>
 									Instellingen
 								</a>
 							</li>

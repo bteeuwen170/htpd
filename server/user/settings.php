@@ -29,7 +29,7 @@
 				type="hidden"
 				name="uid"
 				value="<?php echo($_COOKIE["uid"]); ?>">
-				<div id="optionbar">
+				<div class="noselect" id="optionbar">
 					<div class="btn-group">
 						<button
 							type="submit"

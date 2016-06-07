@@ -17,7 +17,7 @@
 	check($dbconn, !$dbconn->connect_error);
 
 	echo("Verbinding maken met de SQL database... ");
-	if (!check($dbconn, $dbconn->select_db(DB_NAME), true, true)) {
+	if (check($dbconn, !$dbconn->select_db(DB_NAME), true, true)) {
 		echo(sprintf("Nieuwe database '%s' wordt aangemaakt... ", DB_NAME));
 		$qpdb = sprintf("CREATE DATABASE %s", DB_NAME);
 		check($dbconn, $dbconn->query($qpdb));
@@ -28,7 +28,7 @@
 
 	echo("Tabel met gebruikersgegevens wordt opgehaald... ");
 	$qutable = sprintf("DESCRIBE %s", DB_USERS);
-	if (!check($dbconn, $dbconn->query($qutable), true, true)) {
+	if (check($dbconn, !$dbconn->query($qutable), true, true)) {
 		echo(sprintf("Nieuwe tabel '%s.%s' wordt aangemaakt... ",
 				DB_NAME, DB_USERS));
 		$qutable = sprintf("

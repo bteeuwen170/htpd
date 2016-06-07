@@ -22,12 +22,12 @@ $(document).ready(function()
 	if (admin)
 		sidebar_hide(admin);
 
-	$("#thome").click(function()
+	$(".tshow").click(function()
 	{
 		sidebar_show(admin);
 	});
 
-	$("#tprojects").click(function()
+	$(".thide").click(function()
 	{
 		sidebar_hide(admin);
 	});

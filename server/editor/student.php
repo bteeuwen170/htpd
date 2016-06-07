@@ -103,7 +103,7 @@
 	</head>
 	<body>
 		<div class="wrapper">
-			<div id="optionbar">
+			<div class="noselect" id="optionbar">
 				<div class="btn-group">
 					<button
 						class="btn btn-default btn-sm"

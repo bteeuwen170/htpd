@@ -7,7 +7,7 @@
 	$dbconn = new mysqli(DB_URL . ":" . DB_PORT, DB_USER, DB_PASS, DB_NAME);
 	check($dbconn, !$dbconn->connect_error);
 
-	$uids = $_POST["cb"];
+	$uids = $_POST["uids"];
 
 	for ($i = 0; $i < count($uids); $i++) {
 		check($dbconn, $uids[$i] != 1);

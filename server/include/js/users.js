@@ -9,4 +9,9 @@ $(document).ready(function()
 		$("#editdname").val(row[2].innerHTML);
 		$("#editdusername").val(row[3].innerHTML);
 	});
+
+	$("#importdupload:file").change(function()
+	{
+		$("#importdsubmit").prop("disabled", false);
+	});
 });

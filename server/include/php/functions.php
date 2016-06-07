@@ -5,9 +5,9 @@
 			if ($output)
 				echo("OK<br>");
 			return true;
-		} elseif ($warn) {
+		} else if ($warn) {
 			if ($output)
-				echo("<br>");
+				echo("WARN<br>");
 			return false;
 		} else {
 			$dbconn->close();
@@ -22,7 +22,7 @@
 		foreach(scandir($j) as $k) {
 			if ("." === $k || ".." === $k)
 				continue;
-			elseif (is_dir("$j/$k"))
+			else if (is_dir("$j/$k"))
 				deldir("$j/$k");
 			else
 				unlink("$j/$k");

@@ -128,7 +128,7 @@ x Links should open in new tab from viewer
 x Remove remember me code
 x Redirect to index.php instead of /user/logout.php after verifylogin()
 - Get escape character for SOM csv format
-x USR_ to GID_ in vars.php
+x USR_ to GID_ in config.php
 p Notification after importing (and a bunch of other things just to inform
 		the user)
 p Seperate config file
@@ -143,7 +143,7 @@ p Monospace font for php only pages
 x Set fontNames for summernote
 p Links copied from and external resource don't open in a new tab
 x Display viewer above editor on editor/teacher.php
-- Don't allow students in project multiple times
+x Don't allow students in project multiple times
 x Don't create path if invalid editor
 x Fix .endsWith (JS) on Internet Explorer, what a shitty browser...
 - Default font is still not Arial in editor
@@ -158,18 +158,20 @@ p Show user status is sidebar (teacher) (feedback has been given, et al.)
 x Give admin way to reset user password
 - Refresh sidebar teacher after projectmanager has been used
 x Option to "finish" teacher feedback as well
-- Finished header in vars.php
+- Finished header in config.php
 x Download option finished feedback teacher
-. Ask user if sure to leave page if editor is in focus
+x Ask user if sure to leave page if editor is in focus
 		(also if leaving using navbar)
 - Change all q*table to *rows (PHP)
 x Implement Curriculum Vitae
 x Use Content Security Policy
 - Implement CSP properly (without unsafe-inline)
-- Remove all inline onclicks (index.php first)
-! Generate a password properly (this is, using /dev/urandom) in /user/import.php
+. Remove all inline onclicks (index.php first)
+- Generate a password properly (this is, using /dev/urandom) in /user/import.php
 ! Don't put password in export file if not added to db
 - Refresh user manager after importing
+x Disable add button groups.php modal
+	x Same for importing in users.php
 
 
  Questions

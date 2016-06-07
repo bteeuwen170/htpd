@@ -1,32 +1,35 @@
 var rows = new Array();
 
-function select_all(sa)
+$(document).ready(function()
 {
-	var checkboxes = $(sa).closest("table").find(".cb");
+	$("#sall").click(function()
+	{
+		var checkboxes = $(this).closest("table").find(".cb");
 
-	rows = new Array();
+		rows = new Array();
 
-	for (i = 0; i < checkboxes.length; i++) {
-		checkboxes[i].checked = sa.checked;
+		for (i = 0; i < checkboxes.length; i++) {
+			checkboxes[i].checked = this.checked;
 
-		if (sa.checked)
-			rows.push(checkboxes[i].value);
-	}
+			if (this.checked)
+				rows.push(checkboxes[i].value);
+		}
 
-	row_updateui();
-}
+		row_updateui();
+	});
 
-function row_set(row)
-{
-	if (row.checked) {
-		rows.push(row.value);
-	} else {
-		document.getElementById("sall").checked = false;
-		rows.splice(rows.indexOf(row.value), 1);
-	}
+	$(".cb").click(function()
+	{
+		if (this.checked) {
+			rows.push(this.value);
+		} else {
+			document.getElementById("sall").checked = false;
+			rows.splice(rows.indexOf(this.value), 1);
+		}
 
-	row_updateui();
-}
+		row_updateui();
+	});
+});
 
 function row_updateui()
 {

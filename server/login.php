@@ -20,7 +20,7 @@
 				DB_USERS, $username);
 		$urows = $dbconn->query($qurows);
 
-		if (!check($dbconn, $urows->num_rows, false, true))
+		if (check($dbconn, !$urows->num_rows, false, true))
 			$wup = true;
 
 		if (!isset($wup)) {

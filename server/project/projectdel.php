@@ -7,7 +7,7 @@
 	$dbconn = new mysqli(DB_URL . ":" . DB_PORT, DB_USER, DB_PASS, DB_NAME);
 	check($dbconn, !$dbconn->connect_error);
 
-	$pids = $_POST["cb"];
+	$pids = $_POST["pids"];
 
 	for ($i = 0; $i < count($pids); $i++) {
 		$pid = $dbconn->real_escape_string($pids[$i]);

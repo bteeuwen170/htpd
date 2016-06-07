@@ -29,7 +29,7 @@
 	<body>
 		<div class="wrapper">
 			<form method="post" action="userdel.php">
-				<div id="optionbar">
+				<div class="noselect" id="optionbar">
 					<div class="btn-group">
 						<button
 							type="button"
@@ -96,13 +96,12 @@
 					<table
 						class="table table-striped tablesorter"
 						id="userlist">
-						<thead>
+						<thead class="nopointer noselect">
 							<tr>
 								<th>
 									<input
 										type="checkbox"
-										id="sall"
-										onclick="select_all(this)">
+										id="sall">
 								</th>
 								<th>ID</th>
 								<th>Naam</th>
@@ -131,9 +130,8 @@
 											<input
 												type='checkbox'
 												class='cb'
-												name='cb[]'
-												value='" . $urow["uid"] . "'
-												onclick='row_set(this)'>
+												name='uids[]'
+												value='" . $urow["uid"] . "'>
 										</td>
 									");
 								echo("<td>" . $urow["uid"] . "</td>");
@@ -353,8 +351,9 @@
 									<div class="col-sm-8">
 										<input
 											type="file"
-											accept="text/csv"
-											name="upload" required>
+											id="importdupload"
+											name="upload"
+											accept="text/csv">
 									</div>
 								</div>
 								<div class="form-group row">
@@ -362,8 +361,9 @@
 										<input
 											type="submit"
 											class="btn btn-primary"
+											id="importdsubmit"
 											name="submit"
-											value="Importeren">
+											value="Importeren" disabled>
 									</div>
 								</div>
 							</form>

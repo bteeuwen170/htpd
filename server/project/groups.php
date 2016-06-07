@@ -30,7 +30,7 @@
 	<body>
 		<div class="wrapper">
 			<form method="post" action="groupdel.php">
-				<div id="optionbar">
+				<div class="noselect" id="optionbar">
 					<div class="btn-group">
 						<button
 							type="button"
@@ -70,13 +70,12 @@
 					<table
 						class="table table-striped tablesorter"
 						id="grouplist">
-						<thead>
+						<thead class="nopointer noselect">
 							<tr>
 								<th>
 									<input
 										type="checkbox"
-										id="sall"
-										onclick="select_all(this)">
+										id="sall">
 								</th>
 								<th>ID</th>
 								<th>Naam</th>
@@ -127,9 +126,8 @@
 											<input
 												type='checkbox'
 												class='cb'
-												name='cb[]'
-												value='" . $urow["uid"] . "'
-												onclick='row_set(this)'>
+												name='uids[]'
+												value='" . $urow["uid"] . "'>
 										</td>
 									");
 									echo("<td>" . $urow["uid"] . "</td>");
@@ -182,7 +180,7 @@
 								<table
 									class="table table-striped tablesorter"
 									id="userlist">
-									<thead>
+									<thead class="nopointer noselect">
 										<tr>
 											<th></th>
 											<th>ID</th>
@@ -215,10 +213,12 @@
 														. "'>");
 												echo("
 													<td>
-														<input type='checkbox'
-														class='cb' name='uids[]'
-														value='" . $urow["uid"]
-														. "'>
+														<input
+															type='checkbox'
+															class='cba'
+															name='uids[]'
+															value='" .
+															$urow["uid"] . "'>
 													</td>
 												");
 												echo("<td>" . $urow["uid"] .
@@ -240,7 +240,8 @@
 										<input
 											type="submit"
 											class="btn btn-primary"
-											value="Toevoegen">
+											id="adddsubmit"
+											value="Toevoegen" disabled>
 									</div>
 								</div>
 							</form>

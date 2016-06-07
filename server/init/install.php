@@ -32,7 +32,7 @@
 
 	echo("Administrator account gegevens worden opgehaald... ");
 	$astatus = "SELECT uid FROM " . DB_USERS . " WHERE gid=0";
-	if (!check($dbconn, ($dbconn->query($astatus))->num_rows, true, true)) {
+	if (check($dbconn, !($dbconn->query($astatus))->num_rows, true, true)) {
 		echo("Administrator account wordt aangemaakt... ");
 		$user = sprintf("INSERT INTO %s (gid, name, username, password)
 				VALUES(0, '%s', '%s', '%s')",
@@ -42,7 +42,7 @@
 
 	echo("Tabel met projectengegevens wordt opgehaald... ");
 	$tstatus = "SHOW TABLES LIKE '" . DB_PROJECTS ."'";
-	if (!check($dbconn, ($dbconn->query($tstatus))->num_rows, true, true)) {
+	if (check($dbconn, !($dbconn->query($tstatus))->num_rows, true, true)) {
 		echo(sprintf("Nieuwe tabel '%s.%s' wordt aangemaakt... ",
 				DB_NAME, DB_PROJECTS));
 		$table = sprintf("
@@ -59,7 +59,7 @@
 
 	echo("Tabel met project groepen wordt opgehaald... ");
 	$tstatus = "SHOW TABLES LIKE '" . DB_GROUPS ."'";
-	if (!check($dbconn, ($dbconn->query($tstatus))->num_rows, true, true)) {
+	if (check($dbconn, !($dbconn->query($tstatus))->num_rows, true, true)) {
 		echo(sprintf("Nieuwe tabel '%s.%s' wordt aangemaakt... ",
 				DB_NAME, DB_GROUPS));
 		$table = sprintf("
@@ -73,14 +73,14 @@
 	}
 
 	echo("Opslagmap wordt aangemaakt... ");
-	if (!check($dbconn, file_exists(URL_STORAGE), true, true)) {
+	if (check($dbconn, !file_exists(URL_STORAGE), true, true)) {
 		mkdir(URL_STORAGE, 0755);
 		check($dbconn, file_exists(URL_STORAGE));
 	}
 
 	echo("Gebruikersmap wordt aangemaakt... ");
 	$path = URL_USERS;
-	if (!check($dbconn, file_exists($path), true, true)) {
+	if (check($dbconn, !file_exists($path), true, true)) {
 		mkdir($path, 0755);
 		check($dbconn, file_exists($path));
 	}

@@ -8,7 +8,7 @@
 	check($dbconn, !$dbconn->connect_error);
 
 	$pid = $dbconn->real_escape_string($_POST["pid"]);
-	$uids = $_POST["cb"];
+	$uids = $_POST["uids"];
 
 	for ($i = 0; $i < count($uids); $i++) {
 		echo("Gebruiker wordt uit project verwijderd... ");
