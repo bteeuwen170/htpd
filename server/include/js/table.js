@@ -32,15 +32,27 @@ $(document).ready(function()
 });
 
 function row_updateui()
-{
+{ //XXX Yeah, this is just crap
 	if (rows.length > 1) {
-		document.getElementById("edit").disabled = true;
-		document.getElementById("delete").disabled = false;
+		try {
+			document.getElementById("edit").disabled = true;
+		} catch (e) {}
+		try {
+			document.getElementById("delete").disabled = false;
+		} catch (e) {}
 	} else if (rows.length > 0) {
-		document.getElementById("edit").disabled = false;
-		document.getElementById("delete").disabled = false;
+		try {
+			document.getElementById("edit").disabled = false;
+		} catch (e) {}
+		try {
+			document.getElementById("delete").disabled = false;
+		} catch (e) {}
 	} else {
-		document.getElementById("edit").disabled = true;
-		document.getElementById("delete").disabled = true;
+		try {
+			document.getElementById("edit").disabled = true;
+		} catch (e) {}
+		try {
+			document.getElementById("delete").disabled = true;
+		} catch (e) {}
 	}
 }

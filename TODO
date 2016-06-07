@@ -7,7 +7,7 @@
 5. Implement the project manager	Start: 2016-05-14	End: 2016-05-26
 6. Implement the group manager		Start: 2016-05-18	End: 2016-06-07
 7. Implement the feedback interface	Start: 2016-05-30	End: 2016-05-31
-8. Finishing touches				Start: 2016-06-05	End: 2016-00-00
+8. Finishing touches				Start: 2016-06-07	End: 2016-00-00
 9. Complete optional requirements	Start: 2016-00-00	End: 2016-00-00
 
 Functionality deadline: 2016-06-09
@@ -82,7 +82,7 @@ x Implement projectadd
 x Implement projectdel
 x Implement projectmod
 x Implement groupadd
-. Implement groupmod
+x Implement groupmod
 x Implement groupdel (̶p̶e̶r̶h̶a̶p̶s̶ ̶c̶o̶m̶b̶i̶n̶e̶ ̶w̶i̶t̶h̶ ̶g̶r̶o̶u̶p̶m̶o̶d̶)̶
 x Group in brackets, students in projects will look like this:
 		"student(group),student(group),..."
@@ -160,8 +160,9 @@ x Give admin way to reset user password
 x Option to "finish" teacher feedback as well
 - Finished header in config.php
 x Download option finished feedback teacher
-x Ask user if sure to leave page if editor is in focus
+. Ask user if sure to leave page if editor is in focus
 		(also if leaving using navbar)
+- Ask teacher/admin if sure to leave page if groups.php groups have been changed
 - Change all q*table to *rows (PHP)
 x Implement Curriculum Vitae
 x Use Content Security Policy

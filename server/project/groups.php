@@ -29,8 +29,20 @@
 	</head>
 	<body>
 		<div class="wrapper">
-			<form method="post" action="groupdel.php">
+			<form method="post" action="groupmod.php">
 				<div class="noselect" id="optionbar">
+					<div class="btn-group">
+						<button
+							type="submit"
+							class="btn btn-default btn-sm"
+							name="save"
+							title="Opslaan"
+							data-tooltip="true"
+							data-placement="bottom">
+							<span class="glyphicon glyphicon-floppy-disk">
+							</span>
+						</button>
+					</div>
 					<div class="btn-group">
 						<button
 							type="button"
@@ -45,15 +57,6 @@
 						</button>
 					</div>
 					<div class="btn-group">
-						<button
-							type="button"
-							class="btn btn-default btn-sm"
-							id="edit"
-							title="Wijzigen"
-							data-tooltip="true"
-							data-placement="bottom" disabled>
-							<span class="glyphicon glyphicon-pencil"></span>
-						</button>
 						<button
 							type="submit"
 							class="btn btn-default btn-sm"
@@ -137,17 +140,24 @@
 											$group == -1) {
 										echo(GIDS[1]);
 									} else {
-										echo("<select name='groups'>");
-										for ($i = -1;
-												$i < $groups; $i++) {
+										echo("
+											<input
+												type='hidden'
+												name='students[]'
+												value='" . $urow["uid"] . "'>
+										");
+										echo("<select name='groups[]'>");
+										for ($i = -1; $i < $groups; $i++) {
 											echo("
 												<option
 													value='" . (($i > $groups) ?
 													-1 : $i) . "'" .
-													(($i == $group) ?
+													(($i == $group ||
+													($i == -1 &&
+													$group >= $groups)) ?
 													"selected" : "") . ">" .
-													(($i == -1 || $i > $groups)
-													? "Geen" : $i + 1) .
+													(($i == -1) ?
+													"Geen" : $i + 1) .
 												"</option>
 											");
 										}

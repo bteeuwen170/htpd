@@ -3,20 +3,38 @@
 
 	verify_login(GID_TEACHER);
 
-	echo("Verbinding maken met SQL database... ");
-	$dbconn = new mysqli(DB_URL . ":" . DB_PORT, DB_USER, DB_PASS, DB_NAME);
-	check($dbconn, !$dbconn->connect_error);
+	if (isset($_POST["delete"])) {
+		echo("Verbinding maken met SQL database... ");
+		$dbconn = new mysqli(DB_URL . ":" . DB_PORT, DB_USER, DB_PASS, DB_NAME);
+		check($dbconn, !$dbconn->connect_error);
 
-	$pid = $dbconn->real_escape_string($_POST["pid"]);
-	$uids = $_POST["uids"];
-	$grps = $_POST["groups"];
+		$pid = $dbconn->real_escape_string($_POST["pid"]);
+		$uids = $_POST["uids"];
 
-	for ($i = 0; $i < count($uids); $i++) {
-		echo("Gebruiker wordt aan groep toegevoegd... ");
-		$user = sprintf("UPDATE %s SET grp=%s WHERE pid=%s, uid=%s",
-				DB_GROUPS, $dbconn->real_escape_string($grps[$i]),
-				$pid, $dbconn->real_escape_string($uids[$i]));
-		check($dbconn, $dbconn->query($user));
+		for ($i = 0; $i < count($uids); $i++) {
+			echo("Gebruiker wordt uit project verwijderd... ");
+			$user = sprintf("DELETE FROM %s WHERE pid=%s AND uid=%s",
+					DB_GROUPS, $pid, $dbconn->real_escape_string($uids[$i]));
+			check($dbconn, $dbconn->query($user));
+		}
+	} else if (isset($_POST["save"])) {
+		echo("Verbinding maken met SQL database... ");
+		$dbconn = new mysqli(DB_URL . ":" . DB_PORT, DB_USER, DB_PASS, DB_NAME);
+		check($dbconn, !$dbconn->connect_error);
+
+		$pid = $dbconn->real_escape_string($_POST["pid"]);
+		$uids = $_POST["students"];
+		$grps = $_POST["groups"];
+
+		for ($i = 0; $i < count($uids); $i++) {
+			echo("Gebruiker wordt aan groep toegevoegd... ");
+			$user = sprintf("UPDATE %s SET grp=%s WHERE pid=%s AND uid=%s",
+					DB_GROUPS, $dbconn->real_escape_string($grps[$i]),
+					$pid, $dbconn->real_escape_string($uids[$i]));
+			check($dbconn, $dbconn->query($user));
+		}
+	} else {
+		header("Location: /include/html/400.html");
 	}
 
 	$dbconn->close();

@@ -2,7 +2,7 @@
 	/* XXX These variables may only be modified before the inital setup! XXX */
 
 	/* Algemeen */
-	define("VERSION",		"0.1 beta");	/* Website version */
+	define("VERSION",		"1.0");			/* Website version */
 	define("URL_SITE",		"localhost");	/* Website URL */
 	define("SESS_ENCRY",	"sha512");		/* Sessie encryptie */
 	define("SESS_TIMEOUT",	180);			/* Sessie timout in dagen */
