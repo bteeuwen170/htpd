@@ -10,8 +10,6 @@
 
 	echo("Welkom bij HTPD versie " . VERSION . "!<br>");
 
-	echo("Current working directory: " . getcwd() . "<br><br>");
-
 	echo("Verbinding maken met SQL... ");
 	$dbconn = new mysqli(DB_URL . ":" . DB_PORT, DB_USER, DB_PASS);
 	check($dbconn, !$dbconn->connect_error);
@@ -52,23 +50,25 @@
 				<p>Voornaam: <input
 					type='text'
 					name='firstname'
+					maxlength='32'
 					autofocus required>
 				</p>
 				<p>Achternaam: <input
 					type='text'
 					name='lastname'
-					required>
+					maxlength='32' required>
 				</p>
 				<p>Gebruikersnaam: <input
 					type='text'
 					name='username'
-					required>
+					maxlength='64' required>
 				</p>
 				<p>Wachtwoord: <input
 					type='password'
 					name='password'
+					pattern='.{8,255}' <!-- Please support minlength -->
 					minlength='8'
-					required>
+					maxlength='255' required>
 				</p>
 				<p>Wachtwoord herhalen: <input
 					type='password'
@@ -78,9 +78,9 @@
 				<p><input
 					type='submit'
 					name='create'
-					value='Configuratie voltooien'>
+					value='Installeren'>
 				</p>
 			</form>
 		</p>
-	"); //TODO Set max values
+	");
 ?>

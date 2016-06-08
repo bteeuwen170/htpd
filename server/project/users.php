@@ -43,7 +43,7 @@
 		<div class="wrapper">
 			<div class="datacontainer">
 				<table class="table table-striped tablesorter" id="userlist">
-					<thead>
+					<thead class="nopointer noselect">
 						<tr>
 							<th>ID</th>
 							<th>Naam</th>
@@ -80,7 +80,7 @@
 								echo("</tr>");
 							}
 						}
-						
+
 						$grows->close();
 						$urows->close();
 						$dbconn->close();

@@ -257,6 +257,7 @@
 			?>
 
 			<iframe
+				class="noselect"
 				id="content"
 				name="content"
 				src="/user/home.php"

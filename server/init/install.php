@@ -11,8 +11,6 @@
 		die("De server is nog niet geconfigureerd!");
 	}
 
-	echo("Current working directory: " . getcwd() . "<br><br>");
-
 	echo("Verbinding maken met SQL database... ");
 	$dbconn = new mysqli(DB_URL . ":" . DB_PORT, DB_USER, DB_PASS, DB_NAME);
 	check($dbconn, !$dbconn->connect_error);
@@ -72,15 +70,17 @@
 		check($dbconn, $dbconn->query($table));
 	}
 
-	echo("Opslagmap wordt aangemaakt... ");
+	echo("Opslagmap aanwezigheid wordt gecontroleerd... ");
 	if (check($dbconn, !file_exists(URL_STORAGE), true, true)) {
+		echo("Opslagmap wordt aangemaakt... ");
 		mkdir(URL_STORAGE, 0755);
 		check($dbconn, file_exists(URL_STORAGE));
 	}
 
-	echo("Gebruikersmap wordt aangemaakt... ");
+	echo("Gebruikersmap aanwezigheid wordt gecontroleerd... ");
 	$path = URL_USERS;
 	if (check($dbconn, !file_exists($path), true, true)) {
+		echo("Gebruikersmap wordt aangemaakt... ");
 		mkdir($path, 0755);
 		check($dbconn, file_exists($path));
 	}
@@ -93,7 +93,7 @@
 	echo("
 		<p>
 			<form action='/login.php'>
-				<input type='submit' value='Oké'>
+				<input type='submit' value='Voltooien'>
 			</form>
 		</p>");
 ?>

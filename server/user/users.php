@@ -223,8 +223,9 @@
 											type="password"
 											name="password"
 											class="form-control"
+											pattern=".{8,255}"
 											minlength="8"
-											maxlength="32" required>
+											maxlength="255" required>
 									</div>
 								</div>
 								<div class="form-group row">
@@ -235,8 +236,7 @@
 										<input
 											type="password"
 											name="passwordrep"
-											class="form-control"
-											maxlength="255" required>
+											class="form-control" required>
 									</div>
 								</div>
 								<div class="form-group row">

@@ -173,6 +173,7 @@ x Use Content Security Policy
 - Refresh user manager after importing
 x Disable add button groups.php modal
 	x Same for importing in users.php
+- Inconsistency between using Javascript built-ins and JQuery.
 
 
  Questions
