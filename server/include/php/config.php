@@ -3,7 +3,7 @@
 
 	/* Algemeen */
 	define("VERSION",		"1.0");			/* Website version */
-	define("URL_SITE",		"192.168.1.20");	/* Website URL */
+	define("URL_SITE",		"localhost");	/* Website URL */
 	define("SESS_ENCRY",	"sha512");		/* Sessie encryptie */
 	define("SESS_TIMEOUT",	180);			/* Sessie timout in dagen */
 

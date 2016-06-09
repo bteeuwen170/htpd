@@ -176,6 +176,7 @@ x Disable add button groups.php modal
 - Remove from DB_GROUPS when userdel.php
 - Video's aren't converted by html-to-docx
 - Expand "Reflectie" to "Projectomschrijving", "Reflectie" and XXX TODO XXX
+- Option for teacher to undo finished portfolios student
 
 
  Questions
