@@ -22,13 +22,20 @@ $(document).ready(function()
 	if (admin)
 		sidebar_hide(admin);
 
-	$(".tshow").click(function()
+	$(".nbnav").click(function()
 	{
-		sidebar_show(admin);
+		var id = $(this).closest("li").attr("id");
+
+		if (id == "nbh")
+			sidebar_show(admin);
+		else
+			sidebar_hide(admin);
+
+		navbar_set(id);
 	});
 
-	$(".thide").click(function()
+	$(".sbnav").click(function()
 	{
-		sidebar_hide(admin);
+		sidebar_set($(this).closest("li").attr("id"));
 	});
 });

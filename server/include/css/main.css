@@ -55,43 +55,6 @@ input[type="checkbox"]
 	user-select:		none;
 }
 
-.container
-{
-	width:				100%;
-	padding-right:		32px;
-}
-
-.navbar.navbar-static-top
-{
-	margin-bottom:		0;
-	border-color:		#0A97BB;
-	background-color:	#0A98BC;
-	background-image:	url("/include/img/pattern-water.png");
-}
-
-.navbar.navbar-static-top .navbar-nav > .active > a,
-		.navbar.navbar-static-top .navbar-nav > li > a:hover
-{
-	color:				#F5F5F5;
-	background-color:	rgba(10, 151, 187, 0.6);
-}
-
-.navbar.navbar-static-top .navbar-header > a
-{
-	color:				#FFFFFF;
-}
-
-.navbar.navbar-static-top .navbar-nav > li > p,
-		.navbar.navbar-static-top .navbar-nav > li > a
-{
-	color:				#E4E4E4;
-}
-
-.navbar-brand
-{
-	padding:			5px;
-}
-
 .wrapper
 {
 	height:				100%;
@@ -99,10 +62,10 @@ input[type="checkbox"]
 
 #content
 {
-	top:				50px;
-	margin-left:		250px;
 	width:				calc(100% - 250px);
 	height:				calc(100% - 100px);
+	top:				50px;
+	margin-left:		250px;
 }
 
 .footer
@@ -112,6 +75,11 @@ input[type="checkbox"]
 	height:				50px;
 	bottom:				0;
 	background-color:	#7F7F7F;
+}
+
+.footer > .container
+{
+	margin:				0;
 }
 
 .footer > .container > .text-muted

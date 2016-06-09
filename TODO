@@ -1,17 +1,18 @@
- Stages
+ Planning
 ============
-1. Design a layout					Start: 2016-04-02	End: 2016-00-00
+1. Design a layout					Start: 2016-04-02	End: 2016-06-09
 2. Implement the login system		Start: 2016-03-28	End: 2016-04-10
 3. Implement the file editor		Start: 2016-04-22	End: 2016-05-13
 4. Implement the user manager		Start: 2016-04-29	End: 2016-05-28
 5. Implement the project manager	Start: 2016-05-14	End: 2016-05-26
-6. Implement the group manager		Start: 2016-05-18	End: 2016-06-07
+6. Implement the group manager		Start: 2016-05-18	End: 2016-06-08
 7. Implement the feedback interface	Start: 2016-05-30	End: 2016-05-31
-8. Finishing touches				Start: 2016-06-07	End: 2016-00-00
-9. Complete optional requirements	Start: 2016-00-00	End: 2016-00-00
+8. Finishing touches				Start: 2016-06-07	End: 2016-06-28
+9. Complete optional requirements	Start: 2016-06-09	End: 2016-00-00
 
 Functionality deadline: 2016-06-09
 Project deadline: 2016-06-28
+
 
  TODO
 ============
@@ -22,7 +23,7 @@ x Implement saving
 x Implement passwords
 x Implement both a save and a "finish(verzegelen?)" button
 x Implement finish button
-p Notify teacher about finished portfolio
+- Notify teacher about finished portfolio
 x Wrap text
 n All files in storage have to be owned by http, FIXME?
 n The server directory has to be owned by http, FIXME?
@@ -86,12 +87,12 @@ x Implement groupmod
 x Implement groupdel (̶p̶e̶r̶h̶a̶p̶s̶ ̶c̶o̶m̶b̶i̶n̶e̶ ̶w̶i̶t̶h̶ ̶g̶r̶o̶u̶p̶m̶o̶d̶)̶
 x Group in brackets, students in projects will look like this:
 		"student(group),student(group),..."
-p Prevent sorting from changing column width
+x Prevent sorting from changing column width
 n Add column for project owner UID, only this person can add, remove or change
 		users from a group
 	n Don't allow teachers to delete each other's projects
 x No delete button for teachers in usermanager
-p No edit button, change in table itself instead (like group in groupmanager)
+x No edit button, change in table itself instead (like group in groupmanager)
 - Add breadcrumb (Bootstrap)
 x Remove 'active' column from DB_PROJECTS
 x Use sprintf more often as it makes the code look cleaner.
@@ -129,19 +130,18 @@ x Remove remember me code
 x Redirect to index.php instead of /user/logout.php after verifylogin()
 - Get escape character for SOM csv format
 x USR_ to GID_ in config.php
-p Notification after importing (and a bunch of other things just to inform
-		the user)
-p Seperate config file
+- Notification after importing (and deleting or editing)
+x Seperate config file
 x Check if not removing admin
 x Simplify projectmanager due to shortage of time
 x Fix select all
-- Fix UI navigation buttons
+x Fix UI navigation buttons
 n Don't import student if already exists
 x Restrict access to /user/users.php for teachers
 x Ignore sidebar_*() if admin
 p Monospace font for php only pages
 x Set fontNames for summernote
-p Links copied from and external resource don't open in a new tab
+p Open copied links from an external resource in a new tab
 x Display viewer above editor on editor/teacher.php
 x Don't allow students in project multiple times
 x Don't create path if invalid editor
@@ -166,14 +166,16 @@ x Download option finished feedback teacher
 - Change all q*table to *rows (PHP)
 x Implement Curriculum Vitae
 x Use Content Security Policy
-- Implement CSP properly (without unsafe-inline)
-. Remove all inline onclicks (index.php first)
+- Implement CSP properly (without unsafe-*)
 - Generate a password properly (this is, using /dev/urandom) in /user/import.php
 ! Don't put password in export file if not added to db
 - Refresh user manager after importing
 x Disable add button groups.php modal
 	x Same for importing in users.php
 - Inconsistency between using Javascript built-ins and JQuery.
+- Remove from DB_GROUPS when userdel.php
+- Video's aren't converted by html-to-docx
+- Expand "Reflectie" to "Projectomschrijving", "Reflectie" and XXX TODO XXX
 
 
  Questions
@@ -211,6 +213,7 @@ n Ask client if multiple teachers be involved in one project
 x Ask client about teacher permissions in usermanager
 	> Done, answer = none
 - Ask team to fix this ugly *ss logo somehow (ENHANCE)
+- On what is the feedback given?
 
 
  Legend

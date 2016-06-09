@@ -19,92 +19,90 @@
 		<link rel="stylesheet" type="text/css"
 				href="/include/lib/bootstrap/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="/include/css/main.css">
+		<link rel="stylesheet" type="text/css" href="/include/css/navbar.css">
 		<link rel="stylesheet" type="text/css" href="/include/css/sidebar.css">
 
 		<script type="text/javascript"
 				src="/include/lib/jquery/jquery.js"></script>
 		<script type="text/javascript"
 				src="/include/lib/bootstrap/bootstrap.js"></script>
+		<script type="text/javascript" src="/include/js/navbar.js"></script>
 		<script type="text/javascript" src="/include/js/sidebar.js"></script>
 
 		<script type="text/javascript" src="/include/js/main.js"></script>
 		<script type="text/javascript" src="/include/js/index.js"></script>
 	</head>
 	<body>
-		<nav class="navbar navbar-default navbar-static-top noselect">
-			<div class="container">
-				<ul class="nav navbar-nav">
-					<li class="active">
-						<a
-							href="/user/home.php"
-							class="tshow"
-							target="content">
+		<nav class="nav">
+			<ul>
+				<li class="active" id="nbh">
+					<a
+						class="nbnav"
+						href="/user/home.php"
+						target="content">
 						<?php
-								if ($_COOKIE["gid"] == GID_ADMIN)
-									echo("Hoofdpagina");
-								else if ($_COOKIE["gid"] == GID_TEACHER)
-									echo("Feedback");
-								else
-									echo("Portfolio");
-							?>
-						</a>
-					</li>
-					<?php
-						if ($_COOKIE["gid"] < GID_STUDENT)
-							echo("
-								<li>
-									<a
-										href='/project/projects.php'
-										class='thide'
-										target='content'>
-										Projectbeheer
-									</a>
-								</li>
-							");
-						if ($_COOKIE["gid"] == GID_ADMIN)
-							echo("
-								<li>
-									<a
-										href='/user/users.php'
-										class='thide'
-										target='content'>
-										Gebruikersbeheer
-									</a>
-								</li>
-								<li>
-									<a
-										href='/editor/motd.php'
-										class='thide'
-										target='content'>
-										Welkomstbericht
-									</a>
-								</li>
-							");
+							if ($_COOKIE["gid"] == GID_ADMIN)
+								echo("Hoofdpagina");
+							else if ($_COOKIE["gid"] == GID_TEACHER)
+								echo("Feedback");
+							else
+								echo("Portfolio");
+						?>
+					</a>
+				</li>
+				<?php
+					if ($_COOKIE["gid"] < GID_STUDENT)
 						echo("
-							<li>
+							<li id='nbp'>
 								<a
-									href='/user/settings.php'
-									class='thide'
+									class='nbnav'
+									href='/project/projects.php'
 									target='content'>
-									Instellingen
+									Projectbeheer
 								</a>
 							</li>
 						");
-					?>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<p class="navbar-text nopointer">
-							<?php echo($_COOKIE["name"]) ?>
-						</p>
-					</li>
-					<li>
-						<a href="/user/logout.php">
-							Uitloggen
-						</a>
-					</li>
-				</ul>
-			</div>
+					if ($_COOKIE["gid"] == GID_ADMIN)
+						echo("
+							<li id='nbu'>
+								<a
+									class='nbnav'
+									href='/user/users.php'
+									target='content'>
+									Gebruikersbeheer
+								</a>
+							</li>
+							<li id='nbm'>
+								<a
+									class='nbnav'
+									href='/editor/motd.php'
+									target='content'>
+									Welkomstbericht
+								</a>
+							</li>
+						");
+					echo("
+						<li id='nbs'>
+							<a
+								class='nbnav'
+								href='/user/settings.php'
+								target='content'>
+								Instellingen
+							</a>
+						</li>
+					");
+				?>
+				<li class="right">
+					<a href="/user/logout.php">
+						Uitloggen
+					</a>
+				</li>
+				<li class="right">
+					<p class="navbar-text nopointer">
+						<?php echo($_COOKIE["name"]) ?>
+					</p>
+				</li>
+			</ul>
 		</nav>
 		<div class="wrapper">
 			<?php
@@ -154,9 +152,10 @@
 
 					echo("
 						<div class='sidebar noselect'>
-							<ol class='sidebar-list'>
-								<li>
+							<ol>
+								<li class='active' id='sbh'>
 									<a
+										class='sbnav'
 										href='/user/home.php'
 										target='content'>
 										Hoofdpagina
@@ -166,8 +165,9 @@
 
 					if ($_COOKIE["gid"] == GID_STUDENT)
 						echo("
-							<li>
+							<li id='sbr'>
 								<a
+									class='sbnav'
 									href='/editor/cv.php'
 									target='content'>
 									Curriculum Vitae
@@ -183,14 +183,13 @@
 									echo("
 										<li>
 											<label
-												class='sidebar-item-label'
 												for='y" . $i . "'>"
 												. $years[$i] . "
 											</label>
 											<input
 												type='checkbox'
 												id='y" . $i . "'/>
-											<ol class='sidebar-item0'>
+											<ol>
 									");
 									$c = true;
 								}
@@ -198,14 +197,13 @@
 								echo("
 									<li>
 										<label
-											class='sidebar-item-label'
 											for='p" . $j . "'>"
 											. $projects[$j][1] . "
 										</label>
 										<input
 											type='checkbox'
 											id='p" . $j . "'/>
-										<ol class='sidebar-item1'>
+										<ol>
 								");
 
    								if ($_COOKIE["gid"] == GID_STUDENT) {

@@ -2,7 +2,7 @@
 {
 	position:			fixed;
 	width:				250px;
-	top:				51px;
+	top:				50px;
 	bottom:				50px;
 	padding-bottom:		16px;
 	padding-top:		16px;
@@ -11,56 +11,49 @@
 	overflow:			auto;
 }
 
-.sidebar-list, .sidebar-item0, .sidebar-item1
+.sidebar ol
 {
 	padding-left:		0px;
-}
-
-.sidebar-list li
-{
-	text-indent:		20px;
 	line-height:		40px;
 	list-style:			none;
 }
 
-.sidebar-item0 li
+.sidebar > ol
+{
+	text-indent:		20px;
+}
+
+.sidebar > ol > li > ol
 {
 	text-indent:		40px;
 }
 
-.sidebar-item1 li
+.sidebar > ol > li > ol > li > ol
 {
 	text-indent:		80px;
 }
 
-li .sidebar-item-label + input[type=checkbox],
-	li .sidebar-item-label + input[type=checkbox] + ol > li
+.sidebar label + input[type=checkbox],
+	.sidebar label + input[type=checkbox] + ol > li
 {
 	display:			none;
 }
 
-li .sidebar-item-label + input[type=checkbox]:checked + ol > li
+.sidebar label + input[type=checkbox]:checked + ol > li
 {
 	display:			block;
 }
 
-li .sidebar-item-label, .sidebar-list li a
+.sidebar label, .sidebar li a
 {
 	display:			block;
 	text-decoration:	none;
 	color:				#999999;
 }
 
-.sidebar-item-sel, li .sidebar-item-label:hover, .sidebar-list li a:hover
+.sidebar li.active > a, .sidebar li label:hover, .sidebar li a:hover
 {
-	display:			block;
-	text-decoration:	none;
 	color:				#FFFFFF;
 	background-color:	#000000;
 	cursor:				pointer;
-}
-
-.sidebar-item-sel a
-{
-	color:				#FFFFFF !important;
 }

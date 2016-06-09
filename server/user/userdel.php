@@ -23,6 +23,10 @@
 		$user = sprintf("DELETE FROM %s WHERE uid=%s", DB_USERS, $uids[$i]);
 		check($dbconn, $dbconn->query($user));
 
+		echo("Gebruiker wordt uit projecten verwijderd... ");
+		$user = sprintf("DELETE FROM %s WHERE uid=%s", DB_GROUPS, $uids[$i]);
+		check($dbconn, $dbconn->query($user));
+
 		if ($row["gid"] == 2) {
 			echo("Persoonlijke bestanden worden verwijderd... ");
 			$path = URL_USERS . $uids[$i];

@@ -1,4 +1,4 @@
-var prev;
+var sbprev = "sbh";
 
 function sidebar_hide(admin)
 {
@@ -20,18 +20,15 @@ function sidebar_show(admin)
 		document.getElementsByClassName("sidebar")[0].style.display = "inline";
 		document.getElementById("content").removeAttribute("style");
 	}
+
+	sidebar_set("sbh");
 }
 
 function sidebar_set(id)
 {
-	if (prev != null)
-		document.getElementById(prev).classList.remove("sidebar-item-sel");
+	document.getElementById(sbprev).classList.remove("active");
 
-	if (id == 0) {
-		prev = null;
-	} else {
-		prev = id;
+	sbprev = id;
 
-		document.getElementById(id).classList.add("sidebar-item-sel");
-	}
+	document.getElementById(id).classList.add("active");
 }
