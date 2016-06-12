@@ -4,6 +4,22 @@
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
 	verify_login(GID_TEACHER);
+
+	$dbconn = new mysqli(DB_URL . ":" . DB_PORT, DB_USER, DB_PASS, DB_NAME);
+	check($dbconn, !$dbconn->connect_error, false);
+
+	$qprows = sprintf("SELECT name, year FROM %s WHERE pid=%s",
+			DB_PROJECTS, $_GET["pid"]);
+	$prows = $dbconn->query($qprows);
+	check($dbconn, $prows, false);
+	$prow = $prows->fetch_array();
+
+	$path = get_years()[$prow["year"]] . " / 
+		<a onclick='parent.navbar_set(\"nbp\"); parent.sidebar_hide(0);'
+			href='/project/groups.php?pid=" . $_GET["pid"] . "'>" .
+			$prow["name"] . "
+		</a> / 
+	";
 ?>
 
 <html>
@@ -29,18 +45,33 @@
 			{
 				$("#userlist").tablesorter();
 
-				$(".pr").click(function()
+				$(".pr").click(function() //More crappy code
 				{
 					location.href =
 						"/editor/teacher.php?pid=<?php echo($_GET["pid"]); ?>" +
 								"&uid=" +
-								$(this).closest("tr").attr("id").slice(1);
+								$(this).closest("tr").attr("id").slice(1) +
+								"&path=" + <?php echo(json_encode($path .
+								"<a href='/project/users.php?pid=" .
+								$_GET["pid"] . "%26grp=" . $_GET["grp"] .
+								"'>Groep " . ($_GET["grp"] + 1) .
+								"</a> / <div class='current'>")); ?> +
+								$(this).closest("tr").attr("data-name") +
+								"</div>";
 				});
 			});
 		</script>
 	</head>
 	<body>
 		<div class="wrapper">
+			<div class="optionbar">
+				<div class="path">
+					<?php
+						echo($path . "<div class='current'>Groep " .
+								($_GET["grp"] + 1) . "</div>");
+					?>
+				</div>
+			</div>
 			<div class="datacontainer">
 				<table class="table table-striped tablesorter" id="userlist">
 					<thead class="nopointer noselect">
@@ -51,10 +82,6 @@
 					</thead>
 					<?php
 						$users = array();
-
-						$dbconn = new mysqli(DB_URL . ":" . DB_PORT,
-						DB_USER, DB_PASS, DB_NAME);
-						check($dbconn, !$dbconn->connect_error, false);
 
 						$qurows = sprintf("SELECT uid, name FROM %s", DB_USERS);
 						$urows = $dbconn->query($qurows);
@@ -72,7 +99,7 @@
 
 						while ($urow = $urows->fetch_array()) {
 							if (in_array($urow["uid"], $users)) {
-								echo("<tr id='u" . $urow["uid"] . "'>");
+								echo("<tr id='u" . $urow["uid"] . "' data-name='" . $urow["name"] . "'>");
 								echo("<td class='pr'>" .
 										$urow["uid"] . "</td>");
 								echo("<td class='pr'>" .

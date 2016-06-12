@@ -8,7 +8,7 @@
 	if (isset($_POST["pid"]) && isset($_POST["file"])) {
 		if (!is_numeric($_POST["pid"]) || !is_numeric($_POST["file"])) {
 			header("HTTP/1.0 403 Forbidden");
-			header("Location: /include/html/403.html");
+			header("Location: /403.html");
 		}
 
 		//TODO Check if doesn't contain project: finished header XXX XXX XXX
@@ -23,7 +23,7 @@
 	} else {
 		if (!is_numeric($_GET["pid"]) || !is_numeric($_GET["file"])) {
 			header("HTTP/1.0 403 Forbidden");
-			header("Location: /include/html/403.html");
+			header("Location: /403.html");
 		}
 
 		$path = URL_USERS . $_COOKIE["uid"] . "/" . $_GET["pid"] . "/" .
@@ -62,14 +62,16 @@
 					trigger: "hover"
 				});
 
+				init(1, "Name", "path / ");
+
 				var path = <?php echo("\"" . $path . "\""); ?>;
-				if (<?php echo($_GET["file"]); ?> == 0) {
+				if (<?php echo($_GET["file"]); ?> < 2) {
 					if ($("#editor").html()
-							.indexOf("<!-- project: finished -->") == -1)
-						edit(1);
-				} else if (<?php echo($_GET["file"]); ?> == 1) {
+							.indexOf(HEADER_FIN) == -1)
+						edit();
+				} else if (<?php echo($_GET["file"]); ?> == 2) {
 					if ($("#editor").html()
-							.indexOf("<!-- project: finished -->") == -1) {
+							.indexOf(HEADER_FIN) == -1) {
 						document.getElementById("editor").innerHTML =
 							"Feedback is nog niet beschikbaar.";
 						document.getElementById("optionbar").style.display =
@@ -83,7 +85,7 @@
 				$("#editor").summernote("destroy");
 
 				if (!reopen)
-					$("#editor").prepend("<!-- project: finished -->");
+					$("#editor").prepend(HEADER_FIN);
 
 				var data = new FormData();
 				data.append("pid",
@@ -97,7 +99,8 @@
 				req.open("post", "student.php", true);
 				req.send(data);
 
-				if (reopen) edit(1);
+				if (reopen)
+					edit();
 			}
 		</script>
 	</head>
@@ -110,7 +113,7 @@
 						title="Downloaden"
 						data-tooltip="true"
 						data-placement="bottom"
-						onclick="download(-1)">
+						onclick="download()">
 						<span class="glyphicon glyphicon-download-alt"></span>
 					</button>
 				</div>

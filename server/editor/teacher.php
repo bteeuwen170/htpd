@@ -12,8 +12,9 @@
 		fclose($file);
 	} else {
 		$path = URL_USERS . $_GET["uid"] . "/" . $_GET["pid"] . "/";
-		$epath = $path . PRJ_FILES[1];
-		$vpath = $path . PRJ_FILES[0];
+		$v0path = $path . PRJ_FILES[0];
+		$v1path = $path . PRJ_FILES[1];
+		$epath = $path . PRJ_FILES[2];
 	}
 ?>
 
@@ -48,9 +49,11 @@
 					trigger: "hover"
 				});
 
+				init(1);
+
 				if ($("#editor").html()
-						.indexOf("<!-- project: finished -->") == -1) {
-					edit(1, true); //TODO Allow override
+						.indexOf(HEADER_FIN) == -1) {
+					edit();
 					document.getElementById("optionbar").style.display =
 					"none";
 				}
@@ -61,7 +64,7 @@
 				$("#editor").summernote("destroy");
 
 				if (!reopen)
-					$("#editor").prepend("<!-- project: finished -->");
+					$("#editor").prepend(HEADER_FIN);
 
 				var data = new FormData();
 				data.append("path",
@@ -72,92 +75,155 @@
 				req.open("post", "teacher.php", true);
 				req.send(data);
 
-				if (reopen) edit(1, true);
+				if (reopen)
+					edit();
 			}
 		</script>
 	</head>
 	<body>
 		<div class="wrapper">
 			<?php
-				$avail = true;
+				$avail = 0;
 
-				if (file_exists($vpath)) {
-					$vfile = fopen($vpath, "r") or
+				echo("
+					<div class='path'>" .
+						$_GET["path"] .
+					"</div>
+				");
+
+				echo("<h4 class='titlealt'>" . PRJ_NAMES[0]);
+				if (file_exists($v0path)) {
+					$v0file = fopen($v0path, "r") or
 						die("Er is een fout opgetreden!");
-					if (filesize($vpath) > 0) {
+					if (filesize($v0path) > 0) {
+						$v0contents = fread($v0file, filesize($v0path));
+						if (strpos($v0contents, HEADER_FIN) === false)
+							echo(" - Niet ingeleverd");
 						echo("
-							<div id='optionbaralt'>
+							</h4>
+							<div class='optionbaralt'>
 								<div class='btn-group'>
 									<button
 										class='btn btn-default btn-sm'
 										title='Downloaden'
 										data-tooltip='true'
 										data-placement='bottom'
-										onclick=\"download(-1, 'viewer')\">
+										onclick=\"download('viewer0')\">
 										<span class='glyphicon
 												glyphicon-download-alt'>
 										</span>
 									</button>
 								</div>
 							</div>
-							<div id='viewer'>
+							<div class='viewer' id='viewer0'>
 						");
-						echo(fread($vfile, filesize($vpath)));
+						echo($v0contents);
+						echo("</div>");
+					} else {
+						$avail = 1;
+					}
 
+					fclose($v0file);
+				} else {
+					$avail = 1;
+				}
+
+				if ($avail == 1) {
+					echo("
+						</h4>
+						<div class='viewer' id='viewer0'>
+							" . PRJ_NAMES[0] . " is nog niet beschikbaar.
+						</div>
+					");
+				}
+
+				echo("<h4>" . PRJ_NAMES[1]);
+				if (file_exists($v1path)) {
+					$v1file = fopen($v1path, "r") or
+						die("Er is een fout opgetreden!");
+					if (filesize($v1path) > 0) {
+						$v1contents = fread($v1file, filesize($v1path));
+						if (strpos($v1contents, HEADER_FIN) === false)
+							echo(" - Niet ingeleverd");
 						echo("
-							</div>
-							<div id='optionbar'>
+							</h4>
+							<div class='optionbaralt'>
 								<div class='btn-group'>
-									<button
-										class='btn btn-default btn-sm'
-										title='Bewerken'
-										data-tooltip='true'
-										data-placement='bottom'
-										onclick=\"edit(1, true)\">
-										<span class='glyphicon
-												glyphicon-pencil'></span>
-									</button>
 									<button
 										class='btn btn-default btn-sm'
 										title='Downloaden'
 										data-tooltip='true'
 										data-placement='bottom'
-										onclick=\"download(-1, 'editor')\">
+										onclick=\"download('viewer1')\">
 										<span class='glyphicon
-												glyphicon-download-alt'></span>
+												glyphicon-download-alt'>
+										</span>
 									</button>
 								</div>
 							</div>
-							<div id='editor'>
+							<div class='viewer' id='viewer1'>
 						");
-						if (file_exists($epath)) {
-							$efile = fopen($epath, "r") or
-								die("Er is een fout opgetreden!");
-							if (filesize($epath) > 0)
-								echo(fread($efile, filesize($epath)));
-							else
-								echo("<br>");
-							fclose($efile);
-						} else {
-							touch($epath);
-							echo("<br>");
-						}
+						echo($v1contents);
 						echo("</div>");
 					} else {
-						$avail = false;
+						$avail = 2;
 					}
 
-					fclose($vfile);
+					fclose($v1file);
 				} else {
-					$avail = false;
+					$avail = 2;
 				}
 
-				if (!$avail)
+				if ($avail == 2) {
 					echo("
-						<div id='viewer'>
-							Reflectie is nog niet beschikbaar.
+						</h4>
+						<div class='viewer' id='viewer1'>
+							" . PRJ_NAMES[1] . " is nog niet beschikbaar.
 						</div>
-					"); //TODO Allow override
+					");
+				}
+
+				if (!$avail) {
+					echo("
+						<h4>Feedback</h4>
+						<div id='optionbar'>
+							<div class='btn-group'>
+								<button
+									class='btn btn-default btn-sm'
+									title='Bewerken'
+									data-tooltip='true'
+									data-placement='bottom'
+									onclick=\"edit()\">
+									<span class='glyphicon
+											glyphicon-pencil'></span>
+								</button>
+								<button
+									class='btn btn-default btn-sm'
+									title='Downloaden'
+									data-tooltip='true'
+									data-placement='bottom'
+									onclick=\"download('editor')\">
+									<span class='glyphicon
+											glyphicon-download-alt'></span>
+								</button>
+							</div>
+						</div>
+						<div id='editor'>
+					");
+					if (file_exists($epath)) {
+						$efile = fopen($epath, "r") or
+							die("Er is een fout opgetreden!");
+						if (filesize($epath) > 0)
+							echo(fread($efile, filesize($epath)));
+						else
+							echo("<br>");
+						fclose($efile);
+					} else {
+						touch($epath);
+						echo("<br>");
+					}
+					echo("</div>");
+				}
 			?>
 		</div>
 	</body>

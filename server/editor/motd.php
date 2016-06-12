@@ -41,7 +41,9 @@
 		<script type="text/javascript">
 			$(document).ready(function() 
 			{
-				edit(0);
+				init(0, "Welkomstbericht");
+
+				edit();
 			});
 
 			function save()
@@ -56,7 +58,7 @@
 				req.open("post", "motd.php", true);
 				req.send(data);
 
-				edit(0);
+				edit();
 			}
 		</script>
 	</head>

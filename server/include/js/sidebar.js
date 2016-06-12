@@ -19,9 +19,9 @@ function sidebar_show(admin)
 
 		document.getElementsByClassName("sidebar")[0].style.display = "inline";
 		document.getElementById("content").removeAttribute("style");
-	}
 
-	sidebar_set("sbh");
+		sidebar_set("sbh");
+	}
 }
 
 function sidebar_set(id)

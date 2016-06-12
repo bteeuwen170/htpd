@@ -1,4 +1,15 @@
+var m = -1;
+var c = "";
+var p = "";
+
 var dirty = false;
+
+function init(ms, cs, ps)
+{
+	m = ms;
+	c = cs || "";
+	p = ps || "";
+}
 
 function unload_msg(e)
 {
@@ -14,6 +25,21 @@ window.top.onbeforeunload = unload_msg;
 function dirty_set()
 {
 	dirty = true; alert("asdf");
+}
+
+function name_set()
+{
+	var path = document.createElement("div");
+	path.className = "path";
+	path.innerHTML = p;
+
+	var current = document.createElement("div");
+	current.className = "current";
+	current.innerHTML = c;
+
+	path.appendChild(current);
+
+	document.getElementsByClassName("note-toolbar")[0].appendChild(path);
 }
 
 var button_save = function(context)
@@ -44,24 +70,7 @@ var button_download = function(context)
 		click: function()
 		{
 			$(this).tooltip("hide");
-			download(0);
-		}
-	});
-
-	return button.render();
-}
-
-var button_download_students = function(context)
-{
-	var ui = $.summernote.ui;
-
-	var button = ui.button({
-		contents: "<span class='glyphicon glyphicon-download-alt'></span>",
-		tooltip: "Downloaden",
-		click: function()
-		{
-			$(this).tooltip("hide");
-			download(1);
+			download();
 		}
 	});
 
@@ -89,29 +98,27 @@ var button_finish = function(context)
 	return button.render();
 }
 
-function download(mode, loc)
+function download(l)
 {
-	var data = loc || "editor";
+	var data = l || "editor";
 
-	if (!loc) $("#" + data).summernote("destroy");
+	if (!l) $("#" + data).summernote("destroy");
 
 	var converted =
 		htmlDocx.asBlob(document.getElementById(data).innerHTML);
 	saveAs(converted, "document.docx"); //FIXME a better name (that's a pun)
 
-	if (!loc && mode != -1)
-		edit(mode);
+	if (!l && m != -1)
+		edit();
 }
 
-function edit(mode, viewer)
+function edit()
 {
-	var viewer = viewer || false;
-
 	var optionbar = document.getElementById("optionbar");
 	if (optionbar != null)
 		optionbar.style.display = "none";
 
-	if (mode) { //FIXME What a mess
+	if (m) { //FIXME What a mess
 		$("#editor").summernote({
 			lang: "nl-NL",
 			disableLinkTarget: true,
@@ -135,7 +142,7 @@ function edit(mode, viewer)
 			],
 			buttons: {
 				save: button_save,
-				download: button_download_students,
+				download: button_download,
 				finish: button_finish
 			},
 			callbacks: {
@@ -172,8 +179,9 @@ function edit(mode, viewer)
 				onChange: function(e) { dirty = true; }
 			}
 		});
-
 	}
+
+	name_set();
 }
 
 (function($) {

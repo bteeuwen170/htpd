@@ -4,6 +4,16 @@
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
 	verify_login(GID_TEACHER);
+
+	$dbconn = new mysqli(DB_URL . ":" . DB_PORT,
+	DB_USER, DB_PASS, DB_NAME);
+	check($dbconn, !$dbconn->connect_error, false);
+
+	$qprows = sprintf("SELECT name, groups FROM %s
+			WHERE pid=%s", DB_PROJECTS, $_GET["pid"]);
+	$prows = $dbconn->query($qprows);
+	check($dbconn, $prows, false);
+	$prow = $prows->fetch_array();
 ?>
 
 <html>
@@ -68,6 +78,13 @@
 							<span class="glyphicon glyphicon-trash"></span>
 						</button>
 					</div>
+					<div class="path">
+						<a href='/project/projects.php'>Projectbeheer</a> /
+					<?php
+						echo(
+							"<div class='current'>" . $prow["name"] . "</div>");
+					?>
+					</div>
 				</div>
 				<div class="datacontainer">
 					<table
@@ -95,15 +112,6 @@
 
 							$users = array();
 
-							$dbconn = new mysqli(DB_URL . ":" . DB_PORT,
-							DB_USER, DB_PASS, DB_NAME);
-							check($dbconn, !$dbconn->connect_error, false);
-
-							$qprows = sprintf("SELECT groups FROM %s
-									WHERE pid=%s", DB_PROJECTS, $_GET["pid"]);
-							$prows = $dbconn->query($qprows);
-							check($dbconn, $prows, false);
-							$prow = $prows->fetch_array();
 							$groups = $prow["groups"];
 
 							$qgrows = sprintf("SELECT pid, grp, uid FROM %s

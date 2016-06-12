@@ -42,6 +42,11 @@
 							</span>
 						</button>
 					</div>
+					<div class="path">
+						<div class="current">
+							Instellingen
+						</div>
+					</div>
 				</div>
 				<div class="datacontainer">
 					<?php

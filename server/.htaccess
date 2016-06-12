@@ -1,4 +1,4 @@
 #Header set Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval'"
 #Header set X-Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval'"
-ErrorDocument 403 /include/html/403.html
-ErrorDocument 404 /include/html/404.html
+ErrorDocument 403 /403.html
+ErrorDocument 404 /404.html

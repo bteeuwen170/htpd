@@ -3,7 +3,7 @@
 
 	/* Algemeen */
 	define("VERSION",		"1.0");			/* Website version */
-	define("URL_SITE",		"localhost");	/* Website URL */
+	define("URL_SITE",		"192.168.1.20");	/* Website URL */
 	define("SESS_ENCRY",	"sha512");		/* Sessie encryptie */
 	define("SESS_TIMEOUT",	180);			/* Sessie timout in dagen */
 
@@ -32,13 +32,26 @@
 											/* Pad naar leerlingen map */
 	define("MOTD_NAME",		"motd.html");	/* Naam motd bestand */
 	define("CV_NAME",		"cv.html");		/* Naam CV bestand */
-	define("PRJ_NAMES",		array("Reflectie", "Feedback"));
+	define("PRJ_NAMES",		array("Productbeschrijving",
+								  "Procesbeschrijving",
+								  "Feedback"));
 											/* Namen van project bestanden */
-	define("PRJ_FILES",		array("reflectie.html", "feedback.html"));
-											/* Bestandnamen van project
-											 * bestanden */
+	define("PRJ_FILES",		array("productbeschrijving.html",
+								  "procesbeschrijving.html",
+								  "feedback.html"));
+											/*
+											 * Bestandnamen van project
+											 * bestanden
+											 */
 
-	/* CSV parsers */
+	/* Document parser */
+	define("HEADER_FIN",	"<!-- project: finished -->"); //TODO Change
+											/*
+											 * Header om ingeleverd document aan
+											 * te duiden
+											 */
+
+	/* CSV parser */
 	define("COL_USERNAME",	0);				/* Leerlingnummer (export en SOM) */
 	define("COLN_USERNAME",	"Leerlingnummer");
 	define("COL_NAME",		1);				/* Naam (export en SOM) */

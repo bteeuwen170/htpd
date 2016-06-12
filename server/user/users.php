@@ -91,6 +91,11 @@
 							<span class="glyphicon glyphicon-export"></span>
 						</button>-->
 					</div>
+					<div class="path">
+						<div class="current">
+							Gebruikersbeheer
+						</div>
+					</div>
 				</div>
 				<div class="datacontainer">
 					<table

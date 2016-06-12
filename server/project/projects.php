@@ -67,6 +67,9 @@
 							<span class="glyphicon glyphicon-trash"></span>
 						</button>
 					</div>
+					<div class="path">
+						<div class="current">Projectbeheer</div>
+					</div>
 				</div>
 				<div class="datacontainer">
 					<table
@@ -124,8 +127,8 @@
 							$dbconn->close();
 						?>
 					</table>
-				</form>
-			</div>
+				</div>
+			</form>
 			<div class="modal" id="created" role="dialog">
 				<div class="modal-dialog">
 					<div class="modal-content">

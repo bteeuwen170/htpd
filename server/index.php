@@ -33,7 +33,7 @@
 		<script type="text/javascript" src="/include/js/index.js"></script>
 	</head>
 	<body>
-		<nav class="nav">
+		<nav class="nav noselect">
 			<ul>
 				<li class="active" id="nbh">
 					<a

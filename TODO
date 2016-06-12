@@ -93,7 +93,7 @@ n Add column for project owner UID, only this person can add, remove or change
 	n Don't allow teachers to delete each other's projects
 x No delete button for teachers in usermanager
 x No edit button, change in table itself instead (like group in groupmanager)
-- Add breadcrumb (Bootstrap)
+x Add breadcrumb (Bootstrap)
 x Remove 'active' column from DB_PROJECTS
 x Use sprintf more often as it makes the code look cleaner.
 n Rename students to users in DB_PROJECTS
@@ -120,7 +120,7 @@ x Remove group entries using projectdel.php as well
 x Don't allow teacher to change him/herself in usermanager
 x Fix groups.php
 - Check in php for "project: finished" header (/editor/students.php)
-- Check for "project: finished" header (/editor/teacher.php) (viewer)
+x Check for "project: finished" header (/editor/teacher.php) (viewer)
 - Force seeing feedback reflectie even if not finished (teacher.php)
 x Hide download button if feedback is not available yet for student
 x Links should open in new tab from viewer
@@ -152,13 +152,13 @@ x Implement /user/settings.php
 x Get permissions teacher right
 p Show user status is sidebar (teacher) (feedback has been given, et al.)
 - Fix modal layout in /project/groups.php (overflow-y)
-! Tags inbalanced in /project/projects.php (really?)
+x Tags inbalanced in /project/projects.php (really?)
 - Implement selecting a selection using SHIFT in /include/js/table.js
 - Check if overflow works as intended on all pages using content.css
 x Give admin way to reset user password
 - Refresh sidebar teacher after projectmanager has been used
 x Option to "finish" teacher feedback as well
-- Finished header in config.php
+x Finished header in config.php
 x Download option finished feedback teacher
 . Ask user if sure to leave page if editor is in focus
 		(also if leaving using navbar)
@@ -177,6 +177,9 @@ x Disable add button groups.php modal
 - Video's aren't converted by html-to-docx
 - Expand "Reflectie" to "Projectomschrijving", "Reflectie" and XXX TODO XXX
 - Option for teacher to undo finished portfolios student
+x Automatically add yourself to new project
+- Exclude already included users from groups.php add modal
+- Way for teacher to review CV
 
 
  Questions
@@ -214,7 +217,6 @@ n Ask client if multiple teachers be involved in one project
 x Ask client about teacher permissions in usermanager
 	> Done, answer = none
 - Ask team to fix this ugly *ss logo somehow (ENHANCE)
-- On what is the feedback given?
 
 
  Legend
