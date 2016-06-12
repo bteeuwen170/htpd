@@ -180,6 +180,7 @@ x Disable add button groups.php modal
 x Automatically add yourself to new project
 - Exclude already included users from groups.php add modal
 - Way for teacher to review CV
+- Don't add HEADER_FIN twice.
 
 
  Questions

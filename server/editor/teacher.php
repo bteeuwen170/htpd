@@ -52,7 +52,7 @@
 				init(1);
 
 				if ($("#editor").html()
-						.indexOf(HEADER_FIN) == -1) {
+					.indexOf("<?php echo(HEADER_FIN); ?>") == -1) {
 					edit();
 					document.getElementById("optionbar").style.display =
 					"none";
@@ -64,7 +64,7 @@
 				$("#editor").summernote("destroy");
 
 				if (!reopen)
-					$("#editor").prepend(HEADER_FIN);
+					$("#editor").prepend("<?php echo(HEADER_FIN); ?>");
 
 				var data = new FormData();
 				data.append("path",
