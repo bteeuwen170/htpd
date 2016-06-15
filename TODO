@@ -67,7 +67,7 @@ p Implement exporting to csv
 . Don't use inline JS anymore
 x Make year sorting work in projectmanager
 n Rename "Portfolio" to what the client had wanted in the first place
-- Option to download entire portfolio at once (including CV)
+. Option to download entire portfolio at once (including CV)
 x install.php > init.php
 x admin.php > install.php
 x Use consts as GID instead of plain ints (in some cases)
@@ -166,21 +166,23 @@ x Download option finished feedback teacher
 - Change all q*table to *rows (PHP)
 x Implement Curriculum Vitae
 x Use Content Security Policy
-- Implement CSP properly (without unsafe-*)
+p Implement CSP properly (without unsafe-*)
 - Generate a password properly (this is, using /dev/urandom) in /user/import.php
 ! Don't put password in export file if not added to db
 - Refresh user manager after importing
 x Disable add button groups.php modal
 	x Same for importing in users.php
 - Inconsistency between using Javascript built-ins and JQuery.
-- Remove from DB_GROUPS when userdel.php
-- Video's aren't converted by html-to-docx
-- Expand "Reflectie" to "Projectomschrijving", "Reflectie" and XXX TODO XXX
+x Remove from DB_GROUPS when userdel.php
+p Video's aren't converted by html-to-docx
+x Expand "Reflectie" to "Projectomschrijving", "Procesomschrijving"
 - Option for teacher to undo finished portfolios student
 x Automatically add yourself to new project
 - Exclude already included users from groups.php add modal
 - Way for teacher to review CV
-- Don't add HEADER_FIN twice.
+- Don't add HEADER_FIN twice. (?)
+- Offer multiple options to download portfolio
+- Path student editor not working
 
 
  Questions

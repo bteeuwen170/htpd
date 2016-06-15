@@ -26,16 +26,24 @@
 						if (file_exists($path)) {
 							$motd = fopen($path, "r") or
 								die("Er is een fout opgetreden!");
-							if (filesize($path) > 0) {
-								echo("<td><div class='panel panel-default'>");
-								echo("<div class='panel-heading'>");
-								echo("<h3 class='panel-title'>Welkom</h3>");
-								echo("</div><div class='panel-body'>");
-								echo(fread($motd, filesize($path)));
-								echo("</div></div></td>"); //TODO One echo
-							}
-							fclose($motd);
+							if (filesize($path) > 0)
+								echo("
+									<td>
+										<div class='panel panel-default'>
+											<div class='panel-heading'>
+												<h3 class='panel-title'>
+													Welkom
+												</h3>
+											</div>
+											<div class='panel-body'>" .
+												fread($motd, filesize($path)) .
+											"</div>
+										</div>
+									</td>
+								");
 						}
+
+						fclose($motd);
 					?>
 					<!--<td>
 						<div class="panel panel-default">
@@ -47,6 +55,27 @@
 							</div>
 						</div>
 					</td>-->
+				</tr>
+				<tr>
+					<?php
+						if ($_COOKIE["gid"] == GID_STUDENT)
+							echo("
+								<td>
+									<div class='panel panel-default'>
+										<div class='panel-heading'>
+											<h3 class='panel-title'>
+												Portfolio
+											</h3>
+										</div>
+										<div class='panel-body'>
+											<a href='portfolio.php'>
+												Portfolio Downloaden
+											</a>
+										</div>
+									</div>
+								</td>
+							");
+					?>
 				</tr>
 			</table>
 		</div>

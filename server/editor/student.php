@@ -67,11 +67,11 @@
 				var path = <?php echo("\"" . $path . "\""); ?>;
 				if (<?php echo($_GET["file"]); ?> < 2) {
 					if ($("#editor").html()
-							.indexOf(HEADER_FIN) == -1)
+							.indexOf("<?php echo(HEADER_FIN); ?>") == -1)
 						edit();
 				} else if (<?php echo($_GET["file"]); ?> == 2) {
 					if ($("#editor").html()
-							.indexOf(HEADER_FIN) == -1) {
+							.indexOf("<?php echo(HEADER_FIN); ?>") == -1) {
 						document.getElementById("editor").innerHTML =
 							"Feedback is nog niet beschikbaar.";
 						document.getElementById("optionbar").style.display =
@@ -85,7 +85,7 @@
 				$("#editor").summernote("destroy");
 
 				if (!reopen)
-					$("#editor").prepend(HEADER_FIN);
+					$("#editor").prepend("<?php echo(HEADER_FIN); ?>");
 
 				var data = new FormData();
 				data.append("pid",

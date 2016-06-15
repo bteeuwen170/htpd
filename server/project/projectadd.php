@@ -16,17 +16,19 @@
 		VALUES('%s', %s, %s)", DB_PROJECTS, $name, $groups, $year);
 	check($dbconn, $dbconn->query($project));
 
-	echo("PID wordt opgehaald... ");
-	$qprow = sprintf("SELECT pid FROM %s ORDER BY pid DESC LIMIT 1",
-			DB_PROJECTS);
-	$prow = $dbconn->query($qprow);
-	check($dbconn, $prow);
-	$pid = ($prow->fetch_array())["pid"];
+	if ($_COOKIE["gid"] != GID_ADMIN) {
+		echo("PID wordt opgehaald... ");
+		$qprow = sprintf("SELECT pid FROM %s ORDER BY pid DESC LIMIT 1",
+				DB_PROJECTS);
+		$prow = $dbconn->query($qprow);
+		check($dbconn, $prow);
+		$pid = ($prow->fetch_array())["pid"];
 
-	echo("Gebruiker wordt aan project toegevoegd... ");
-	$user = sprintf("INSERT INTO %s (pid, grp, uid) VALUES(%s, -1, %s)",
-		DB_GROUPS, $pid, $_COOKIE["uid"]);
-	check($dbconn, $dbconn->query($user));
+		echo("Gebruiker wordt aan project toegevoegd... ");
+		$user = sprintf("INSERT INTO %s (pid, grp, uid) VALUES(%s, -1, %s)",
+			DB_GROUPS, $pid, $_COOKIE["uid"]);
+		check($dbconn, $dbconn->query($user));
+	}
 
 	$dbconn->close();
 

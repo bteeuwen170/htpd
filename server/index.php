@@ -188,6 +188,7 @@
 											</label>
 											<input
 												type='checkbox'
+												class='sbcb'
 												id='y" . $i . "'/>
 											<ol>
 									");
@@ -202,6 +203,7 @@
 										</label>
 										<input
 											type='checkbox'
+											class='sbcb'
 											id='p" . $j . "'/>
 										<ol>
 								");

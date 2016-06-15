@@ -6,6 +6,8 @@ function sidebar_hide(admin)
 		document.getElementById("content").src = "about:blank";
 
 		document.getElementsByClassName("sidebar")[0].style.display = "none";
+
+		$(".sbcb").prop("checked", false); //FIXME I'm not sure why...
 	}
 
 	document.getElementById("content").style.marginLeft = 0;
