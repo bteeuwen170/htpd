@@ -8,7 +8,7 @@
 	$uid = $dbconn->real_escape_string($_POST["uid"]);
 	if (isset($_POST["name"])) {
 		echo("UID controleren... ");
-		verify_login(GID_ADMIN);
+		verify_login(GID_ADMIN, isset($_POST["submit"]));
 		check($dbconn, $uid != 1);
 
 		$name = $dbconn->real_escape_string($_POST["name"]);
@@ -30,7 +30,7 @@
 		header("Location: " . $_SERVER["HTTP_REFERER"]);
 	} else {
 		echo("UID controleren... ");
-		verify_login(GID_STUDENT);
+		verify_login(GID_STUDENT, isset($_POST["submit"]));
 		check($dbconn, $uid == $_COOKIE["uid"]);
 
 		$passwordold = $dbconn->real_escape_string($_POST["passwordold"]);

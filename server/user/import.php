@@ -1,10 +1,7 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
-	verify_login(GID_ADMIN);
-
-	if (!isset($_POST["submit"]))
-		header("Location: /index.php");
+	verify_login(GID_ADMIN, isset($_POST["submit"]));
 
 	//TODO Checks and echo to user
 	if ($_FILES["upload"]["error"] == UPLOAD_ERR_OK &&

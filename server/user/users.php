@@ -60,7 +60,7 @@
 							type="submit"
 							class="btn btn-default btn-sm"
 							id="delete"
-							name="delete"
+							name="submit"
 							title="Verwijderen"
 							data-tooltip="true"
 							data-placement="bottom" disabled>

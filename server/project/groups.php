@@ -259,6 +259,7 @@
 											type="submit"
 											class="btn btn-primary"
 											id="adddsubmit"
+											name="submit"
 											value="Toevoegen" disabled>
 									</div>
 								</div>

@@ -3,12 +3,12 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
+	echo("Welkom bij HTPD versie " . VERSION . "!<br>");
+
 	if (file_exists(URL_STORAGE . "configured")) {
 		header("HTTP/1.0 403 Forbidden");
-		die("De server is al geconfigureerd!");
+		die("De server is al geconfigureerd.");
 	}
-
-	echo("Welkom bij HTPD versie " . VERSION . "!<br>");
 
 	echo("Verbinding maken met SQL... ");
 	$dbconn = new mysqli(DB_URL . ":" . DB_PORT, DB_USER, DB_PASS);
@@ -77,7 +77,7 @@
 				</p>
 				<p><input
 					type='submit'
-					name='create'
+					name='submit'
 					value='Installeren'>
 				</p>
 			</form>

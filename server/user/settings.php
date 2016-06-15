@@ -34,7 +34,7 @@
 						<button
 							type="submit"
 							class="btn btn-default btn-sm"
-							name="save"
+							name="submit"
 							title="Opslaan"
 							data-tooltip="true"
 							data-placement="bottom">
@@ -52,12 +52,15 @@
 					<?php
 						if ($_COOKIE["gid"] == GID_TEACHER)
 							echo("
-					<fieldset class='form-group'>
-						<label>
-							<input type='checkbox' name='prevrefl' disabled>
-							Voorgaande reflectie weergeven in feedbackinterface
-						</label>
-					</fieldset>
+								<fieldset class='form-group'>
+									<label>
+										<input
+											type='checkbox'
+											name='prevrefl' disabled>
+										Voorgaande reflectie weergeven
+										in feedbackinterface
+									</label>
+								</fieldset>
 							");
 					?>
 					<fieldset class="form-group">

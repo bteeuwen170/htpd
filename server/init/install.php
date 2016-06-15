@@ -1,14 +1,14 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
-	if (file_exists(URL_STORAGE . "configured")) { //TODO Safe check?
+	if (file_exists(URL_STORAGE . "configured")) {
 		header("HTTP/1.0 403 Forbidden");
-		die("De server is al geconfigureerd!");
+		die("De server is al geconfigureerd.");
 	}
 
-	if (!isset($_POST["username"])) {
+	if (!isset($_POST["submit"])) {
 		header("HTTP/1.0 403 Forbidden");
-		die("De server is nog niet geconfigureerd!");
+		die("De server is nog niet geconfigureerd.");
 	}
 
 	echo("Verbinding maken met SQL database... ");

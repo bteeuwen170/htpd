@@ -60,7 +60,7 @@
 							type="submit"
 							class="btn btn-default btn-sm"
 							id="delete"
-							name="delete"
+							name="submit"
 							title="Verwijderen"
 							data-tooltip="true"
 							data-placement="bottom" disabled>
@@ -198,6 +198,7 @@
 										<input
 											type="submit"
 											class="btn btn-primary"
+											name="submit"
 											value="Opslaan">
 									</div>
 								</div>
@@ -279,6 +280,7 @@
 										<input
 											type="submit"
 											class="btn btn-primary"
+											name="submit"
 											value="Opslaan">
 									</div>
 								</div>

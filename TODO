@@ -119,13 +119,13 @@ x Remove email from DB_USERS
 x Remove group entries using projectdel.php as well
 x Don't allow teacher to change him/herself in usermanager
 x Fix groups.php
-- Check in php for "project: finished" header (/editor/students.php)
-x Check for "project: finished" header (/editor/teacher.php) (viewer)
+- Check in php for HEADER_FIN (/editor/students.php)
+x Check for HEADER_FIN (/editor/teacher.php) (viewer)
 - Force seeing feedback reflectie even if not finished (teacher.php)
 x Hide download button if feedback is not available yet for student
 x Links should open in new tab from viewer
-- Give submit button a name and check for submit on every submit handler page
-- Check if all fields are present post php
+x Give submit button a name and check for submit on every submit handler page
+p Check if all fields are present post php
 x Remove remember me code
 x Redirect to index.php instead of /user/logout.php after verifylogin()
 - Get escape character for SOM csv format

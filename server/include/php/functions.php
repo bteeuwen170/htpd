@@ -51,39 +51,50 @@
 			return count(get_years()) - 2;
 	}
 
-	function verify_login($gid) //TODO Run more checks
+	function verify_login($gid, $submit = true) //TODO Run more checks
 	{
+		if ($submit === false) {
+			header("HTTP/1.1 400 Bad Request");
+			header("Location: /400.html");
+
+			return;
+		}
+
 		if (isset($_COOKIE["session"])) {
-			$dbconn = new mysqli(DB_URL . ":" . DB_PORT,
-					DB_USER, DB_PASS, DB_NAME);
+			if (isset($_COOKIE["uid"]) && isset($_COOKIE["gid"]) &&
+				isset($_COOKIE["name"])) {
+				$dbconn = new mysqli(DB_URL . ":" . DB_PORT,
+						DB_USER, DB_PASS, DB_NAME);
 
-			$qurow = sprintf("SELECT uid, gid, name, password
-					FROM %s WHERE uid=%s", DB_USERS, $_COOKIE["uid"]);
-			$urow = $dbconn->query($qurow);
-			$user = $urow->fetch_assoc();
+				$qurow = sprintf("SELECT uid, gid, name, password
+						FROM %s WHERE uid=%s", DB_USERS, $_COOKIE["uid"]);
+				$urow = $dbconn->query($qurow);
+				$user = $urow->fetch_assoc();
 
-			if (hash(SESS_ENCRY,
-					$_SERVER["HTTP_USER_AGENT"] . $user["password"]) !=
-					$_COOKIE["session"]) {
-				header("HTTP/1.1 401 Unauthorized");
-				header("Location: /user/logout.php"); //TODO Sure?
-			}
+				if (hash(SESS_ENCRY,
+						$_SERVER["HTTP_USER_AGENT"] . $user["password"]) !=
+						$_COOKIE["session"]) {
+					header("HTTP/1.1 401 Unauthorized");
+					header("Location: /user/logout.php"); //TODO Sure?
+				}
 
-			if ($_COOKIE["uid"] != $user["uid"] ||
-				$_COOKIE["gid"] != $user["gid"] ||
-				$_COOKIE["name"] != $user["name"] ||
-				$gid < $user["gid"]) {
+				if ($_COOKIE["uid"] != $user["uid"] ||
+					$_COOKIE["gid"] != $user["gid"] ||
+					$_COOKIE["name"] != $user["name"] ||
+					$gid < $user["gid"]) {
+					header("HTTP/1.0 403 Forbidden");
+					header("Location: /403.html");
+				}
+
+				$urow->close();
+				$dbconn->close();
+			} else {
 				header("HTTP/1.0 403 Forbidden");
-				header("Location: /include/html/403.html");
+				header("Location: /403.html");
 			}
-
-			$urow->close();
-			$dbconn->close();
 		} else {
 			header("HTTP/1.1 401 Unauthorized");
 			header("Location: /login.php");
 		}
-
-		return true;
 	}
 ?>

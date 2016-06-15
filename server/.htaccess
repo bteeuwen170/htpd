@@ -1,4 +1,15 @@
+# CSP Headers
 #Header set Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval'"
 #Header set X-Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval'"
+
+# Custom HTTP Error Pages
 ErrorDocument 403 /403.html
 ErrorDocument 404 /404.html
+
+# Page compression
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/octet-stream
+AddOutputFilterByType DEFLATE application/x-font-woff

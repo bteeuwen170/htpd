@@ -1,7 +1,7 @@
 <?php
 	include($_SERVER["DOCUMENT_ROOT"] . "/include/php/include.php");
 
-	verify_login(GID_TEACHER);
+	verify_login(GID_TEACHER, isset($_POST["delete"]) || isset($_POST["save"]));
 
 	if (isset($_POST["delete"])) {
 		echo("Verbinding maken met SQL database... ");
@@ -33,8 +33,6 @@
 					$pid, $dbconn->real_escape_string($uids[$i]));
 			check($dbconn, $dbconn->query($user));
 		}
-	} else {
-		header("Location: /include/html/400.html");
 	}
 
 	$dbconn->close();
