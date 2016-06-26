@@ -61,5 +61,6 @@
 		$dbconn->close();
 
 		echo("<script>window.parent.location = '/login.php'</script>");
+			//XXX Logged out properly?
 	}
 ?>

@@ -128,7 +128,7 @@ x Give submit button a name and check for submit on every submit handler page
 p Check if all fields are present post php
 x Remove remember me code
 x Redirect to index.php instead of /user/logout.php after verifylogin()
-- Get escape character for SOM csv format
+n Get escape character for SOM csv format
 x USR_ to GID_ in config.php
 - Notification after importing (and deleting or editing)
 x Seperate config file
@@ -181,7 +181,7 @@ x Automatically add yourself to new project
 - Exclude already included users from groups.php add modal
 - Way for teacher to review CV
 - Don't add HEADER_FIN twice. (?)
-- Offer multiple options to download portfolio
+n Offer multiple options to download portfolio
 - Path student editor not working
 
 
@@ -197,7 +197,7 @@ x Ask client (and school) for correct footer
 	> Don't care
 x Ask client about licensing
 	> Open source is fine
-- Get advice on color scheme (from school or team?)
+n Get advice on color scheme (from school or team?)
 n Ask client about home page content
 	> Not important
 x Ask client about registration procedure
@@ -219,7 +219,7 @@ n Ask client if multiple teachers be involved in one project
 	> Maybe, but not important anyways
 x Ask client about teacher permissions in usermanager
 	> Done, answer = none
-- Ask team to fix this ugly *ss logo somehow (ENHANCE)
+n Ask team to fix this ugly logo somehow ("ENHANCE")
 
 
  Legend

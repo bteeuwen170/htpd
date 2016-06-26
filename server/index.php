@@ -121,30 +121,17 @@
 					check($dbconn, $ptable, false);
 
 					while ($prow = $ptable->fetch_array()) { //XXX This is crap
-						$groups = array();
-						$hasuser = false;
 						$qgtable =
 							sprintf("SELECT pid, grp, uid FROM %s WHERE pid=%s",
 									DB_GROUPS, $prow["pid"]);
 						$gtable = $dbconn->query($qgtable);
 						check($dbconn, $gtable, false);
-						while ($grow = $gtable->fetch_array()) {
-							array_push($groups, $grow);
-							if ($grow["uid"] == $_COOKIE["uid"])
-								$hasuser = true;
-						}
+						while ($grow = $gtable->fetch_array())
+							if ($grow["uid"] == $_COOKIE["uid"]) {
+								array_push($projects, $prow);
+								break;
+							}
 						$gtable->close();
-
-						if (!$hasuser)
-							continue;
-
-						$project = array();
-						array_push($project, $prow["pid"]);
-						array_push($project, $prow["name"]);
-						array_push($project, $prow["groups"]);
-						array_push($project, $prow["year"]);
-						array_push($project, $groups);
-						array_push($projects, $project);
 					}
 
 					$ptable->close();

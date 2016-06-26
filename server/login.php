@@ -7,7 +7,7 @@
 		header("Location: /init/init.php");
 
 	if (isset($_COOKIE["session"]))
-		header("Location: /index.php");
+		header("Location: /");
 
 	if (isset($_POST["username"])) {
 		$dbconn = new mysqli(DB_URL . ":" . DB_PORT, DB_USER, DB_PASS, DB_NAME);
@@ -34,7 +34,7 @@
 				setcookie("gid", $urow["gid"], false, "/", URL_SITE);
 				setcookie("name", $urow["name"], false, "/", URL_SITE);
 
-				header("Location: /index.php");
+				header("Location: /");
 			} else {
 				header("HTTP/1.1 401 Unauthorized");
 				$wup = true;

@@ -104,8 +104,7 @@ function download(l)
 
 	if (!l) $("#" + data).summernote("destroy");
 
-	var converted =
-		htmlDocx.asBlob(document.getElementById(data).innerHTML);
+	var converted = htmlDocx.asBlob(document.getElementById(data).innerHTML);
 	saveAs(converted, "document.docx"); //FIXME a better name (that's a pun)
 
 	if (!l && m != -1)
