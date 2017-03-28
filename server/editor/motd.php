@@ -5,7 +5,7 @@
 
 	verify_login(GID_ADMIN);
 
-	$path = URL_STORAGE . MOTD_NAME;
+	$path = URL_STORAGE . MOTD_FILE;
 
 	if (isset($_POST["data"])) {
 		$file = fopen($path, "w") or

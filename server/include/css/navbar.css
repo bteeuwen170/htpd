@@ -30,13 +30,14 @@
 {
 	display:			block;
 	margin:				0;
-	padding:			15px 16px;
+	padding:			0 16px;
+	line-height:		50px;
 	text-align:			center;
 	text-decoration:	none;
 	color:				#E4E4E4;
 }
 
-.nav li.active > a, .nav li a:hover
+.nav li.active > a, .nav li > a:hover
 {
 	color:				#FFFFFF;
 	background-color:	#007FA8;

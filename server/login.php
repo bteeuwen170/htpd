@@ -12,7 +12,7 @@
 	if (isset($_POST["username"])) {
 		$dbconn = new mysqli(DB_URL . ":" . DB_PORT, DB_USER, DB_PASS, DB_NAME);
 		check($dbconn, !$dbconn->connect_error, false);
-		
+
 		$username = $dbconn->real_escape_string($_POST["username"]);
 		$password = $dbconn->real_escape_string($_POST["password"]);
 
@@ -50,7 +50,7 @@
 	<head>
 		<meta charset="UTF-8">
 
-		<link rel="icon" href="/include/img/favico.png">
+		<link rel="icon" href="/include/img/favicon.png">
 		<title>Helinium Technasium Portfolio Database</title>
 
 		<link rel="stylesheet" type="text/css"

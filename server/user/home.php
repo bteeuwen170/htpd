@@ -21,7 +21,7 @@
 			<table class="home-table" width="100%">
 				<tr>
 					<?php
-						$path = URL_STORAGE . MOTD_NAME;
+						$path = URL_STORAGE . MOTD_FILE;
 
 						if (file_exists($path)) {
 							$motd = fopen($path, "r") or
@@ -41,9 +41,9 @@
 										</div>
 									</td>
 								");
-						}
 
-						fclose($motd);
+							fclose($motd);
+						}
 					?>
 					<!--<td>
 						<div class="panel panel-default">

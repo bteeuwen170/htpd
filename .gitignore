@@ -1,2 +1,5 @@
-storage/
 *.swp
+
+storage/
+export.csv
+export-fake.csv

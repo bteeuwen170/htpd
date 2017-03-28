@@ -17,7 +17,7 @@
 	/* Database */
 	define("DB_URL",		"localhost");	/* Database URL */
 	define("DB_PORT",		"3306");		/* Database poort */
-	define("DB_NAME",		"portfolios");	/* Database naam */
+	define("DB_NAME",		"htpd");		/* Database naam */
 	define("DB_USER",		"root");		/* Database gebruiker */
 	define("DB_PASS",		"my_password");	/* Database wachtwoord */
 
@@ -30,7 +30,7 @@
 											/* Pad naar opslag map */
 	define("URL_USERS",		URL_STORAGE . "students/");
 											/* Pad naar leerlingen map */
-	define("MOTD_NAME",		"motd.html");	/* Naam motd bestand */
+	define("MOTD_FILE",		"motd.html");	/* Naam motd bestand */
 	define("CV_NAME",		"cv.html");		/* Naam CV bestand */
 	define("PRJ_NAMES",		array("Productbeschrijving",
 								  "Procesbeschrijving",
