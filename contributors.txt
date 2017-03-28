@@ -1,4 +1,4 @@
-Bastiaan Teeuwen <bastiaan.teeuwen170@gmail.com>
+Bastiaan Teeuwen <bastiaan@mkcl.nl>
  - Main programmer and current project maintainer
 
 Lex van Teeffelen <lexvanteeffelen@gmail.com>
